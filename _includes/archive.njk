@@ -2,34 +2,50 @@
 layout: vanilla.njk
 ---
 
+<article class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <p class="eyebrow">{{ type or "collection" }}</p>
+      <h1 class="mb-3">{{ title }}</h1>
+      {% if page.lang == 'en' and titleEng %}
+      <p class="mb-3"><em>{{ titleEng }}</em></p>
+      {% endif %}
 
-{# This is the template for individual blog posts–it builds the front matter properties into the page #}
+      <div class="meta d-flex flex-wrap gap-3 mb-4">
+        {% if author %}
+        <span><i class="bi bi-person"></i> {{ author }}</span>
+        {% endif %}
+        {% if topic %}
+        <span><i class="bi bi-folder2"></i> {{ topic }}</span>
+        {% endif %}
+        {% if date %}
+        <span><i class="bi bi-calendar4"></i> {{ date }}</span>
+        {% endif %}
+      </div>
 
-<div class="wrapper post">
-  <div>
-    {# The archive front matter includes the title property #}
-    <h1 class='archiveTitle'>{{title}}</h1>
-    <p>
-      <em>{{description}}</em>
-    </p>
-    {# ADD P ELEMENT FROM TODO ON THE NEXT LINE #}
-    
-    {# Content from the body of the archive markdown appears here #}
-    {{ content | safe }}
-    <div class="controls">
-    {# The previous and next post data is added in .eleventy.js #}
-    {% if prevPost.url %}
-      <p>
-        <strong>Previous post</strong>: 
-        <a class="previous" href="{{ prevPost.url }}">{{ prevPost.data.title }}</a>
+      {% if thumbnail %}
+      <figure class="mb-4">
+        <img src="{{ thumbnail }}" alt="{{ title }}" class="img-fluid">
+      </figure>
+      {% endif %}
+
+      {% if page.lang == 'en' and desc-en %}
+      <p>{{ desc-en }}</p>
+      {% elif desc-es %}
+      <p>{{ desc-es }}</p>
+      {% endif %}
+
+      <div class="archive-body">
+        {{ content | safe }}
+      </div>
+
+      {% if link %}
+      <p class="mt-4">
+        <a href="{{ link }}" class="readmore">
+          <span>{% if page.lang == 'en' %}Open collection record{% else %}Abrir registro de la colección{% endif %}</span><i class="bi bi-arrow-right"></i>
+        </a>
       </p>
-    {% endif %}
-    {% if nextPost.url %}
-      <p>
-        <strong>Next post</strong>: 
-        <a class="next" href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
-      </p>
-    {% endif %}
+      {% endif %}
     </div>
   </div>
-</div>
+</article>

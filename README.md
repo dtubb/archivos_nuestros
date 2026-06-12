@@ -1,10 +1,10 @@
-# Archivo Afro
+# Archivos Nuestros
 
 ## About
-This project was created by Ann Farnsworth-Alvear and staff in the Research Data and Digital Scholarship department at Penn Libraries. The site's code is licensed under [CC-BY-NC-4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+This project is the active transition of Archivo Afro into Archivos Nuestros. It is being rebuilt as a bilingual research repository for curated primary sources, project publications, and linked research materials.
 
 ## Under the hood
-This project was created using [Eleventy](https://www.11ty.dev/). It utilizes [Decap CMS](https://decapcms.org/) for easy content addition. The design is based on the template [AgriCulture](https://bootstrapmade.com/agriculture-bootstrap-website-template/) with modifications. It may have additional software dependencies. 
+This project uses [Eleventy](https://www.11ty.dev/) and [Decap CMS](https://decapcms.org/). The inherited design is being revised as the structure, metadata model, and collection workflow are rebuilt.
 
 ## Preferred citation
-Ann Farnsworth-Alvear et al., "Archivo Afro," Penn Libraries, 2024, https://archivoafro.org/.
+Ann Farnsworth-Alvear and Daniel Tubb, "Archivos Nuestros," working site preview, 2026.

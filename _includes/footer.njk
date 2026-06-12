@@ -3,17 +3,19 @@
     <div class="footer-top">
       <div class="container">
         <div class="row gy-4">
-          <div class="col-lg-4 col-md-6 footer-about">
+          <div class="col-lg-5 col-md-6 footer-about">
             <a href="index.html" class="logo d-flex align-items-center">
-              <span class="sitename">Archivo Afro</span>
+              <span class="sitename">Archivos Nuestros</span>
             </a>
             <div class="footer-contact pt-3">
-              <p>MUNTÚ BANTÚ</p>
-              <p>FUNDACIÓN SOCIAL AFROCOLOMBIANA</p>
-              <p class="mt-3"><span>muntubantu@gmail.com</span></p>
-              <p class="mt-3"><strong>Dirección:</strong> <span>Carrera 18 # 12-65 Nicolás Medrano</span>
-              <p class="mb-3"><span>Quibdó-Chocó</span></p>
+              <p>{% if page.lang == 'en' %}Bilingual research repository for primary and secondary materials on the Colombian Pacific and related Afro-diasporic histories.{% else %}Repositorio bilingüe de investigación para materiales primarios y secundarios sobre el Pacífico colombiano y sus historias afro-diaspóricas relacionadas.{% endif %}</p>
+              <p class="mt-3"><span>{% if page.lang == 'en' %}Working site preview in active transition.{% else %}Vista previa de un sitio en transición activa.{% endif %}</span></p>
             </div>
+          </div>
+          <div class="col-lg-7 col-md-6">
+            <p class="mb-2"><strong>{% if page.lang == 'en' %}Current editors{% else %}Editoras y editor actual{% endif %}</strong></p>
+            <p class="mb-2">{% if page.lang == 'en' %}Ann Farnsworth-Alvear teaches in Penn History and Latin American and Latino Studies, and works on labor, extraction, and oral history in Colombia and Angola.{% else %}Ann Farnsworth-Alvear enseña en History y en Latin American and Latino Studies en Penn, y trabaja sobre trabajo, extracción e historia oral en Colombia y Angola.{% endif %}</p>
+            <p class="mb-0">{% if page.lang == 'en' %}Daniel Tubb is an anthropologist at UNB whose research focuses on Colombia, resource projects, and rural life, with ongoing work in the Chocó and beyond.{% else %}Daniel Tubb es antropólogo en UNB y su investigación se centra en Colombia, los proyectos extractivos y la vida rural, con trabajo continuo en el Chocó y más allá.{% endif %}</p>
           </div>
         </div>
       </div>

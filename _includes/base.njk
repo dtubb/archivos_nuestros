@@ -45,155 +45,131 @@
 
 <body class="index-page">
 
+{% set archiveCount = collections.archives | length %}
+{% set exhibitCount = collections.exhibits | length %}
+
 <header>
  {% include "navbar.njk" %}
 </header>
 
   <main class="main">
     
-    <!-- Photo banner (desktop)/carousel (mobile) -->
-    <section id="services-2" class="services-2 section dark-background">
-      <!-- Section Title -->
-      
-
-      <div class="services-carousel-wrap">
-        <div class="container">
-
-            <div class="row">
-              
-              <div class="col">
-                <div class="card h-100">
-                  <a href="#about">
-                  <img src="/assets/img/fmb.png" class="card-img-top">
-                  <div class="card-body">
-                    <h3 class="card-title">{% if page.lang == 'en' %}About + Bibliography{% else %}Acerca de + Bibliografía </br>{% endif %}</h3>
-                  </div>
-                  </a>
-                </div>
-              </div>
-              
-
-              <div class="col">
-                <div class="card h-100">
-                  <a href="#archives">
-                  <img src="/assets/img/scanning.png" class="card-img-top">
-                  <div class="card-body">
-                    <h3 class="card-title">{% if page.lang == 'en' %}Explore Archives + Primary Sources{% else %}Explorar Archivos + Fuentes Primarias{% endif %}</h3>
-                  </div>
-                  </a>
-                </div>
-              </div>
-            
-
-              <div class="col">
-                <div class="card h-100">
-                  <a href="#exhibits">
-                  <img src="/assets/img/reading.png" class="card-img-top">
-                  <div class="card-body">
-                    <h3 class="card-title">{% if page.lang == 'en' %}Browse Exhibits, Publications, and Projects{% else %}Explorar Exposiciones, Publicaciones + Proyectos{% endif %}</h3>
-                  </div>
-                  </a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-              
-
-
-          </div>
-        </div>
-      </div>
-    </section><!-- /Services 2 Section -->
-
-<!-- About Section -->
-    <section  class="about section">
-
-      <div class="content">
-        <div id="about" class="container">
-          <div class="row">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-              <img src="/assets/img/fmb-logo.jpg" alt="Image" class="img-fluid">
-            </div>
-            <div class="col-lg-5 ml-auto">
-              <h3 class="content-subtitle text-white opacity-50">{% if page.lang == 'en' %}About{% else %}Acerca{% endif %}</h3>
-              <p>
+    <section class="archivos-hero section">
+      <div class="container">
+        <div class="row justify-content-between g-4 align-items-start">
+          <div class="col-lg-7">
+            <p class="eyebrow">{% if page.lang == 'en' %}Working preview{% else %}Vista previa de trabajo{% endif %}</p>
+            <h1 class="hero-title">{% if page.lang == 'en' %}Archivos Nuestros{% else %}Archivos Nuestros{% endif %}</h1>
+            <p class="hero-lede">
               {% if page.lang == 'en' %}
-                Muntú Bantú is a Memory Center for Documentation and Afrodiasporic Materialities located in Quibdó, the capital city
-of Chocó, Colombia.
-Thank you for visiting our digital archive, where we seek to showcase archives and primary sources important to
-the history of the Chocó, the Colombian Pacific region, and the African Diaspora.
-Archivo Afro has received financial support from the Mellon Foundation Just Futures Initiative grant N-2009-09221
-entitled “Dispossessions in the Americas: the Extraction of Bodies, Land, and Heritage from la Conquista to the
-Present”, administered by the University of Pennsylvania and coordinated by Principal Investigator: Tulia G. Falleti. We are also grateful for additional funding received from
-the Social Sciences and Humanities Research Council of Canada and from Penn Libraries, the University of
-Pennsylvania, the University of New Brunswick, and the University of Michigan.
-Thank you to everyone: the Semillero de Jóvenes of Muntú Bantú, María Fernanda Parra, Sergio Mosquera Mosquera,
-Daniel Varela Corredor, Claudia Leal, Kelly López-Roldán, Ann Farnsworth-Alvear, Daniel Tubb, Cynthia Heider, Brie Gettleson, and
-Andy Janco.
-            {% else %}
-            Muntú Bantú es un Centro de Memoria, Documentación y Materialidades Afrodiaspóricas en la Ciudad de Quibdó,
-en Chocó, Colombia.
-Gracias por visitar nuestro archivo digital, donde buscamos visibilizar archivos y fuentes primarias importantes para la
-historia del Chocó, del Pacífico Colombiano y de la diaspora Africana.
-Archivo Afro ha recibido apoyo financiero de la inciativa “Just Futures” de la Fundación Mellon, beca N-2009-09221
-proyecto “Dispossessions in the Americas: the Extraction of Bodies, Land, and Heritage from la Conquista to the
-Present” administrada por la Universidad de Pensilvania y coordinada Tulia Falleti. También expresamos nuestra gratitud por el apoyo
-recibido del Social Sciences and Humanities Research Council of Canada, Penn Libraries, la Universidad de
-Pennsylvania, la Universidad de New Brunswick y la Universidad de Michigan.
-Gracias a todes: Las y los del Semillero de Jóvenes de Muntú Bantú, María Fernanda Parra, Sergio Mosquera Mosquera,
-Daniel Varela Corredor, Claudia Leal, Kelly López-Roldán, Ann Farnsworth-Alvear, Daniel Tubb, Cynthia Heider, Brie
-Gettleson, y Andy Janco.
-         {% endif %}
-              </p>
+              A bilingual research site for curated primary sources, project publications, and linked research materials focused in part on the Colombian Pacific.
+              {% else %}
+              Un sitio bilingüe de investigación para fuentes primarias curadas, publicaciones del proyecto y materiales de investigación vinculados, centrado en parte en el Pacífico colombiano.
+              {% endif %}
+            </p>
+            <p class="hero-copy">
+              {% if page.lang == 'en' %}
+              This site is being rebuilt in public. The framework, taxonomy, and metadata model are being revised first; collections will then move over one at a time, with review and enrichment.
+              {% else %}
+              Este sitio se está reconstruyendo en público. Primero se revisan la estructura, la taxonomía y el modelo de metadatos; luego las colecciones se trasladarán una por una, con revisión y enriquecimiento.
+              {% endif %}
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <div class="hero-panel">
+              <h2>{% if page.lang == 'en' %}Current public sections{% else %}Secciones públicas actuales{% endif %}</h2>
+              <ul>
+                <li>{% if page.lang == 'en' %}Archival and Primary Materials{% else %}Materiales de Archivo y Fuentes Primarias{% endif %}</li>
+                <li>{% if page.lang == 'en' %}Project Publications{% else %}Publicaciones del Proyecto{% endif %}</li>
+                <li>{% if page.lang == 'en' %}Research Library / Bibliography{% else %}Biblioteca de Investigación / Bibliografía{% endif %}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-              
-                
-                
-              </div>
+        <div class="row g-4 mt-2">
+          <div class="col-lg-4">
+            <div class="overview-card h-100">
+              <h3>{% if page.lang == 'en' %}Thematic areas{% else %}Áreas temáticas{% endif %}</h3>
+              <ul>
+                <li>Minería en el Chocó Colombiano</li>
+                <li>Mapas</li>
+                <li>En clave afro-diaspórica: Historia, cultura, visiones</li>
+                <li>Palenke el Congal</li>
+                <li>Archivo Catherine Legrande</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="overview-card h-100">
+              <h3>{% if page.lang == 'en' %}Publication streams{% else %}Líneas de publicación{% endif %}</h3>
+              <ul>
+                <li>{% if page.lang == 'en' %}Short digital essays{% else %}Ensayos digitales breves{% endif %}</li>
+                <li>{% if page.lang == 'en' %}Working papers{% else %}Documentos de trabajo{% endif %}</li>
+                <li>{% if page.lang == 'en' %}Maps we have made{% else %}Mapas producidos por el proyecto{% endif %}</li>
+                <li>{% if page.lang == 'en' %}Booklets and exhibits{% else %}Cartillas y exposiciones{% endif %}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="overview-card h-100">
+              <h3>{% if page.lang == 'en' %}Collection workflow{% else %}Flujo de trabajo por colección{% endif %}</h3>
+              <ul>
+                <li>{% if page.lang == 'en' %}Review source material{% else %}Revisar el material fuente{% endif %}</li>
+                <li>{% if page.lang == 'en' %}Draft metadata in YAML and JSONL{% else %}Redactar metadatos en YAML y JSONL{% endif %}</li>
+                <li>{% if page.lang == 'en' %}Prepare thumbnails, rights, and storage handoff{% else %}Preparar miniaturas, derechos y entrega para almacenamiento{% endif %}</li>
+                <li>{% if page.lang == 'en' %}Publish one reviewed collection at a time{% else %}Publicar una colección revisada a la vez{% endif %}</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-    </section><!-- /About Section -->
+    </section>
 
-    
-    <!-- Recent Posts Section -->
-    <section id="archives" class="recent-posts section">
-
-      <!-- Section Title -->
-      <div class="container section-title" >
-        <h2>{% if page.lang == 'en' %}Archives + Primary Sources{% else %}Archivos + Fuentes Primarias{% endif %}</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container pb-1">
-       <div class="container">
-
-
-      <div class="row">
-
-
-        <div class="buttons col-12">
-
-
-          <button class="btn mb-2 me-1 filter-button" data-filter="filter-all">Todos</button>
-
-          <button class="btn mb-2 mx-1 filter-button" data-filter="audiovisuales">Audiovisuales</button>
-
-          <button class="btn mb-2 mx-1 filter-button" data-filter="bibliografía">Bibliografía</button>
-          
-          <button class="btn mb-2 mx-1 filter-button" data-filter="documentos">Documentos</button>
-
-          <button class="btn mb-2 mx-1 filter-button" data-filter="entrevistas">Entrevistas</button>
-
-          <button class="btn mb-2 mx-1 filter-button" data-filter="fotos">Fotos</button>
-
-          <button class="btn mb-2 mx-1 filter-button" data-filter="mapas">Mapas</button>
-
-          <button class="btn mb-2 mx-1 filter-button" data-filter="otros">Otros</button>
-
+    <section id="about" class="about section archivos-about">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <h2>{% if page.lang == 'en' %}About the project{% else %}Sobre el proyecto{% endif %}</h2>
+            <p>
+              {% if page.lang == 'en' %}
+              Archivos Nuestros is becoming a bilingual repository for historians, anthropologists, geographers, archivists, and related publics. It will bring together curated primary sources, project publications, and linked bibliographic materials while keeping track of provenance, rights, and hosting decisions.
+              {% else %}
+              Archivos Nuestros se está convirtiendo en un repositorio bilingüe para historiadores, antropólogos, geógrafos, archivistas y otros públicos afines. Reunirá fuentes primarias curadas, publicaciones del proyecto y materiales bibliográficos vinculados, manteniendo registro de procedencia, derechos y decisiones de alojamiento.
+              {% endif %}
+            </p>
+            <p>
+              {% if page.lang == 'en' %}
+              The current build is intentionally text-forward. It is meant to make structure, metadata, and review workflow visible before the full set of collections comes online.
+              {% else %}
+              La construcción actual es intencionalmente más textual. Busca hacer visibles la estructura, los metadatos y el flujo de revisión antes de que entre en línea el conjunto completo de colecciones.
+              {% endif %}
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <h2>{% if page.lang == 'en' %}People{% else %}Personas{% endif %}</h2>
+            <div class="people-summary">
+              <h3>Ann Farnsworth-Alvear</h3>
+              <p>{% if page.lang == 'en' %}Historian at the University of Pennsylvania working on labor, extraction, and oral history in Colombia and Angola.{% else %}Historiadora en la Universidad de Pensilvania que trabaja sobre trabajo, extracción e historia oral en Colombia y Angola.{% endif %}</p>
+              <h3>Daniel Tubb</h3>
+              <p>{% if page.lang == 'en' %}Anthropologist at the University of New Brunswick whose research focuses on Colombia, extractive projects, and rural life in the Chocó and beyond.{% else %}Antropólogo en la Universidad de New Brunswick cuya investigación se centra en Colombia, los proyectos extractivos y la vida rural en el Chocó y más allá.{% endif %}</p>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
 
+    <section id="archives" class="recent-posts section">
+      <div class="container section-title" >
+        <h2>{% if page.lang == 'en' %}Archival and Primary Materials{% else %}Materiales de Archivo y Fuentes Primarias{% endif %}</h2>
+      </div>
+
+      <div class="container">
+      {% if archiveCount == 0 %}
+        <div class="empty-state">
+          <p>{% if page.lang == 'en' %}No collection is published in this section yet. The first reviewed collection will appear here as materials move over one at a time.{% else %}Todavía no hay ninguna colección publicada en esta sección. La primera colección revisada aparecerá aquí a medida que los materiales se trasladen uno por uno.{% endif %}</p>
+        </div>
+      {% else %}
         <div class="row gy-5 mt-0">
         {%- for archive in collections.archives | sort(attribute="data.title") -%}
           <div class="archive-item col-xl-4 col-md-6" data-category="{{ archive.data.type }}">
@@ -229,15 +205,17 @@ Gettleson, y Andy Janco.
                   <div class="d-flex align-items-center">
                     <i class="bi bi-person"></i> <span class="ps-2">{{ archive.data.author }}</span>
                   </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-folder2"></i> <span class="ps-2">{{ archive.data.topic }}</span>
-                  </div>
+                  {% if archive.data.topic %}
+                    <span class="px-3 text-black-50">/</span>
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-folder2"></i> <span class="ps-2">{{ archive.data.topic }}</span>
+                    </div>
+                  {% endif %}
                 </div>
 
                 <hr>
 
-                <a href="{{ archive.data.link }}" class="readmore stretched-link">
+                <a href="{{ archive.data.link or archive.url }}" class="readmore stretched-link">
                   <span>{% if page.lang == 'en' %}Read more{% else %}Lee más{% endif %}</span><i class="bi bi-arrow-right"></i>
                 </a>
 
@@ -248,21 +226,21 @@ Gettleson, y Andy Janco.
           {% endfor %}
           
         </div>
+      {% endif %}
+      </div>
+    </section>
 
+    <section id="exhibits" class="recent-posts section">
+      <div class="container section-title" >
+        <h2>{% if page.lang == 'en' %}Project Publications{% else %}Publicaciones del Proyecto{% endif %}</h2>
       </div>
 
-    </section><!-- /Recent Posts Section -->
-
-    <!-- Recent Posts Section -->
-    <section id="exhibits" class="recent-posts section">
-
-      <!-- Section Title -->
-      <div class="container section-title" >
-        <h2>{% if page.lang == 'en' %}Exhibits, Publications, and Projects{% else %}Exposiciones, Publicaciones + Proyectos{% endif %}</h2>
-      </div><!-- End Section Title -->
-
       <div class="container">
-
+        {% if exhibitCount == 0 %}
+        <div class="empty-state">
+          <p>{% if page.lang == 'en' %}This section will hold short digital essays, working papers, maps we have made, booklets, and exhibits published through Archivos Nuestros.{% else %}Esta sección alojará ensayos digitales breves, documentos de trabajo, mapas elaborados por el proyecto, cartillas y exposiciones publicadas por Archivos Nuestros.{% endif %}</p>
+        </div>
+        {% else %}
         <div class="row gy-5">
             {%- for exhibit in collections.exhibits -%}
 
@@ -299,7 +277,7 @@ Gettleson, y Andy Janco.
 
                 <hr>
 
-                <a href="{{ exhibit.data.link }}" class="readmore stretched-link">
+                <a href="{{ exhibit.data.link or exhibit.url }}" class="readmore stretched-link">
                   <span>{% if page.lang == 'en' %}Read more{% else %}Lee más{% endif %}</span><i class="bi bi-arrow-right"></i>
                 </a>
 
@@ -310,10 +288,20 @@ Gettleson, y Andy Janco.
           {% endfor %}
           
         </div>
-
+        {% endif %}
       </div>
+    </section>
 
-    </section><!-- /Recent Posts Section -->
+    <section class="section bibliography-section">
+      <div class="container section-title">
+        <h2>{% if page.lang == 'en' %}Research Library / Bibliography{% else %}Biblioteca de Investigación / Bibliografía{% endif %}</h2>
+      </div>
+      <div class="container">
+        <div class="empty-state">
+          <p>{% if page.lang == 'en' %}This section will gather linked or hosted dissertations, blogs, scholarly articles, bibliographies, and related secondary materials.{% else %}Esta sección reunirá tesis, blogs, artículos académicos, bibliografías y otros materiales secundarios, ya sea enlazados o alojados localmente.{% endif %}</p>
+        </div>
+      </div>
+    </section>
 
 
   </main>
@@ -361,8 +349,6 @@ Gettleson, y Andy Janco.
 
     });
   </script>
-  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="/assets/js/filter-type.js"></script>
   {% block extrajs %}{% endblock %}
 
 </body>

@@ -13,7 +13,7 @@ editor:
 # publish_mode: editorial_workflow
 collections:
   - name: "archive" # Used in routes, e.g., /admin/collections/blog
-    label: "Archives" # Used in the UI
+    label: "Archival and Primary Materials" # Used in the UI
     folder: "archives" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
@@ -22,7 +22,7 @@ collections:
       - { label: "Title (English)", name: "titleEng", widget: "string", required: false }
       - { label: "Author", name: "author", widget: "string", required: false }
       - { label: "Topic", name: "topic", widget: "string", required: false }
-      - { label: "Type", name: "type", widget: "select", options: ["audiovisuales", "bibliografía", "documentos", "entrevistas", "fotos", "mapas", "otros"], required: false }
+      - { label: "Type", name: "type", widget: "select", options: ["collections", "documents", "photographs", "maps", "field_notes", "finding_aids", "catalogues", "search_tools", "other"], required: false }
       - { label: "Date", name: "date", widget: "datetime", required: false }
       - { label: "Image", name: "thumbnail", widget: "image", required: false }
       - { label: "Link", name: "link", widget: "string", required: false }
@@ -30,7 +30,7 @@ collections:
       - { label: "Description (English)", name: "desc-en", widget: "markdown", required: false }
 
   - name: "exhibit" # Used in routes, e.g., /admin/collections/blog
-    label: "Exhibits" # Used in the UI
+    label: "Project Publications" # Used in the UI
     folder: "exhibits" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md

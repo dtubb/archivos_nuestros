@@ -19,11 +19,11 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #212529; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #2d465e; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #116530; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --background-color: #f4f0e8; /* Background color for the entire website, including individual sections */
+  --default-color: #2b2620; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #173a38; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #8b4b2d; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #fcfaf6; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
@@ -45,11 +45,11 @@
 }
 
 .dark-background {
-  --background-color: #06007b;
+  --background-color: #173a38;
   --default-color: #ffffff;
   --heading-color: #ffffff;
-  --accent-color: #2ea359;
-  --surface-color: #252525;
+  --accent-color: #d39b6a;
+  --surface-color: #244847;
   --contrast-color: #ffffff;
 }
 
@@ -1161,7 +1161,7 @@ section,
 }
 
 .services-2 .service-item:hover img {
-  transform: scale(1.2);
+  transform: none;
 }
 
 .services-2 .navigation-prev,
@@ -1312,7 +1312,96 @@ section,
 }
 
 .recent-posts .post-item:hover .post-img img {
-  transform: scale(1.1);
+  transform: none;
+}
+
+.archivos-hero {
+  padding-top: 48px;
+  padding-bottom: 24px;
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-color);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 0.95;
+  margin-bottom: 20px;
+}
+
+.hero-lede {
+  font-size: 1.35rem;
+  line-height: 1.55;
+  max-width: 52rem;
+  margin-bottom: 18px;
+}
+
+.hero-copy {
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 48rem;
+}
+
+.hero-panel,
+.overview-card,
+.empty-state {
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.hero-panel,
+.overview-card {
+  padding: 24px;
+}
+
+.hero-panel h2,
+.overview-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+}
+
+.hero-panel ul,
+.overview-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.hero-panel li,
+.overview-card li {
+  margin-bottom: 8px;
+  line-height: 1.55;
+}
+
+.archivos-about {
+  padding-top: 32px;
+}
+
+.archivos-about .container {
+  padding-top: 32px;
+  padding-bottom: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+.people-summary h3 {
+  font-size: 1.15rem;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+.empty-state {
+  padding: 28px;
+}
+
+.empty-state p {
+  margin-bottom: 0;
+  line-height: 1.7;
 }
 
 /*--------------------------------------------------------------
