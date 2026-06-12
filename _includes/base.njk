@@ -4,13 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>{{ title or metadata.title }}</title>
+  <title>{{ title or metadata.title or 'Archivos Nuestros' }}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/assets/img/favicon.png" rel="icon">
-  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ '/assets/img/apple-touch-icon.png' | sitePath }}" rel="icon">
+  <link href="{{ '/assets/img/apple-touch-icon.png' | sitePath }}" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -18,20 +18,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="{{ '/assets/vendor/bootstrap/css/bootstrap.min.css' | sitePath }}" rel="stylesheet">
+  <link href="{{ '/assets/vendor/bootstrap-icons/bootstrap-icons.css' | sitePath }}" rel="stylesheet">
+  <link href="{{ '/assets/vendor/aos/aos.css' | sitePath }}" rel="stylesheet">
+  <link href="{{ '/assets/vendor/swiper/swiper-bundle.min.css' | sitePath }}" rel="stylesheet">
+  <link href="{{ '/assets/vendor/glightbox/css/glightbox.min.css' | sitePath }}" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="/assets/css/main.css" rel="stylesheet">
+  <link href="{{ '/assets/css/main.css' | sitePath }}" rel="stylesheet">
 
   {% block extracss %}{% endblock %}
 
   <!-- pagefind files -->
-  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-  <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+  <link href="{{ '/pagefind/pagefind-ui.css' | sitePath }}" rel="stylesheet">
+  <script src="{{ '/pagefind/pagefind-ui.js' | sitePath }}" type="text/javascript"></script>
 
 
   <!-- =======================================================
@@ -58,22 +58,7 @@
       <div class="container">
         <div class="row justify-content-between g-4 align-items-start">
           <div class="col-lg-7">
-            <p class="eyebrow">{% if page.lang == 'en' %}Working preview{% else %}Vista previa de trabajo{% endif %}</p>
-            <h1 class="hero-title">{% if page.lang == 'en' %}Archivos Nuestros{% else %}Archivos Nuestros{% endif %}</h1>
-            <p class="hero-lede">
-              {% if page.lang == 'en' %}
-              A bilingual research site for curated primary sources, project publications, and linked research materials focused in part on the Colombian Pacific.
-              {% else %}
-              Un sitio bilingüe de investigación para fuentes primarias curadas, publicaciones del proyecto y materiales de investigación vinculados, centrado en parte en el Pacífico colombiano.
-              {% endif %}
-            </p>
-            <p class="hero-copy">
-              {% if page.lang == 'en' %}
-              This site is being rebuilt in public. The framework, taxonomy, and metadata model are being revised first; collections will then move over one at a time, with review and enrichment.
-              {% else %}
-              Este sitio se está reconstruyendo en público. Primero se revisan la estructura, la taxonomía y el modelo de metadatos; luego las colecciones se trasladarán una por una, con revisión y enriquecimiento.
-              {% endif %}
-            </p>
+            <h1 class="hero-title">Archivos Nuestros</h1>
           </div>
           <div class="col-lg-4">
             <div class="hero-panel">
@@ -113,46 +98,11 @@
           </div>
           <div class="col-lg-4">
             <div class="overview-card h-100">
-              <h3>{% if page.lang == 'en' %}Collection workflow{% else %}Flujo de trabajo por colección{% endif %}</h3>
+              <h3>{% if page.lang == 'en' %}Project{% else %}Proyecto{% endif %}</h3>
               <ul>
-                <li>{% if page.lang == 'en' %}Review source material{% else %}Revisar el material fuente{% endif %}</li>
-                <li>{% if page.lang == 'en' %}Draft metadata in YAML and JSONL{% else %}Redactar metadatos en YAML y JSONL{% endif %}</li>
-                <li>{% if page.lang == 'en' %}Prepare thumbnails, rights, and storage handoff{% else %}Preparar miniaturas, derechos y entrega para almacenamiento{% endif %}</li>
-                <li>{% if page.lang == 'en' %}Publish one reviewed collection at a time{% else %}Publicar una colección revisada a la vez{% endif %}</li>
+                <li>Ann Farnsworth-Alvear</li>
+                <li>Daniel Tubb</li>
               </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="about section archivos-about">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-lg-6">
-            <h2>{% if page.lang == 'en' %}About the project{% else %}Sobre el proyecto{% endif %}</h2>
-            <p>
-              {% if page.lang == 'en' %}
-              Archivos Nuestros is becoming a bilingual repository for historians, anthropologists, geographers, archivists, and related publics. It will bring together curated primary sources, project publications, and linked bibliographic materials while keeping track of provenance, rights, and hosting decisions.
-              {% else %}
-              Archivos Nuestros se está convirtiendo en un repositorio bilingüe para historiadores, antropólogos, geógrafos, archivistas y otros públicos afines. Reunirá fuentes primarias curadas, publicaciones del proyecto y materiales bibliográficos vinculados, manteniendo registro de procedencia, derechos y decisiones de alojamiento.
-              {% endif %}
-            </p>
-            <p>
-              {% if page.lang == 'en' %}
-              The current build is intentionally text-forward. It is meant to make structure, metadata, and review workflow visible before the full set of collections comes online.
-              {% else %}
-              La construcción actual es intencionalmente más textual. Busca hacer visibles la estructura, los metadatos y el flujo de revisión antes de que entre en línea el conjunto completo de colecciones.
-              {% endif %}
-            </p>
-          </div>
-          <div class="col-lg-6">
-            <h2>{% if page.lang == 'en' %}People{% else %}Personas{% endif %}</h2>
-            <div class="people-summary">
-              <h3>Ann Farnsworth-Alvear</h3>
-              <p>{% if page.lang == 'en' %}Historian at the University of Pennsylvania working on labor, extraction, and oral history in Colombia and Angola.{% else %}Historiadora en la Universidad de Pensilvania que trabaja sobre trabajo, extracción e historia oral en Colombia y Angola.{% endif %}</p>
-              <h3>Daniel Tubb</h3>
-              <p>{% if page.lang == 'en' %}Anthropologist at the University of New Brunswick whose research focuses on Colombia, extractive projects, and rural life in the Chocó and beyond.{% else %}Antropólogo en la Universidad de New Brunswick cuya investigación se centra en Colombia, los proyectos extractivos y la vida rural en el Chocó y más allá.{% endif %}</p>
             </div>
           </div>
         </div>
@@ -165,11 +115,7 @@
       </div>
 
       <div class="container">
-      {% if archiveCount == 0 %}
-        <div class="empty-state">
-          <p>{% if page.lang == 'en' %}No collection is published in this section yet. The first reviewed collection will appear here as materials move over one at a time.{% else %}Todavía no hay ninguna colección publicada en esta sección. La primera colección revisada aparecerá aquí a medida que los materiales se trasladen uno por uno.{% endif %}</p>
-        </div>
-      {% else %}
+      {% if archiveCount > 0 %}
         <div class="row gy-5 mt-0">
         {%- for archive in collections.archives | sort(attribute="data.title") -%}
           <div class="archive-item col-xl-4 col-md-6" data-category="{{ archive.data.type }}">
@@ -177,7 +123,7 @@
             <div class="post-item position-relative h-100" data-aos-delay="100">
 
               <div class="post-img position-relative overflow-hidden">
-                <img src="{{ archive.data.thumbnail }}" class="img-fluid" alt="{{ archive.data.title }}">
+                <img src="{{ archive.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ archive.data.title }}">
                 {% if archive.data.date %}
                 <span class="post-date">{{ archive.data.date }}</span>
                 {% endif %}
@@ -236,11 +182,7 @@
       </div>
 
       <div class="container">
-        {% if exhibitCount == 0 %}
-        <div class="empty-state">
-          <p>{% if page.lang == 'en' %}This section will hold short digital essays, working papers, maps we have made, booklets, and exhibits published through Archivos Nuestros.{% else %}Esta sección alojará ensayos digitales breves, documentos de trabajo, mapas elaborados por el proyecto, cartillas y exposiciones publicadas por Archivos Nuestros.{% endif %}</p>
-        </div>
-        {% else %}
+        {% if exhibitCount > 0 %}
         <div class="row gy-5">
             {%- for exhibit in collections.exhibits -%}
 
@@ -248,7 +190,7 @@
             <div class="post-item position-relative h-100"  data-aos-delay="100">
 
               <div class="post-img position-relative overflow-hidden">
-                <img src="{{ exhibit.data.thumbnail }}" class="img-fluid" alt="{{ exhibit.data.title }}">
+                <img src="{{ exhibit.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ exhibit.data.title }}">
                 <span class="post-date">{{ exhibit.data.date }}</span>
               </div>
 
@@ -297,9 +239,7 @@
         <h2>{% if page.lang == 'en' %}Research Library / Bibliography{% else %}Biblioteca de Investigación / Bibliografía{% endif %}</h2>
       </div>
       <div class="container">
-        <div class="empty-state">
-          <p>{% if page.lang == 'en' %}This section will gather linked or hosted dissertations, blogs, scholarly articles, bibliographies, and related secondary materials.{% else %}Esta sección reunirá tesis, blogs, artículos académicos, bibliografías y otros materiales secundarios, ya sea enlazados o alojados localmente.{% endif %}</p>
-        </div>
+        <div class="empty-state"></div>
       </div>
     </section>
 
@@ -329,14 +269,14 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/vendor/php-email-form/validate.js"></script>
-  <script src="/assets/vendor/aos/aos.js"></script>
-  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="{{ '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' | sitePath }}"></script>
+  <script src="{{ '/assets/vendor/php-email-form/validate.js' | sitePath }}"></script>
+  <script src="{{ '/assets/vendor/aos/aos.js' | sitePath }}"></script>
+  <script src="{{ '/assets/vendor/swiper/swiper-bundle.min.js' | sitePath }}"></script>
+  <script src="{{ '/assets/vendor/glightbox/js/glightbox.min.js' | sitePath }}"></script>
 
   <!-- Main JS File -->
-  <script src="/assets/js/main.js"></script>
+  <script src="{{ '/assets/js/main.js' | sitePath }}"></script>
   <script>
     window.addEventListener('DOMContentLoaded', (event) => {
         new PagefindUI({ element: "#search", showSubResults: true });

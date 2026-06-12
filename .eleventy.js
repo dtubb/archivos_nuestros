@@ -2,6 +2,17 @@ const { EleventyI18nPlugin } = require("@11ty/eleventy");
 const { execSync } = require('child_process')
 
 module.exports = function (eleventyConfig) {
+    const siteBasePath = process.env.SITE_BASE_PATH || "";
+
+    eleventyConfig.addFilter("sitePath", (value) => {
+        if (!value) return value;
+        if (/^(https?:)?\/\//.test(value) || value.startsWith("mailto:") || value.startsWith("#")) {
+            return value;
+        }
+        const normalized = value.startsWith("/") ? value : `/${value}`;
+        return `${siteBasePath}${normalized}`;
+    });
+
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("admin");
 
@@ -12,6 +23,4 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.on('eleventy.after', () => {
         execSync(`npx pagefind --site _site --glob \"**/*.html\"`, { encoding: 'utf-8' })
     });
-
-    
 };

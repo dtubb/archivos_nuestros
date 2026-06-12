@@ -25,7 +25,7 @@ layout: vanilla.njk
 
       {% if thumbnail %}
       <figure class="mb-4">
-        <img src="{{ thumbnail }}" alt="{{ title }}" class="img-fluid">
+        <img src="{{ thumbnail | sitePath }}" alt="{{ title }}" class="img-fluid">
       </figure>
       {% endif %}
 

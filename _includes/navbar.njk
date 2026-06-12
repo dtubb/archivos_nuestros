@@ -3,7 +3,7 @@
 
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img class="img-fluid" src="/assets/img/colombia-outline.png" alt="Archivos Nuestros">
+        <img class="img-fluid" src="{{ '/assets/img/colombia-outline.png' | sitePath }}" alt="Archivos Nuestros">
         <h1 class="sitename">Archivos Nuestros</h1>
       </a>
 
@@ -13,10 +13,10 @@
         <li><i id="search-icon" class="bi bi-search"></i></li>
 
           {% if page.lang == 'en' %}
-        <a href="/en">english</a> | <a href="/./#">español</a>
+        <a href="{{ '/en/' | sitePath }}">english</a> | <a href="{{ '/' | sitePath }}">español</a>
          
           {% else %}
-        <a href="/./#">español</a> | <a href="/en">english</a>
+        <a href="{{ '/' | sitePath }}">español</a> | <a href="{{ '/en/' | sitePath }}">english</a>
          {% endif %}
          
         </ul>
