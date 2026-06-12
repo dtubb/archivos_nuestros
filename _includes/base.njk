@@ -56,53 +56,11 @@
     
     <section class="archivos-hero section">
       <div class="container">
-        <div class="row justify-content-between g-4 align-items-start">
-          <div class="col-lg-7">
+        <div class="row">
+          <div class="col-lg-9">
             <h1 class="hero-title">Archivos Nuestros</h1>
-          </div>
-          <div class="col-lg-4">
-            <div class="hero-panel">
-              <h2>{% if page.lang == 'en' %}Current public sections{% else %}Secciones públicas actuales{% endif %}</h2>
-              <ul>
-                <li>{% if page.lang == 'en' %}Archival and Primary Materials{% else %}Materiales de Archivo y Fuentes Primarias{% endif %}</li>
-                <li>{% if page.lang == 'en' %}Project Publications{% else %}Publicaciones del Proyecto{% endif %}</li>
-                <li>{% if page.lang == 'en' %}Research Library / Bibliography{% else %}Biblioteca de Investigación / Bibliografía{% endif %}</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="row g-4 mt-2">
-          <div class="col-lg-4">
-            <div class="overview-card h-100">
-              <h3>{% if page.lang == 'en' %}Thematic areas{% else %}Áreas temáticas{% endif %}</h3>
-              <ul>
-                <li>Minería en el Chocó Colombiano</li>
-                <li>Mapas</li>
-                <li>En clave afro-diaspórica: Historia, cultura, visiones</li>
-                <li>Palenke el Congal</li>
-                <li>Archivo Catherine Legrande</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="overview-card h-100">
-              <h3>{% if page.lang == 'en' %}Publication streams{% else %}Líneas de publicación{% endif %}</h3>
-              <ul>
-                <li>{% if page.lang == 'en' %}Short digital essays{% else %}Ensayos digitales breves{% endif %}</li>
-                <li>{% if page.lang == 'en' %}Working papers{% else %}Documentos de trabajo{% endif %}</li>
-                <li>{% if page.lang == 'en' %}Maps we have made{% else %}Mapas producidos por el proyecto{% endif %}</li>
-                <li>{% if page.lang == 'en' %}Booklets and exhibits{% else %}Cartillas y exposiciones{% endif %}</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="overview-card h-100">
-              <h3>{% if page.lang == 'en' %}Project{% else %}Proyecto{% endif %}</h3>
-              <ul>
-                <li>Ann Farnsworth-Alvear</li>
-                <li>Daniel Tubb</li>
-              </ul>
+            <div class="hero-intro">
+              {{ content | safe }}
             </div>
           </div>
         </div>
@@ -259,6 +217,15 @@
     </div>
   </div>
 </div>
+
+  <section class="section acknowledgements-section">
+    <div class="container section-title">
+      <h2>{% if page.lang == 'en' %}Acknowledgements{% else %}Agradecimientos{% endif %}</h2>
+    </div>
+    <div class="container">
+      <p>Archivo Afro ha recibido apoyo financiero de la inciativa “Just Futures” de la Fundación Mellon, beca N-2009-09221 proyecto “Dispossessions in the Americas: the Extraction of Bodies, Land, and Heritage from la Conquista to the Present” administrada por la Universidad de Pensilvania y coordinada Tulia Falleti. También expresamos nuestra gratitud por el apoyo recibido del Social Sciences and Humanities Research Council of Canada, Penn Libraries, la Universidad de Pennsylvania, la Universidad de New Brunswick y la Universidad de Michigan. Gracias a todes: Las y los del Semillero de Jóvenes de Muntú Bantú, María Fernanda Parra, Sergio Mosquera Mosquera, Daniel Varela Corredor, Claudia Leal, Kelly López-Roldán, Ann Farnsworth-Alvear, Daniel Tubb, Cynthia Heider, Brie Gettleson, y Andy Janco.</p>
+    </div>
+  </section>
 
   {% include 'footer.njk' %}
 
