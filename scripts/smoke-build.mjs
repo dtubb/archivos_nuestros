@@ -10,6 +10,7 @@ import vm from 'node:vm';
 const repoRoot = process.cwd();
 const siteRoot = join(repoRoot, '_site');
 const workerReport = join(repoRoot, 'WORKER-REPORT.md');
+const photoDataPath = join(repoRoot, '_data/la_vuelta_photos.json');
 const workerReportTmpDir = mkdtempSync(join(tmpdir(), 'site-shell-worker-report-'));
 const workerReportTmp = join(workerReportTmpDir, 'WORKER-REPORT.md');
 
@@ -182,6 +183,19 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(!archiveHtml.includes('alojados externamente en Box'), `${label}: Box-hosting wording should not be present`);
   assert.ok(!archiveHtml.includes('pendientes de revisión'), `${label}: workflow note should not be present`);
   assert.ok(!archiveHtml.includes('pending review'), `${label}: workflow note should not be present`);
+  assert.ok(archiveHtml.includes('photo-grid'), `${label}: photo grid should be present`);
+  assert.ok(archiveHtml.includes('/assets/media/la-vuelta-current/'), `${label}: photo grid thumbnails should be present`);
+}
+
+function assertPhotoData() {
+  const rows = JSON.parse(readFileSync(photoDataPath, 'utf8'));
+  assert.equal(rows.length, 145, 'photo data: expected one row per manifest item');
+  assert.ok(rows.some((row) => row.thumbnail), 'photo data: expected at least one generated thumbnail');
+  for (const row of rows) {
+    assert.ok(row.key?.startsWith('tubb2026lavuelta-current-'), 'photo data: expected cite-key-style object key');
+    assert.ok(!JSON.stringify(row).includes('/Users/'), 'photo data: should not expose local source paths');
+    assert.ok(!JSON.stringify(row).includes('Box-Box'), 'photo data: should not expose Box paths');
+  }
 }
 
 function assertPrefixedBuild(indexHtml, enIndexHtml) {
@@ -205,6 +219,7 @@ function assertPrefixedBuild(indexHtml, enIndexHtml) {
 
 try {
   runMainJsSmoke();
+  assertPhotoData();
 
   const localBuild = runEleventy('');
   assertLocalBuild(localBuild.index, localBuild.enIndex);

@@ -6,6 +6,7 @@ topic: Minería en el Chocó Colombiano
 type: photographs
 date: 2026-06-12
 thumbnail: /assets/media/prototypes/hidroelectrica-la-vuelta-thumb.jpg
+photoGrid: la_vuelta_photos
 layout: archive.njk
 tags:
   - archives

@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node scripts/smoke-build.mjs",
+    "import:la-vuelta": "node scripts/import-la-vuelta-photos.mjs",
     "watch:eleventy": "eleventy --serve",
     "build": "eleventy",
     "debug": "DEBUG=Eleventy:* eleventy"

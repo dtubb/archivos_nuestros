@@ -17,6 +17,7 @@ hideFooter: true
 {% set recordTitle = record.data.titleEng if page.lang == 'en' and record.data.titleEng else record.data.title %}
 {% set recordDesc = record.data['desc-en'] if page.lang == 'en' and record.data['desc-en'] else record.data['desc-es'] %}
 {% set recordRole = 'Creator / author' if page.lang == 'en' else 'Creador / autor' %}
+{% set photoGrid = la_vuelta_photos if record.data.photoGrid == 'la_vuelta_photos' else [] %}
 {% if record.data.type == 'photographs' %}
   {% set recordTypeLabel = 'Photographs' if page.lang == 'en' else 'Fotografías' %}
 {% elif page.lang == 'en' %}
@@ -64,6 +65,18 @@ hideFooter: true
       <figure class="record-thumb mb-4">
         <img src="{{ record.data.thumbnail | sitePath }}" alt="{{ recordTitle }}" class="img-fluid">
       </figure>
+      {% endif %}
+
+      {% set visiblePhotos = photoGrid | selectattr('thumbnail') | list %}
+      {% if visiblePhotos.length %}
+      <div class="photo-grid" aria-label="{% if page.lang == 'en' %}Photograph previews{% else %}Vistas previas de fotografías{% endif %}">
+        {% for photo in visiblePhotos %}
+        <figure class="photo-grid__item">
+          <img src="{{ photo.thumbnail | sitePath }}" alt="{% if page.lang == 'en' %}Photograph{% else %}Fotografía{% endif %} {{ photo.sequence }}" loading="lazy">
+          <figcaption>{{ photo.sequence }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
       {% endif %}
 
       {% if recordDesc %}
