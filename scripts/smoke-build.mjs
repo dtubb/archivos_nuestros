@@ -5,6 +5,7 @@ import { copyFileSync, existsSync, mkdtempSync, readFileSync, renameSync, rmSync
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import vm from 'node:vm';
 
 const repoRoot = process.cwd();
 const siteRoot = join(repoRoot, '_site');
@@ -48,6 +49,61 @@ if (existsSync(workerReport)) {
     unlinkSync(workerReport);
   }
   movedWorkerReport = true;
+}
+
+function runMainJsSmoke() {
+  const source = readFileSync(join(repoRoot, 'assets/js/main.js'), 'utf8');
+  const fired = [];
+
+  const documentStub = {
+    querySelector: () => null,
+    querySelectorAll: () => [],
+    addEventListener(eventName, callback) {
+      if (['DOMContentLoaded', 'load', 'scroll'].includes(eventName)) {
+        fired.push(`document:${eventName}`);
+        callback();
+      }
+    },
+  };
+
+  const windowStub = {
+    document: documentStub,
+    scrollY: 0,
+    pageYOffset: 0,
+    addEventListener(eventName, callback) {
+      if (['DOMContentLoaded', 'load', 'scroll'].includes(eventName)) {
+        fired.push(`window:${eventName}`);
+        callback();
+      }
+    },
+    scrollTo() {},
+  };
+
+  const context = {
+    window: windowStub,
+    document: documentStub,
+    console,
+    JSON,
+    Math,
+    Date,
+    Error,
+    Array,
+    Object,
+    Number,
+    String,
+    Boolean,
+    RegExp,
+    Promise,
+    parseInt,
+    parseFloat,
+    isNaN,
+    setTimeout,
+    clearTimeout,
+  };
+
+  vm.runInNewContext(source, context, { filename: 'assets/js/main.js' });
+  assert.ok(fired.includes('window:load'), 'main.js smoke: window load listeners should run');
+  assert.ok(fired.includes('document:scroll') || fired.includes('window:scroll'), 'main.js smoke: scroll listeners should run');
 }
 
 function runEleventy(siteBasePath) {
@@ -129,6 +185,8 @@ function assertPrefixedBuild(indexHtml, enIndexHtml) {
 }
 
 try {
+  runMainJsSmoke();
+
   const localBuild = runEleventy('');
   assertLocalBuild(localBuild.index, localBuild.enIndex);
   assertArchivePage(localBuild.archive, 'local / archive');
