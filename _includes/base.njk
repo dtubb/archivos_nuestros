@@ -15,7 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inconsolata:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{{ '/assets/vendor/bootstrap/css/bootstrap.min.css' | sitePath }}" rel="stylesheet">
@@ -46,31 +46,11 @@
 
 <body class="index-page">
 
-{% set soonLabel = 'coming soon' if page.lang == 'en' else 'próximamente' %}
 {% set archiveCount = collections.archives | length %}
 
 <header class="vault-zone site-header">
   {% include "navbar.njk" %}
-
-  <section class="container-xl site-hero" id="about">
-    <div>
-      <h1 class="site-hero__title">Archivos Nuestros</h1>
-      <div class="site-hero__intro">
-        {{ content | safe }}
-      </div>
-    </div>
-  </section>
 </header>
-
-<section class="oxblood-ribbon theme-ribbon" aria-label="{% if page.lang == 'en' %}Thematic areas{% else %}Áreas temáticas{% endif %}">
-  <div class="container-xl ribbon-grid">
-    <span class="theme-chip disabled">Minería en el Chocó Colombiano <small>{{ soonLabel }}</small></span>
-    <span class="theme-chip disabled">Mapas <small>{{ soonLabel }}</small></span>
-    <span class="theme-chip disabled">En clave afro-diaspórica: Historia, cultura, visiones <small>{{ soonLabel }}</small></span>
-    <span class="theme-chip disabled">Palenke el Congal <small>{{ soonLabel }}</small></span>
-    <span class="theme-chip disabled">Archivo Catherine Legrande <small>{{ soonLabel }}</small></span>
-  </div>
-</section>
 
 <main class="main">
   <section id="archives" class="reading-zone section-band">
@@ -83,7 +63,6 @@
       <div class="row g-4 archive-grid">
         {%- for archive in collections.archives | sort(attribute="data.title") -%}
         {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
-        {% set archiveDesc = archive.data['desc-en'] if page.lang == 'en' and archive.data['desc-en'] else archive.data['desc-es'] %}
         <div class="col-xl-4 col-md-6 d-flex">
           <a href="{% if archive.data.link %}{{ archive.data.link }}{% else %}{{ archive.url | sitePath }}{% endif %}" class="archive-card-link d-flex flex-fill">
             <article class="doc-frame">
@@ -97,20 +76,6 @@
                 <div class="doc-frame__date">{{ archive.data.date | displayDate }}</div>
                 {% endif %}
                 <h3 class="doc-frame__title">{{ archiveTitle }}</h3>
-                {% if archiveDesc %}
-                <p class="doc-frame__summary">{{ archiveDesc }}</p>
-                {% endif %}
-                <div class="doc-frame__meta">
-                  {% if archive.data.author %}
-                  <span class="meta-chip">{{ archive.data.author }}</span>
-                  {% endif %}
-                  {% if archive.data.topic %}
-                  <span class="meta-chip">{{ archive.data.topic }}</span>
-                  {% endif %}
-                  {% if archive.data.type %}
-                  <span class="meta-chip">{{ archive.data.type }}</span>
-                  {% endif %}
-                </div>
               </div>
             </article>
           </a>
@@ -118,27 +83,9 @@
         {%- endfor -%}
       </div>
       {% endif %}
+    </div>
     </section>
 </main>
-
-<section id="acknowledgements" class="acknowledgements-band">
-  <div class="container-xl">
-    <div class="section-title">
-      <h2>{% if page.lang == 'en' %}Acknowledgements{% else %}Agradecimientos{% endif %}</h2>
-    </div>
-    {% if page.lang == 'en' %}
-    <!-- DRAFT translation — pending approval -->
-    <p>Archivo Afro received financial support from the Mellon Foundation's “Just Futures” initiative, grant N-2009-09221 for the project “Dispossessions in the Americas: the Extraction of Bodies, Land, and Heritage from la Conquista to the Present,” administered by the University of Pennsylvania and coordinated by Tulia Falleti. We also express gratitude for support from the Social Sciences and Humanities Research Council of Canada, Penn Libraries, the University of Pennsylvania, the University of New Brunswick, and the University of Michigan. Thanks to everyone: the youth group of Muntú Bantú, María Fernanda Parra, Sergio Mosquera Mosquera, Daniel Varela Corredor, Claudia Leal, Kelly López-Roldán, Ann Farnsworth-Alvear, Daniel Tubb, Cynthia Heider, Brie Gettleson, and Andy Janco.</p>
-    {% else %}
-    <p>Archivo Afro ha recibido apoyo financiero de la inciativa “Just Futures” de la Fundación Mellon, beca N-2009-09221 proyecto “Dispossessions in the Americas: the Extraction of Bodies, Land, and Heritage from la Conquista to the Present” administrada por la Universidad de Pensilvania y coordinada Tulia Falleti. También expresamos nuestra gratitud por el apoyo recibido del Social Sciences and Humanities Research Council of Canada, Penn Libraries, la Universidad de Pennsylvania, la Universidad de New Brunswick y la Universidad de Michigan. Gracias a todes: Las y los del Semillero de Jóvenes de Muntú Bantú, María Fernanda Parra, Sergio Mosquera Mosquera, Daniel Varela Corredor, Claudia Leal, Kelly López-Roldán, Ann Farnsworth-Alvear, Daniel Tubb, Cynthia Heider, Brie Gettleson, y Andy Janco.</p>
-    {% endif %}
-  </div>
-</section>
-
-  {% include 'footer.njk' %}
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="{{ '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' | sitePath }}"></script>

@@ -141,6 +141,21 @@ function assertCommon(html, label) {
   assert.ok(!html.includes('Secciones públicas actuales'), `${label}: old marker should not be present`);
   assert.ok(!html.includes('1 colección publicada'), `${label}: hero stat text should not be present`);
   assert.ok(!html.includes('1 collection published'), `${label}: hero stat text should not be present`);
+  assert.ok(!html.includes('coming soon'), `${label}: inactive coming-soon copy should not be present`);
+  assert.ok(!html.includes('próximamente'), `${label}: inactive coming-soon copy should not be present`);
+  assert.ok(!html.includes('theme-ribbon'), `${label}: inactive thematic ribbon should not be present`);
+  assert.ok(!html.includes('Primer prototipo'), `${label}: prototype scaffold copy should not be present`);
+  assert.ok(!html.includes('First prototype'), `${label}: prototype scaffold copy should not be present`);
+  assert.ok(!html.includes('This is the first working collection'), `${label}: workflow scaffold copy should not be present`);
+  assert.ok(!html.includes('source review'), `${label}: workflow scaffold copy should not be present`);
+  assert.ok(!html.includes('145 image files'), `${label}: inventory workflow copy should not be present`);
+  assert.ok(!html.includes('Los originales en alta resolución'), `${label}: storage workflow note should not be present`);
+  assert.ok(!html.includes('Full-resolution originals'), `${label}: storage workflow note should not be present`);
+  assert.ok(!html.includes('Muntú Bantú'), `${label}: old project framing should not be present`);
+  assert.ok(!html.includes('Acknowledgements'), `${label}: credits block should not be on the material-first homepage`);
+  assert.ok(!html.includes('Agradecimientos'), `${label}: credits block should not be on the material-first homepage`);
+  assert.ok(!html.includes('id="footer"'), `${label}: footer should not be on the material-first homepage`);
+  assert.ok(!html.includes('doc-frame__meta'), `${label}: homepage cards should not render metadata pills`);
 }
 
 function assertLocalBuild(indexHtml, enIndexHtml) {
@@ -154,6 +169,8 @@ function assertLocalBuild(indexHtml, enIndexHtml) {
   assert.ok(enIndexHtml.includes('Primary Sources'), 'local / en/index: English homepage heading should be present');
   assert.ok(indexHtml.includes('href="/personas/'), 'local / index: expected Spanish people link');
   assert.ok(enIndexHtml.includes('href="/en/personas/'), 'local / en/index: expected English people link');
+  assert.ok(!indexHtml.includes('href="/#'), 'local / index: should not include placeholder section links');
+  assert.ok(!enIndexHtml.includes('href="/en/#'), 'local / en/index: should not include placeholder section links');
 }
 
 function assertArchivePage(archiveHtml, label) {
@@ -163,6 +180,8 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(!archiveHtml.includes('id="footer"'), `${label}: archive page should not include the footer block`);
   assert.ok(!archiveHtml.includes('hosted externally in Box'), `${label}: Box-hosting wording should not be present`);
   assert.ok(!archiveHtml.includes('alojados externamente en Box'), `${label}: Box-hosting wording should not be present`);
+  assert.ok(!archiveHtml.includes('pendientes de revisión'), `${label}: workflow note should not be present`);
+  assert.ok(!archiveHtml.includes('pending review'), `${label}: workflow note should not be present`);
 }
 
 function assertPrefixedBuild(indexHtml, enIndexHtml) {

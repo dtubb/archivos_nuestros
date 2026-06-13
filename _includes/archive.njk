@@ -17,12 +17,12 @@ hideFooter: true
 {% set recordTitle = record.data.titleEng if page.lang == 'en' and record.data.titleEng else record.data.title %}
 {% set recordDesc = record.data['desc-en'] if page.lang == 'en' and record.data['desc-en'] else record.data['desc-es'] %}
 {% set recordRole = 'Creator / author' if page.lang == 'en' else 'Creador / autor' %}
-{% set noteLabel = 'Linked originals' if page.lang == 'en' else 'Originales enlazados' %}
-{% set noteBody = 'Full-resolution originals are not hosted in this preview; external storage and linking are pending review.' if page.lang == 'en' else 'Los originales en alta resolución no están hospedados en esta vista previa; el almacenamiento externo y el enlace están pendientes de revisión.' %}
-{% if page.lang == 'en' %}
-{% set recordTypeLabel = record.data.type or 'collection' %}
+{% if record.data.type == 'photographs' %}
+  {% set recordTypeLabel = 'Photographs' if page.lang == 'en' else 'Fotografías' %}
+{% elif page.lang == 'en' %}
+  {% set recordTypeLabel = record.data.type or 'collection' %}
 {% else %}
-{% set recordTypeLabel = record.data.type or 'colección' %}
+  {% set recordTypeLabel = record.data.type or 'colección' %}
 {% endif %}
 
 <article class="container-xl py-4 record-layout">
@@ -30,12 +30,6 @@ hideFooter: true
     <aside class="col-lg-4 record-rail">
       <p class="eyebrow mb-2">{{ recordTypeLabel }}</p>
       <h1 class="record-title mb-3">{{ recordTitle }}</h1>
-
-      {% if record.data.thumbnail %}
-      <figure class="record-thumb mb-3">
-        <img src="{{ record.data.thumbnail | sitePath }}" alt="{{ recordTitle }}" class="img-fluid">
-      </figure>
-      {% endif %}
 
       <dl class="record-meta-list mb-0">
         {% if record.data.author %}
@@ -53,7 +47,7 @@ hideFooter: true
         {% if record.data.type %}
         <div>
           <dt>{% if page.lang == 'en' %}Type{% else %}Tipo{% endif %}</dt>
-          <dd>{{ record.data.type }}</dd>
+          <dd>{{ recordTypeLabel }}</dd>
         </div>
         {% endif %}
         {% if record.data.date %}
@@ -63,21 +57,24 @@ hideFooter: true
         </div>
         {% endif %}
       </dl>
-
-      <section class="record-note mt-4">
-        <h2 class="h6 mb-2">{{ noteLabel }}</h2>
-        <p class="text-sage mb-0">{{ noteBody }} <!-- TODO: external originals link --></p>
-      </section>
     </aside>
 
     <div class="col-lg-8 record-main">
+      {% if record.data.thumbnail %}
+      <figure class="record-thumb mb-4">
+        <img src="{{ record.data.thumbnail | sitePath }}" alt="{{ recordTitle }}" class="img-fluid">
+      </figure>
+      {% endif %}
+
       {% if recordDesc %}
       <p class="record-lede mb-4">{{ recordDesc }}</p>
       {% endif %}
 
+      {% if content | striptags | trim %}
       <div class="archive-body">
         {{ content | safe }}
       </div>
+      {% endif %}
     </div>
   </div>
 </article>
