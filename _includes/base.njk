@@ -47,186 +47,93 @@
 <body class="index-page">
 
 {% set archiveCount = collections.archives | length %}
-{% set exhibitCount = collections.exhibits | length %}
 
-<header>
- {% include "navbar.njk" %}
+<header class="vault-zone site-header">
+  {% include "navbar.njk" %}
+
+  <section class="container-xl site-hero" id="about">
+    <div>
+      <h1 class="site-hero__title">Archivos Nuestros</h1>
+      <div class="site-hero__intro">
+        {{ content | safe }}
+      </div>
+    </div>
+
+    <aside class="hero-stats">
+      <p class="hero-stats__label">{% if page.lang == 'en' %}Current status{% else %}Estado real hoy{% endif %}</p>
+      <p class="hero-stats__value">{% if archiveCount == 1 %}1 colección publicada{% else %}{{ archiveCount }} colecciones publicadas{% endif %}</p>
+      <p class="hero-stats__note">{% if page.lang == 'en' %}La Vuelta hydroelectric photographs is the only published collection today.{% else %}La Vuelta hidroeléctrica es el prototipo público activo.{% endif %}</p>
+    </aside>
+  </section>
 </header>
 
-  <main class="main">
-    
-    <section class="archivos-hero section">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-9">
-            <h1 class="hero-title">Archivos Nuestros</h1>
-            <div class="hero-intro">
-              {{ content | safe }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="oxblood-ribbon theme-ribbon" aria-label="{% if page.lang == 'en' %}Thematic areas{% else %}Áreas temáticas{% endif %}">
+  <div class="container-xl ribbon-grid">
+    <span class="theme-chip disabled">Minería en el Chocó Colombiano <small>próximamente</small></span>
+    <span class="theme-chip disabled">Mapas <small>próximamente</small></span>
+    <span class="theme-chip disabled">En clave afro-diaspórica: Historia, cultura, visiones <small>próximamente</small></span>
+    <span class="theme-chip disabled">Palenke el Congal <small>próximamente</small></span>
+    <span class="theme-chip disabled">Archivo Catherine Legrande <small>próximamente</small></span>
+  </div>
+</section>
 
-    <section id="archives" class="recent-posts section">
-      <div class="container section-title" >
+<main class="main">
+  <section id="archives" class="reading-zone section-band">
+    <div class="container-xl">
+      <div class="section-title">
         <h2>{% if page.lang == 'en' %}Archival and Primary Materials{% else %}Materiales de Archivo y Fuentes Primarias{% endif %}</h2>
       </div>
 
-      <div class="container">
       {% if archiveCount > 0 %}
-        <div class="row gy-5 mt-0">
+      <div class="row g-4 archive-grid">
         {%- for archive in collections.archives | sort(attribute="data.title") -%}
-          <div class="archive-item col-xl-4 col-md-6" data-category="{{ archive.data.type }}">
-
-            <div class="post-item position-relative h-100" data-aos-delay="100">
-
-              <div class="post-img position-relative overflow-hidden">
-                <img src="{{ archive.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ archive.data.title }}">
+        {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
+        {% set archiveDesc = archive.data['desc-en'] if page.lang == 'en' and archive.data['desc-en'] else archive.data['desc-es'] %}
+        <div class="col-xl-4 col-md-6 d-flex">
+          <a href="{{ archive.data.link or archive.url }}" class="archive-card-link d-flex flex-fill">
+            <article class="doc-frame">
+              <div class="doc-frame__media">
+                {% if archive.data.thumbnail %}
+                <img src="{{ archive.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ archiveTitle }}">
+                {% endif %}
+              </div>
+              <div class="doc-frame__body">
                 {% if archive.data.date %}
-                <span class="post-date">{{ archive.data.date }}</span>
+                <div class="doc-frame__date">{{ archive.data.date }}</div>
                 {% endif %}
-              </div>
-
-              <div class="post-content d-flex flex-column">
-              <!-- insert the Type if available -->  
-             {% if archive.data.type %}
-              <div class="pb-3">
-                <span class="badge text-white bg-primary">{{ archive.data.type }}</span>
-              </div>
-              {% endif %}
-              <!-- use English language title if available when site is in English mode -->
-                {% if page.lang == 'en' %}
-                  {% if archive.data.titleEng %}
-                  <h3 class="post-title">{{ archive.data.titleEng }}</h3>
-                  {% else %}
-                  <h3 class="post-title">{{ archive.data.title }}</h3>
+                <h3 class="doc-frame__title">{{ archiveTitle }}</h3>
+                {% if archiveDesc %}
+                <p class="doc-frame__summary">{{ archiveDesc }}</p>
+                {% endif %}
+                <div class="doc-frame__meta">
+                  {% if archive.data.author %}
+                  <span class="meta-chip">{{ archive.data.author }}</span>
                   {% endif %}
-                {% else %}
-                <h3 class="post-title">{{ archive.data.title }}</h3>
-                {% endif %}
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">{{ archive.data.author }}</span>
-                  </div>
                   {% if archive.data.topic %}
-                    <span class="px-3 text-black-50">/</span>
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-folder2"></i> <span class="ps-2">{{ archive.data.topic }}</span>
-                    </div>
+                  <span class="meta-chip">{{ archive.data.topic }}</span>
+                  {% endif %}
+                  {% if archive.data.type %}
+                  <span class="meta-chip">{{ archive.data.type }}</span>
                   {% endif %}
                 </div>
-
-                <hr>
-
-                <a href="{{ archive.data.link or archive.url }}" class="readmore stretched-link">
-                  <span>{% if page.lang == 'en' %}Read more{% else %}Lee más{% endif %}</span><i class="bi bi-arrow-right"></i>
-                </a>
-
               </div>
-
-            </div>
-          </div><!-- End post item -->
-          {% endfor %}
-          
+            </article>
+          </a>
         </div>
+        {%- endfor -%}
+      </div>
       {% endif %}
-      </div>
     </section>
+</main>
 
-    <section id="exhibits" class="recent-posts section">
-      <div class="container section-title" >
-        <h2>{% if page.lang == 'en' %}Project Publications{% else %}Publicaciones del Proyecto{% endif %}</h2>
-      </div>
-
-      <div class="container">
-        {% if exhibitCount > 0 %}
-        <div class="row gy-5">
-            {%- for exhibit in collections.exhibits -%}
-
-          <div class="col-xl-4 col-md-6">
-            <div class="post-item position-relative h-100"  data-aos-delay="100">
-
-              <div class="post-img position-relative overflow-hidden">
-                <img src="{{ exhibit.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ exhibit.data.title }}">
-                <span class="post-date">{{ exhibit.data.date }}</span>
-              </div>
-
-              <div class="post-content d-flex flex-column">
-                            
-              <!-- use English language title if available when site is in English mode -->
-                              {% if page.lang == 'en' %}
-                  {% if archive.data.titleEng %}
-                  <h3 class="post-title">{{ exhibit.data.titleEng }}</h3>
-                  {% else %}
-                  <h3 class="post-title">{{ exhibit.data.title }}</h3>
-                  {% endif %}
-                {% else %}
-                <h3 class="post-title">{{ exhibit.data.title }}</h3>
-                {% endif %}
-
-                <div class="meta d-flex align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-person"></i> <span class="ps-2">{{ exhibit.data.author }}</span>
-                  </div>
-                  <span class="px-3 text-black-50">/</span>
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-folder2"></i> <span class="ps-2">{{ exhibit.data.topic }}</span>
-                  </div>
-                </div>
-
-                <hr>
-
-                <a href="{{ exhibit.data.link or exhibit.url }}" class="readmore stretched-link">
-                  <span>{% if page.lang == 'en' %}Read more{% else %}Lee más{% endif %}</span><i class="bi bi-arrow-right"></i>
-                </a>
-
-              </div>
-
-            </div>
-          </div><!-- End post item -->
-          {% endfor %}
-          
-        </div>
-        {% endif %}
-      </div>
-    </section>
-
-    <section class="section bibliography-section">
-      <div class="container section-title">
-        <h2>{% if page.lang == 'en' %}Research Library / Bibliography{% else %}Biblioteca de Investigación / Bibliografía{% endif %}</h2>
-      </div>
-      <div class="container">
-        <div class="empty-state"></div>
-      </div>
-    </section>
-
-
-  </main>
-
-<div id="search-modal" class="modal modal-xl" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="search" class="search"></div>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-  <section class="section acknowledgements-section">
-    <div class="container section-title">
+<section id="acknowledgements" class="acknowledgements-band">
+  <div class="container-xl">
+    <div class="section-title">
       <h2>{% if page.lang == 'en' %}Acknowledgements{% else %}Agradecimientos{% endif %}</h2>
     </div>
-    <div class="container">
-      <p>Archivo Afro ha recibido apoyo financiero de la inciativa “Just Futures” de la Fundación Mellon, beca N-2009-09221 proyecto “Dispossessions in the Americas: the Extraction of Bodies, Land, and Heritage from la Conquista to the Present” administrada por la Universidad de Pensilvania y coordinada Tulia Falleti. También expresamos nuestra gratitud por el apoyo recibido del Social Sciences and Humanities Research Council of Canada, Penn Libraries, la Universidad de Pennsylvania, la Universidad de New Brunswick y la Universidad de Michigan. Gracias a todes: Las y los del Semillero de Jóvenes de Muntú Bantú, María Fernanda Parra, Sergio Mosquera Mosquera, Daniel Varela Corredor, Claudia Leal, Kelly López-Roldán, Ann Farnsworth-Alvear, Daniel Tubb, Cynthia Heider, Brie Gettleson, y Andy Janco.</p>
-    </div>
-  </section>
+    <p>Archivo Afro ha recibido apoyo financiero de la inciativa “Just Futures” de la Fundación Mellon, beca N-2009-09221 proyecto “Dispossessions in the Americas: the Extraction of Bodies, Land, and Heritage from la Conquista to the Present” administrada por la Universidad de Pensilvania y coordinada Tulia Falleti. También expresamos nuestra gratitud por el apoyo recibido del Social Sciences and Humanities Research Council of Canada, Penn Libraries, la Universidad de Pennsylvania, la Universidad de New Brunswick y la Universidad de Michigan. Gracias a todes: Las y los del Semillero de Jóvenes de Muntú Bantú, María Fernanda Parra, Sergio Mosquera Mosquera, Daniel Varela Corredor, Claudia Leal, Kelly López-Roldán, Ann Farnsworth-Alvear, Daniel Tubb, Cynthia Heider, Brie Gettleson, y Andy Janco.</p>
+  </div>
+</section>
 
   {% include 'footer.njk' %}
 
@@ -247,13 +154,20 @@
   <script src="{{ '/assets/js/main.js' | sitePath }}"></script>
   <script>
     window.addEventListener('DOMContentLoaded', (event) => {
-        new PagefindUI({ element: "#search", showSubResults: true });
-        let myModal = new bootstrap.Modal(document.getElementById('search-modal'), {
-          keyboard: false
-        })
-        document.getElementById('search-icon').addEventListener('click', function() {
-          myModal.show();
-        });
+        const searchContainer = document.getElementById('search');
+        if (searchContainer) {
+          new PagefindUI({ element: searchContainer, showSubResults: true });
+        }
+        const searchModal = document.getElementById('search-modal');
+        const searchIcon = document.getElementById('search-icon');
+        if (searchModal && searchIcon) {
+          let myModal = new bootstrap.Modal(searchModal, {
+            keyboard: false
+          })
+          searchIcon.addEventListener('click', function() {
+            myModal.show();
+          });
+        }
 
     });
   </script>

@@ -1,27 +1,25 @@
-  <header id="header" class="header d-flex align-items-center position-relative">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+{% set is_en = page.lang == 'en' %}
+{% set home_url = '/en/' if is_en else '/' %}
+{% set collection_url = home_url ~ '#archives' %}
+{% set about_url = home_url ~ '#about' %}
+{% set people_url = '/en/personas/' if is_en else '/personas/' %}
+{% set contribute_url = home_url ~ '#acknowledgements' %}
+{% set nav_collection = 'Collection' if is_en else 'Colección' %}
+{% set nav_about = 'About' if is_en else 'Acerca' %}
+{% set nav_people = 'People' if is_en else 'Personas' %}
+{% set nav_contribute = 'Contribute' if is_en else 'Contribuir' %}
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <h1 class="sitename">Archivos Nuestros</h1>
-      </a>
+<div class="container-xl">
+  <div class="site-topbar">
+    <a href="{{ home_url | sitePath }}" class="site-brand">Archivos Nuestros</a>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-            
-        <li><i id="search-icon" class="bi bi-search"></i></li>
-
-          {% if page.lang == 'en' %}
-        <a href="{{ '/en/' | sitePath }}">english</a> | <a href="{{ '/' | sitePath }}">español</a>
-         
-          {% else %}
-        <a href="{{ '/' | sitePath }}">español</a> | <a href="{{ '/en/' | sitePath }}">english</a>
-         {% endif %}
-         
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-
-      </nav>
-
-    </div>
-
-  </header>
+    <nav class="site-nav" aria-label="Primary">
+      <a class="site-nav__link chip" href="{{ collection_url | sitePath }}">{{ nav_collection }}</a>
+      <a class="site-nav__link chip" href="{{ about_url | sitePath }}">{{ nav_about }}</a>
+      <a class="site-nav__link chip" href="{{ people_url | sitePath }}">{{ nav_people }}</a>
+      <a class="site-nav__link chip" href="{{ contribute_url | sitePath }}">{{ nav_contribute }}</a>
+      <a class="site-nav__link site-nav__toggle chip {% if is_en %}{% else %}is-current{% endif %}" href="{{ '/' | sitePath }}">ES</a>
+      <a class="site-nav__link site-nav__toggle chip {% if is_en %}is-current{% endif %}" href="{{ '/en/' | sitePath }}">EN</a>
+    </nav>
+  </div>
+</div>
