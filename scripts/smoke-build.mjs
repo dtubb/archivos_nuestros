@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import assert from 'node:assert/strict';
-import { copyFileSync, existsSync, mkdtempSync, readFileSync, renameSync, rmSync, unlinkSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, statSync, unlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -198,6 +198,54 @@ function assertPhotoData() {
   }
 }
 
+function findHtmlFiles(directory) {
+  const files = [];
+  for (const entry of readdirSync(directory)) {
+    const fullPath = join(directory, entry);
+    const stat = statSync(fullPath);
+    if (stat.isDirectory()) {
+      files.push(...findHtmlFiles(fullPath));
+    } else if (entry.endsWith('.html')) {
+      files.push(fullPath);
+    }
+  }
+  return files;
+}
+
+function resolveSitePath(rawUrl, siteBasePath) {
+  let url = rawUrl.replace(/#.*/, '');
+  if (!url || /^(https?:)?\/\//.test(url) || url.startsWith('mailto:')) return null;
+
+  if (siteBasePath && url.startsWith(`${siteBasePath}/`)) {
+    url = url.slice(siteBasePath.length);
+  }
+
+  if (!url.startsWith('/')) return null;
+  return url;
+}
+
+function assertBuiltLinks(siteBasePath) {
+  const missing = [];
+  const localPathPattern = /\/Users\/|Box-Box/;
+
+  for (const htmlFile of findHtmlFiles(siteRoot)) {
+    const html = readFileSync(htmlFile, 'utf8');
+    assert.ok(!localPathPattern.test(html), `${htmlFile}: should not expose local filesystem paths`);
+
+    for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+      const resolved = resolveSitePath(match[1], siteBasePath);
+      if (!resolved) continue;
+
+      const target = join(siteRoot, resolved);
+      if (existsSync(target)) continue;
+      if (existsSync(join(siteRoot, resolved, 'index.html'))) continue;
+      missing.push(`${htmlFile}: ${match[1]}`);
+    }
+  }
+
+  assert.deepEqual(missing, [], `broken internal links for SITE_BASE_PATH=${siteBasePath || '(empty)'}`);
+}
+
 function assertPrefixedBuild(indexHtml, enIndexHtml) {
   assertCommon(indexHtml, 'prefixed / index');
   assertCommon(enIndexHtml, 'prefixed / en/index');
@@ -224,10 +272,12 @@ try {
   const localBuild = runEleventy('');
   assertLocalBuild(localBuild.index, localBuild.enIndex);
   assertArchivePage(localBuild.archive, 'local / archive');
+  assertBuiltLinks('');
 
   const prefixedBuild = runEleventy('/archivos_nuestros');
   assertPrefixedBuild(prefixedBuild.index, prefixedBuild.enIndex);
   assertArchivePage(prefixedBuild.archive, 'prefixed / archive');
+  assertBuiltLinks('/archivos_nuestros');
 
   console.log('Smoke tests passed.');
 } finally {
