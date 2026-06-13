@@ -370,3 +370,7 @@ a:hover {
 .footer p {
   color: rgba(249, 246, 240, 0.82);
 }
+
+#preloader {
+  display: none !important;
+}
