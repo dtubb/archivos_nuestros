@@ -105,6 +105,8 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(archiveHtml.includes('record-layout'), `${label}: record layout should be present`);
   assert.ok(archiveHtml.includes('record-rail'), `${label}: left rail should be present`);
   assert.ok(!archiveHtml.includes('id="footer"'), `${label}: archive page should not include the footer block`);
+  assert.ok(!archiveHtml.includes('hosted externally in Box'), `${label}: Box-hosting wording should not be present`);
+  assert.ok(!archiveHtml.includes('alojados externamente en Box'), `${label}: Box-hosting wording should not be present`);
 }
 
 function assertPrefixedBuild(indexHtml, enIndexHtml) {

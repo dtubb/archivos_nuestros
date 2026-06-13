@@ -18,7 +18,7 @@ hideFooter: true
 {% set recordDesc = record.data['desc-en'] if page.lang == 'en' and record.data['desc-en'] else record.data['desc-es'] %}
 {% set recordRole = 'Creator / author' if page.lang == 'en' else 'Creador / autor' %}
 {% set noteLabel = 'Linked originals' if page.lang == 'en' else 'Originales enlazados' %}
-{% set noteBody = 'Full-resolution originals are linked and hosted externally in Box. Only the thumbnail is hosted here.' if page.lang == 'en' else 'Los originales en alta resolución están enlazados y alojados externamente en Box. Aquí solo se hospeda la miniatura.' %}
+{% set noteBody = 'Full-resolution originals are not hosted in this preview; external storage and linking are pending review.' if page.lang == 'en' else 'Los originales en alta resolución no están hospedados en esta vista previa; el almacenamiento externo y el enlace están pendientes de revisión.' %}
 {% if page.lang == 'en' %}
 {% set recordTypeLabel = record.data.type or 'collection' %}
 {% else %}
