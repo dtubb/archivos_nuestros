@@ -2,50 +2,78 @@
 layout: vanilla.njk
 ---
 
-<article class="container py-5">
+{% set record = null %}
+{% for archive in collections.archives %}
+  {% if archive.url == page.url %}
+    {% set record = archive %}
+  {% endif %}
+{% endfor %}
+{% if not record %}
+  {% set record = collections.archives | first %}
+{% endif %}
+
+{% set recordTitle = record.data.titleEng if page.lang == 'en' and record.data.titleEng else record.data.title %}
+{% set recordDesc = record.data['desc-en'] if page.lang == 'en' and record.data['desc-en'] else record.data['desc-es'] %}
+{% set recordRole = 'Creator / author' if page.lang == 'en' else 'Creador / autor' %}
+{% set noteLabel = 'Linked originals' if page.lang == 'en' else 'Originales enlazados' %}
+{% set noteBody = 'Full-resolution originals are linked and hosted externally in Box. Only the thumbnail is hosted here.' if page.lang == 'en' else 'Los originales en alta resolución están enlazados y alojados externamente en Box. Aquí solo se hospeda la miniatura.' %}
+
+<article class="container-xl py-5">
   <div class="row justify-content-center">
-    <div class="col-lg-9">
-      <p class="eyebrow">{{ type or "collection" }}</p>
-      <h1 class="mb-3">{{ title }}</h1>
-      {% if page.lang == 'en' and titleEng %}
-      <p class="mb-3"><em>{{ titleEng }}</em></p>
-      {% endif %}
+    <div class="col-xl-10">
+      <div class="row g-5 align-items-start">
+        <div class="col-lg-5">
+          {% if record.data.thumbnail %}
+          <figure class="doc-frame mb-0">
+            <div class="doc-frame__media">
+              <img src="{{ record.data.thumbnail | sitePath }}" alt="{{ recordTitle }}">
+            </div>
+          </figure>
+          {% endif %}
+        </div>
 
-      <div class="meta d-flex flex-wrap gap-3 mb-4">
-        {% if author %}
-        <span><i class="bi bi-person"></i> {{ author }}</span>
-        {% endif %}
-        {% if topic %}
-        <span><i class="bi bi-folder2"></i> {{ topic }}</span>
-        {% endif %}
-        {% if date %}
-        <span><i class="bi bi-calendar4"></i> {{ date }}</span>
-        {% endif %}
+        <div class="col-lg-7">
+          <p class="eyebrow">{{ record.data.type or "collection" }}</p>
+          <h1 class="mb-3">{{ recordTitle }}</h1>
+
+          {% if record.data.date %}
+          <p class="doc-frame__date mb-3">{{ record.data.date | displayDate }}</p>
+          {% endif %}
+
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            {% if record.data.author %}
+            <span class="meta-chip">{{ record.data.author }} · {{ recordRole }}</span>
+            {% endif %}
+            {% if record.data.topic %}
+            <span class="meta-chip">{{ record.data.topic }}</span>
+            {% endif %}
+            {% if record.data.type %}
+            <span class="meta-chip">{{ record.data.type }}</span>
+            {% endif %}
+          </div>
+
+          {% if recordDesc %}
+          <p class="lead mb-4">{{ recordDesc }}</p>
+          {% endif %}
+
+          <section class="mb-4">
+            <h2 class="h4 mb-2">{{ noteLabel }}</h2>
+            <p class="text-sage mb-0">{{ noteBody }} <!-- TODO: external originals link --></p>
+          </section>
+
+          <div class="archive-body">
+            {{ content | safe }}
+          </div>
+
+          {% if record.data.link %}
+          <p class="mt-4">
+            <a href="{{ record.data.link }}" class="readmore">
+              <span>{% if page.lang == 'en' %}Open external record{% else %}Abrir registro externo{% endif %}</span><i class="bi bi-arrow-right"></i>
+            </a>
+          </p>
+          {% endif %}
+        </div>
       </div>
-
-      {% if thumbnail %}
-      <figure class="mb-4">
-        <img src="{{ thumbnail | sitePath }}" alt="{{ title }}" class="img-fluid">
-      </figure>
-      {% endif %}
-
-      {% if page.lang == 'en' and desc-en %}
-      <p>{{ desc-en }}</p>
-      {% elif desc-es %}
-      <p>{{ desc-es }}</p>
-      {% endif %}
-
-      <div class="archive-body">
-        {{ content | safe }}
-      </div>
-
-      {% if link %}
-      <p class="mt-4">
-        <a href="{{ link }}" class="readmore">
-          <span>{% if page.lang == 'en' %}Open collection record{% else %}Abrir registro de la colección{% endif %}</span><i class="bi bi-arrow-right"></i>
-        </a>
-      </p>
-      {% endif %}
     </div>
   </div>
 </article>

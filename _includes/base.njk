@@ -99,7 +99,7 @@
               </div>
               <div class="doc-frame__body">
                 {% if archive.data.date %}
-                <div class="doc-frame__date">{{ archive.data.date }}</div>
+                <div class="doc-frame__date">{{ archive.data.date | displayDate }}</div>
                 {% endif %}
                 <h3 class="doc-frame__title">{{ archiveTitle }}</h3>
                 {% if archiveDesc %}
