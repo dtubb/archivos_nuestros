@@ -5,11 +5,14 @@ import { basename, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const repoRoot = process.cwd();
-const defaultManifest = '/Users/danieltubb/code/archivos_nuestros/agent-work/inventories/la-vuelta-hydroelectric-current/manifest.jsonl';
-const manifestPath = process.argv[2] || defaultManifest;
+const manifestPath = process.argv[2] || process.env.LA_VUELTA_MANIFEST;
 const outputDir = join(repoRoot, 'assets/media/la-vuelta-current');
 const dataPath = join(repoRoot, '_data/la_vuelta_photos.json');
 const thumbnailTimeoutMs = Number.parseInt(process.env.THUMBNAIL_TIMEOUT_MS || '8000', 10);
+
+if (!manifestPath) {
+  throw new Error('Pass a manifest path: npm run import:la-vuelta -- /path/to/manifest.jsonl');
+}
 
 if (!existsSync(manifestPath)) {
   throw new Error(`Manifest not found: ${manifestPath}`);
