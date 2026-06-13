@@ -17,6 +17,11 @@ layout: vanilla.njk
 {% set recordRole = 'Creator / author' if page.lang == 'en' else 'Creador / autor' %}
 {% set noteLabel = 'Linked originals' if page.lang == 'en' else 'Originales enlazados' %}
 {% set noteBody = 'Full-resolution originals are linked and hosted externally in Box. Only the thumbnail is hosted here.' if page.lang == 'en' else 'Los originales en alta resolución están enlazados y alojados externamente en Box. Aquí solo se hospeda la miniatura.' %}
+{% if page.lang == 'en' %}
+{% set recordTypeLabel = record.data.type or 'collection' %}
+{% else %}
+{% set recordTypeLabel = record.data.type or 'colección' %}
+{% endif %}
 
 <article class="container-xl py-5">
   <div class="row justify-content-center">
@@ -33,7 +38,7 @@ layout: vanilla.njk
         </div>
 
         <div class="col-lg-7">
-          <p class="eyebrow">{{ record.data.type or "collection" }}</p>
+          <p class="eyebrow">{{ recordTypeLabel }}</p>
           <h1 class="mb-3">{{ recordTitle }}</h1>
 
           {% if record.data.date %}

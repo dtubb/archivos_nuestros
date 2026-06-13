@@ -47,6 +47,7 @@
 <body class="index-page">
 
 {% set archiveCount = collections.archives | length %}
+{% set soonLabel = 'coming soon' if page.lang == 'en' else 'próximamente' %}
 
 <header class="vault-zone site-header">
   {% include "navbar.njk" %}
@@ -61,7 +62,13 @@
 
     <aside class="hero-stats">
       <p class="hero-stats__label">{% if page.lang == 'en' %}Current status{% else %}Estado real hoy{% endif %}</p>
-      <p class="hero-stats__value">{% if archiveCount == 1 %}1 colección publicada{% else %}{{ archiveCount }} colecciones publicadas{% endif %}</p>
+      <p class="hero-stats__value">
+        {% if page.lang == 'en' %}
+          {% if archiveCount == 1 %}1 collection published{% else %}{{ archiveCount }} collections published{% endif %}
+        {% else %}
+          {% if archiveCount == 1 %}1 colección publicada{% else %}{{ archiveCount }} colecciones publicadas{% endif %}
+        {% endif %}
+      </p>
       <p class="hero-stats__note">{% if page.lang == 'en' %}La Vuelta hydroelectric photographs is the only published collection today.{% else %}La Vuelta hidroeléctrica es el prototipo público activo.{% endif %}</p>
     </aside>
   </section>
@@ -69,11 +76,11 @@
 
 <section class="oxblood-ribbon theme-ribbon" aria-label="{% if page.lang == 'en' %}Thematic areas{% else %}Áreas temáticas{% endif %}">
   <div class="container-xl ribbon-grid">
-    <span class="theme-chip disabled">Minería en el Chocó Colombiano <small>próximamente</small></span>
-    <span class="theme-chip disabled">Mapas <small>próximamente</small></span>
-    <span class="theme-chip disabled">En clave afro-diaspórica: Historia, cultura, visiones <small>próximamente</small></span>
-    <span class="theme-chip disabled">Palenke el Congal <small>próximamente</small></span>
-    <span class="theme-chip disabled">Archivo Catherine Legrande <small>próximamente</small></span>
+    <span class="theme-chip disabled">Minería en el Chocó Colombiano <small>{{ soonLabel }}</small></span>
+    <span class="theme-chip disabled">Mapas <small>{{ soonLabel }}</small></span>
+    <span class="theme-chip disabled">En clave afro-diaspórica: Historia, cultura, visiones <small>{{ soonLabel }}</small></span>
+    <span class="theme-chip disabled">Palenke el Congal <small>{{ soonLabel }}</small></span>
+    <span class="theme-chip disabled">Archivo Catherine Legrande <small>{{ soonLabel }}</small></span>
   </div>
 </section>
 
@@ -131,7 +138,12 @@
     <div class="section-title">
       <h2>{% if page.lang == 'en' %}Acknowledgements{% else %}Agradecimientos{% endif %}</h2>
     </div>
+    {% if page.lang == 'en' %}
+    <!-- DRAFT translation — pending approval -->
+    <p>Archivo Afro received financial support from the Mellon Foundation's “Just Futures” initiative, grant N-2009-09221 for the project “Dispossessions in the Americas: the Extraction of Bodies, Land, and Heritage from la Conquista to the Present,” administered by the University of Pennsylvania and coordinated by Tulia Falleti. We also express gratitude for support from the Social Sciences and Humanities Research Council of Canada, Penn Libraries, the University of Pennsylvania, the University of New Brunswick, and the University of Michigan. Thanks to everyone: the youth group of Muntú Bantú, María Fernanda Parra, Sergio Mosquera Mosquera, Daniel Varela Corredor, Claudia Leal, Kelly López-Roldán, Ann Farnsworth-Alvear, Daniel Tubb, Cynthia Heider, Brie Gettleson, and Andy Janco.</p>
+    {% else %}
     <p>Archivo Afro ha recibido apoyo financiero de la inciativa “Just Futures” de la Fundación Mellon, beca N-2009-09221 proyecto “Dispossessions in the Americas: the Extraction of Bodies, Land, and Heritage from la Conquista to the Present” administrada por la Universidad de Pensilvania y coordinada Tulia Falleti. También expresamos nuestra gratitud por el apoyo recibido del Social Sciences and Humanities Research Council of Canada, Penn Libraries, la Universidad de Pennsylvania, la Universidad de New Brunswick y la Universidad de Michigan. Gracias a todes: Las y los del Semillero de Jóvenes de Muntú Bantú, María Fernanda Parra, Sergio Mosquera Mosquera, Daniel Varela Corredor, Claudia Leal, Kelly López-Roldán, Ann Farnsworth-Alvear, Daniel Tubb, Cynthia Heider, Brie Gettleson, y Andy Janco.</p>
+    {% endif %}
   </div>
 </section>
 
