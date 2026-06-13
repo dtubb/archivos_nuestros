@@ -8,93 +8,67 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
   <link href="{{ '/assets/img/apple-touch-icon.png' | sitePath }}" rel="icon">
   <link href="{{ '/assets/img/apple-touch-icon.png' | sitePath }}" rel="apple-touch-icon">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=IM+Fell+English:ital@0;1&family=Inconsolata:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="{{ '/assets/vendor/bootstrap/css/bootstrap.min.css' | sitePath }}" rel="stylesheet">
   <link href="{{ '/assets/vendor/bootstrap-icons/bootstrap-icons.css' | sitePath }}" rel="stylesheet">
   <link href="{{ '/assets/vendor/aos/aos.css' | sitePath }}" rel="stylesheet">
   <link href="{{ '/assets/vendor/swiper/swiper-bundle.min.css' | sitePath }}" rel="stylesheet">
   <link href="{{ '/assets/vendor/glightbox/css/glightbox.min.css' | sitePath }}" rel="stylesheet">
 
-  <!-- Main CSS File -->
   <link href="{{ '/assets/css/main.css' | sitePath }}" rel="stylesheet">
+  <link href="{{ '/assets/css/archivos.css' | sitePath }}" rel="stylesheet">
 
   {% block extracss %}{% endblock %}
 
-  <!-- pagefind files -->
   <link href="{{ '/pagefind/pagefind-ui.css' | sitePath }}" rel="stylesheet">
   <script src="{{ '/pagefind/pagefind-ui.js' | sitePath }}" type="text/javascript"></script>
-
-
-  <!-- =======================================================
-  * Template Name: AgriCulture
-  * Template URL: https://bootstrapmade.com/agriculture-bootstrap-website-template/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="index-page">
 
-<header>
+<header class="vault-zone site-header">
  {% include "navbar.njk" %}
 </header>
 
-<body>
-
-{{ content | safe }}
-
-
-<div id="search-modal" class="modal modal-xl" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="search" class="search"></div>
-      </div>
-      
-    </div>
-  </div>
-</div>
+<main class="main reading-zone">
+  {{ content | safe }}
+</main>
 
   {% include 'footer.njk' %}
 
-  <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
   <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
   <script src="{{ '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' | sitePath }}"></script>
   <script src="{{ '/assets/vendor/php-email-form/validate.js' | sitePath }}"></script>
   <script src="{{ '/assets/vendor/aos/aos.js' | sitePath }}"></script>
   <script src="{{ '/assets/vendor/swiper/swiper-bundle.min.js' | sitePath }}"></script>
   <script src="{{ '/assets/vendor/glightbox/js/glightbox.min.js' | sitePath }}"></script>
 
-  <!-- Main JS File -->
   <script src="{{ '/assets/js/main.js' | sitePath }}"></script>
   <script>
     window.addEventListener('DOMContentLoaded', (event) => {
-        new PagefindUI({ element: "#search", showSubResults: true });
-        let myModal = new bootstrap.Modal(document.getElementById('search-modal'), {
+      const searchContainer = document.getElementById('search');
+      if (searchContainer) {
+        new PagefindUI({ element: searchContainer, showSubResults: true });
+      }
+      const searchModal = document.getElementById('search-modal');
+      const searchIcon = document.getElementById('search-icon');
+      if (searchModal && searchIcon) {
+        let myModal = new bootstrap.Modal(searchModal, {
           keyboard: false
         })
-        document.getElementById('search-icon').addEventListener('click', function() {
+        searchIcon.addEventListener('click', function() {
           myModal.show();
         });
-
+      }
     });
   </script>
   {% block extrajs %}{% endblock %}
