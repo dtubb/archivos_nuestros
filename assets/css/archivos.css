@@ -6,8 +6,9 @@
   --sage: #7e8a7d;
   --ochre-dim: rgba(184, 144, 71, 0.18);
   --ochre-line: rgba(184, 144, 71, 0.35);
-  --font-display: "IM Fell English", "Times New Roman", serif;
-  --font-body: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body: "Source Serif 4", Georgia, serif;
+  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-meta: "Inconsolata", "SFMono-Regular", Consolas, monospace;
 }
 
@@ -31,11 +32,12 @@ h5,
 h6,
 .hero-title,
 .section-title h2,
-.doc-frame__title {
+.doc-frame__title,
+.record-title {
   color: var(--indigo);
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: 0.01em;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 em,
@@ -114,6 +116,7 @@ a:hover {
 
 .theme-chip {
   background: rgba(255, 255, 255, 0.08);
+  font-family: var(--font-ui);
   white-space: nowrap;
 }
 
@@ -196,15 +199,6 @@ a:hover {
   align-items: stretch;
 }
 
-.section-band {
-  padding-block: 3rem;
-}
-
-.hero-markdown {
-  font-size: 1.35rem;
-  max-width: 58rem;
-}
-
 .no-link {
   cursor: default;
   pointer-events: none;
@@ -219,7 +213,7 @@ a:hover {
 }
 
 .site-header {
-  padding-block: 1.1rem 2.5rem;
+  padding-block: 1rem 1.65rem;
 }
 
 .site-topbar {
@@ -233,7 +227,8 @@ a:hover {
 .site-brand {
   color: var(--parchment);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(1.7rem, 2.3vw, 2.35rem);
+  font-weight: 600;
   line-height: 1;
 }
 
@@ -246,12 +241,14 @@ a:hover {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+  font-family: var(--font-ui);
 }
 
 .site-nav__link {
   background: rgba(255, 255, 255, 0.04);
   color: rgba(249, 246, 240, 0.88);
   text-decoration: none;
+  font-family: var(--font-ui);
 }
 
 .site-nav__link:hover {
@@ -271,59 +268,32 @@ a:hover {
 }
 
 .site-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
-  gap: 2rem;
-  align-items: end;
-  padding-top: 1.4rem;
+  display: block;
+  max-width: 58rem;
+  padding-top: 0.85rem;
 }
 
 .site-hero__title {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.65rem;
   color: var(--parchment);
-  font-size: clamp(3rem, 7vw, 5.25rem);
-  line-height: 0.95;
+  font-size: clamp(2.3rem, 4.2vw, 3.6rem);
+  line-height: 1;
 }
 
 .site-hero__intro {
   max-width: 52rem;
-  color: rgba(249, 246, 240, 0.92);
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: var(--parchment);
+  font-size: clamp(1.08rem, 1.5vw, 1.28rem);
+}
+
+.site-hero__intro p,
+.site-hero__intro li,
+.site-hero__intro a {
+  color: var(--parchment);
 }
 
 .site-hero__intro em {
   color: var(--ochre);
-}
-
-.hero-stats {
-  justify-self: end;
-  width: min(100%, 320px);
-  padding: 1rem 1.1rem;
-  border: 1px solid rgba(249, 246, 240, 0.16);
-  border-radius: 0.65rem;
-  background: rgba(249, 246, 240, 0.04);
-}
-
-.hero-stats__label {
-  margin: 0 0 0.3rem;
-  color: rgba(249, 246, 240, 0.72);
-  font-family: var(--font-meta);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.hero-stats__value {
-  margin: 0;
-  color: var(--parchment);
-  font-family: var(--font-display);
-  font-size: 1.9rem;
-}
-
-.hero-stats__note {
-  margin: 0.45rem 0 0;
-  color: rgba(249, 246, 240, 0.74);
-  font-size: 1rem;
 }
 
 .theme-ribbon {
@@ -373,4 +343,80 @@ a:hover {
 
 #preloader {
   display: none !important;
+}
+
+.site-header--compact {
+  padding-block: 0.75rem 0.85rem;
+}
+
+.site-header--compact .site-brand {
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+}
+
+.record-shell {
+  background: var(--parchment);
+}
+
+.record-layout {
+  padding-top: 1.75rem;
+  padding-bottom: 2.5rem;
+}
+
+.record-rail {
+  position: sticky;
+  top: 1.25rem;
+  align-self: start;
+}
+
+.record-title {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 1.02;
+}
+
+.record-thumb {
+  overflow: hidden;
+  border: 1px solid var(--ochre-line);
+  border-radius: 0.35rem;
+  box-shadow: 0 4px 18px rgba(26, 37, 48, 0.08);
+}
+
+.record-meta-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.record-meta-list dt {
+  color: var(--sage);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.15rem;
+  text-transform: uppercase;
+}
+
+.record-meta-list dd {
+  margin: 0;
+  color: var(--indigo);
+  font-size: 1.05rem;
+}
+
+.record-note {
+  padding-top: 1rem;
+  border-top: 1px solid var(--ochre-dim);
+}
+
+.record-main {
+  font-size: 1.1rem;
+  line-height: 1.62;
+}
+
+.record-lede {
+  font-size: 1.2rem;
+  color: var(--indigo);
+}
+
+@media (max-width: 991.98px) {
+  .record-rail {
+    position: static;
+  }
 }

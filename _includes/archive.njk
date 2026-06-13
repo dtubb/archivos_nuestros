@@ -1,5 +1,7 @@
 ---
 layout: vanilla.njk
+compactChrome: true
+hideFooter: true
 ---
 
 {% set record = null %}
@@ -23,61 +25,58 @@ layout: vanilla.njk
 {% set recordTypeLabel = record.data.type or 'colección' %}
 {% endif %}
 
-<article class="container-xl py-5">
-  <div class="row justify-content-center">
-    <div class="col-xl-10">
-      <div class="row g-5 align-items-start">
-        <div class="col-lg-5">
-          {% if record.data.thumbnail %}
-          <figure class="doc-frame mb-0">
-            <div class="doc-frame__media">
-              <img src="{{ record.data.thumbnail | sitePath }}" alt="{{ recordTitle }}">
-            </div>
-          </figure>
-          {% endif %}
+<article class="container-xl py-4 record-layout">
+  <div class="row g-4 g-lg-5 align-items-start">
+    <aside class="col-lg-4 record-rail">
+      <p class="eyebrow mb-2">{{ recordTypeLabel }}</p>
+      <h1 class="record-title mb-3">{{ recordTitle }}</h1>
+
+      {% if record.data.thumbnail %}
+      <figure class="record-thumb mb-3">
+        <img src="{{ record.data.thumbnail | sitePath }}" alt="{{ recordTitle }}" class="img-fluid">
+      </figure>
+      {% endif %}
+
+      <dl class="record-meta-list mb-0">
+        {% if record.data.author %}
+        <div>
+          <dt>{% if page.lang == 'en' %}Creator{% else %}Creador{% endif %}</dt>
+          <dd>{{ record.data.author }} · {{ recordRole }}</dd>
         </div>
-
-        <div class="col-lg-7">
-          <p class="eyebrow">{{ recordTypeLabel }}</p>
-          <h1 class="mb-3">{{ recordTitle }}</h1>
-
-          {% if record.data.date %}
-          <p class="doc-frame__date mb-3">{{ record.data.date | displayDate }}</p>
-          {% endif %}
-
-          <div class="d-flex flex-wrap gap-2 mb-4">
-            {% if record.data.author %}
-            <span class="meta-chip">{{ record.data.author }} · {{ recordRole }}</span>
-            {% endif %}
-            {% if record.data.topic %}
-            <span class="meta-chip">{{ record.data.topic }}</span>
-            {% endif %}
-            {% if record.data.type %}
-            <span class="meta-chip">{{ record.data.type }}</span>
-            {% endif %}
-          </div>
-
-          {% if recordDesc %}
-          <p class="lead mb-4">{{ recordDesc }}</p>
-          {% endif %}
-
-          <section class="mb-4">
-            <h2 class="h4 mb-2">{{ noteLabel }}</h2>
-            <p class="text-sage mb-0">{{ noteBody }} <!-- TODO: external originals link --></p>
-          </section>
-
-          <div class="archive-body">
-            {{ content | safe }}
-          </div>
-
-          {% if record.data.link %}
-          <p class="mt-4">
-            <a href="{{ record.data.link }}" class="readmore">
-              <span>{% if page.lang == 'en' %}Open external record{% else %}Abrir registro externo{% endif %}</span><i class="bi bi-arrow-right"></i>
-            </a>
-          </p>
-          {% endif %}
+        {% endif %}
+        {% if record.data.topic %}
+        <div>
+          <dt>{% if page.lang == 'en' %}Topic{% else %}Tema{% endif %}</dt>
+          <dd>{{ record.data.topic }}</dd>
         </div>
+        {% endif %}
+        {% if record.data.type %}
+        <div>
+          <dt>{% if page.lang == 'en' %}Type{% else %}Tipo{% endif %}</dt>
+          <dd>{{ record.data.type }}</dd>
+        </div>
+        {% endif %}
+        {% if record.data.date %}
+        <div>
+          <dt>{% if page.lang == 'en' %}Date{% else %}Fecha{% endif %}</dt>
+          <dd>{{ record.data.date | displayDate }}</dd>
+        </div>
+        {% endif %}
+      </dl>
+
+      <section class="record-note mt-4">
+        <h2 class="h6 mb-2">{{ noteLabel }}</h2>
+        <p class="text-sage mb-0">{{ noteBody }} <!-- TODO: external originals link --></p>
+      </section>
+    </aside>
+
+    <div class="col-lg-8 record-main">
+      {% if recordDesc %}
+      <p class="record-lede mb-4">{{ recordDesc }}</p>
+      {% endif %}
+
+      <div class="archive-body">
+        {{ content | safe }}
       </div>
     </div>
   </div>
