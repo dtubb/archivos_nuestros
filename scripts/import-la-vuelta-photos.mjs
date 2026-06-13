@@ -34,6 +34,16 @@ for (const row of rows) {
   const thumbnailPath = `/assets/media/la-vuelta-current/${key}.jpg`;
   const outputPath = join(outputDir, `${key}.jpg`);
 
+  if (existsSync(outputPath)) {
+    records.push({
+      key,
+      sequence: row.sequence,
+      thumbnail: thumbnailPath,
+      source_status: 'thumbnail_generated',
+    });
+    continue;
+  }
+
   if (!existsSync(sourcePath)) {
     records.push({
       key,
@@ -44,22 +54,22 @@ for (const row of rows) {
     continue;
   }
 
-  if (!existsSync(outputPath)) {
-    const result = spawnSync('sips', ['-Z', '900', sourcePath, '--out', outputPath], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe'],
-      timeout: thumbnailTimeoutMs,
-    });
+  const result = spawnSync('sips', ['-Z', '900', sourcePath, '--out', outputPath], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    timeout: thumbnailTimeoutMs,
+  });
 
-    if (result.status !== 0) {
-      records.push({
-        key,
-        sequence: row.sequence,
-        thumbnail: '',
-        source_status: result.error?.code === 'ETIMEDOUT' ? 'thumbnail_pending_cloud_download' : 'thumbnail_failed',
-      });
-      continue;
-    }
+  if (result.status !== 0) {
+    records.push({
+      key,
+      sequence: row.sequence,
+      thumbnail: existsSync(outputPath) ? thumbnailPath : '',
+      source_status: existsSync(outputPath)
+        ? 'thumbnail_generated'
+        : result.error?.code === 'ETIMEDOUT' ? 'thumbnail_pending_cloud_download' : 'thumbnail_failed',
+    });
+    continue;
   }
 
   records.push({
