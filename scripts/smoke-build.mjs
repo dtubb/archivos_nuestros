@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import { copyFileSync, existsSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, statSync, unlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import vm from 'node:vm';
 
@@ -132,6 +132,8 @@ function runEleventy(siteBasePath) {
     index: readFileSync(join(siteRoot, 'index.html'), 'utf8'),
     enIndex: readFileSync(join(siteRoot, 'en', 'index.html'), 'utf8'),
     archive: readFileSync(join(siteRoot, 'archives', 'tubb-hidroelectrica-la-vuelta-actualidad', 'index.html'), 'utf8'),
+    search: readFileSync(join(siteRoot, 'buscar', 'index.html'), 'utf8'),
+    enSearch: readFileSync(join(siteRoot, 'en', 'search', 'index.html'), 'utf8'),
   };
 }
 
@@ -170,7 +172,9 @@ function assertLocalBuild(indexHtml, enIndexHtml) {
   assert.ok(indexHtml.includes('Fuentes primarias'), 'local / index: Spanish homepage heading should be present');
   assert.ok(enIndexHtml.includes('Primary Sources'), 'local / en/index: English homepage heading should be present');
   assert.ok(indexHtml.includes('href="/personas/'), 'local / index: expected Spanish people link');
+  assert.ok(indexHtml.includes('href="/buscar/'), 'local / index: expected Spanish search link');
   assert.ok(enIndexHtml.includes('href="/en/personas/'), 'local / en/index: expected English people link');
+  assert.ok(enIndexHtml.includes('href="/en/search/'), 'local / en/index: expected English search link');
   assert.ok(indexHtml.includes('href="/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'local / index: expected local archive link');
   assert.ok(enIndexHtml.includes('href="/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'local / en/index: expected local archive link');
   assert.ok(!indexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'local / index: source link belongs on record page');
@@ -272,20 +276,53 @@ function assertPrefixedBuild(indexHtml, enIndexHtml) {
   assertCommon(enIndexHtml, 'prefixed / en/index');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/assets'), 'prefixed / index: expected prefixed assets links');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/personas'), 'prefixed / index: expected prefixed personas links');
+  assert.ok(indexHtml.includes('href="/archivos_nuestros/buscar'), 'prefixed / index: expected prefixed search link');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/en'), 'prefixed / index: expected prefixed en links');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'prefixed / index: expected prefixed archive link');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/assets'), 'prefixed / en/index: expected prefixed assets links');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en/personas/'), 'prefixed / en/index: expected prefixed English people link');
+  assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en/search/'), 'prefixed / en/index: expected prefixed English search link');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en'), 'prefixed / en/index: expected prefixed en links');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'prefixed / en/index: expected prefixed archive link');
-  assert.ok(!/href="\/(assets|personas|en|archives)/.test(indexHtml), 'prefixed / index: no bare internal hrefs');
-  assert.ok(!/src="\/(assets|personas|en|archives)/.test(indexHtml), 'prefixed / index: no bare internal srcs');
-  assert.ok(!/href="\/(assets|personas|en|archives)/.test(enIndexHtml), 'prefixed / en/index: no bare internal hrefs');
-  assert.ok(!/src="\/(assets|personas|en|archives)/.test(enIndexHtml), 'prefixed / en/index: no bare internal srcs');
+  assert.ok(!/href="\/(assets|personas|buscar|en|archives|search)/.test(indexHtml), 'prefixed / index: no bare internal hrefs');
+  assert.ok(!/src="\/(assets|personas|buscar|en|archives|search)/.test(indexHtml), 'prefixed / index: no bare internal srcs');
+  assert.ok(!/href="\/(assets|personas|buscar|en|archives|search)/.test(enIndexHtml), 'prefixed / en/index: no bare internal hrefs');
+  assert.ok(!/src="\/(assets|personas|buscar|en|archives|search)/.test(enIndexHtml), 'prefixed / en/index: no bare internal srcs');
   assert.ok(indexHtml.includes('Fuentes primarias'), 'prefixed / index: Spanish homepage heading should be present');
   assert.ok(enIndexHtml.includes('Primary Sources'), 'prefixed / en/index: English homepage heading should be present');
   assert.ok(!indexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'prefixed / index: source link belongs on record page');
   assert.ok(!enIndexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'prefixed / en/index: source link belongs on record page');
+}
+
+function assertSearchPage(html, label, expectedHeading) {
+  assertCommon(html, label);
+  assert.ok(html.includes('id="search"'), `${label}: search mount point should be present`);
+  assert.ok(html.includes(expectedHeading), `${label}: heading should be present`);
+}
+
+function assertPagefindOutput() {
+  const pagefindDir = join(siteRoot, 'pagefind');
+  assert.ok(existsSync(join(pagefindDir, 'pagefind-entry.json')), 'pagefind: entry manifest should exist');
+
+  const pagefindFiles = [];
+  function walk(dir) {
+    for (const entry of readdirSync(dir)) {
+      const fullPath = join(dir, entry);
+      const stat = statSync(fullPath);
+      if (stat.isDirectory()) {
+        walk(fullPath);
+      } else {
+        pagefindFiles.push(relative(pagefindDir, fullPath));
+      }
+    }
+  }
+
+  walk(pagefindDir);
+
+  assert.ok(
+    pagefindFiles.some((file) => /(^|\/)index\/[^/]+\.pf_index$/.test(file) || /(^|\/)fragment\/[^/]+\.pf_fragment$/.test(file)),
+    'pagefind: expected at least one index or fragment file'
+  );
 }
 
 try {
@@ -295,12 +332,18 @@ try {
   const localBuild = runEleventy('');
   assertLocalBuild(localBuild.index, localBuild.enIndex);
   assertArchivePage(localBuild.archive, 'local / archive');
+  assertSearchPage(localBuild.search, 'local / buscar', 'Buscar');
+  assertSearchPage(localBuild.enSearch, 'local / en/search', 'Search');
   assertBuiltLinks('');
+  assertPagefindOutput();
 
   const prefixedBuild = runEleventy('/archivos_nuestros');
   assertPrefixedBuild(prefixedBuild.index, prefixedBuild.enIndex);
   assertArchivePage(prefixedBuild.archive, 'prefixed / archive');
+  assertSearchPage(prefixedBuild.search, 'prefixed / buscar', 'Buscar');
+  assertSearchPage(prefixedBuild.enSearch, 'prefixed / en/search', 'Search');
   assertBuiltLinks('/archivos_nuestros');
+  assertPagefindOutput();
 
   console.log('Smoke tests passed.');
 } finally {
