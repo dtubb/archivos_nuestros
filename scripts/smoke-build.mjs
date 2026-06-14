@@ -13,6 +13,9 @@ const workerReport = join(repoRoot, 'WORKER-REPORT.md');
 const photoDataPath = join(repoRoot, '_data/la_vuelta_photos.json');
 const marshallPhotoDataPath = join(repoRoot, '_data/marshall_photos.json');
 const agnPhotoDataPath = join(repoRoot, '_data/agn_photos.json');
+const houghtonPhotoDataPath = join(repoRoot, '_data/houghton_photos.json');
+const platinumPhotoDataPath = join(repoRoot, '_data/platinum_photos.json');
+const riversGoldPhotoDataPath = join(repoRoot, '_data/rivers_gold_photos.json');
 const adminConfigPath = join(repoRoot, 'admin/config.yml');
 const workerReportTmpDir = mkdtempSync(join(tmpdir(), 'site-shell-worker-report-'));
 const workerReportTmp = join(workerReportTmpDir, 'WORKER-REPORT.md');
@@ -175,6 +178,9 @@ function runEleventy(siteBasePath) {
     archive: readFileSync(join(siteRoot, 'archives', 'tubb-hidroelectrica-la-vuelta-actualidad', 'index.html'), 'utf8'),
     marshallArchive: readFileSync(join(siteRoot, 'archives', 'album-de-n-c-marshall-fotografías-tomadas-en-colombia-1910s-1950s-colección-de-la-familia-marshall-sun-prairie-wisconsin', 'index.html'), 'utf8'),
     agnArchive: readFileSync(join(siteRoot, 'archives', 'fotografías-en-el-archivo-general-de-la-nación', 'index.html'), 'utf8'),
+    houghtonArchive: readFileSync(join(siteRoot, 'archives', 'colección-houghton-para-el-permiso-de-acceder-al-enlace-escriba-por-favor-a-farnswor-upenn-edu', 'index.html'), 'utf8'),
+    platinumArchive: readFileSync(join(siteRoot, 'archives', 'platino-folleto-1920-una-publicación-de-la-cmcp', 'index.html'), 'utf8'),
+    riversGoldArchive: readFileSync(join(siteRoot, 'archives', 'ríos-del-oro-folleto-1945-publicado-por-la-cmcp-con-el-apoyo-de-la-revista-forbes', 'index.html'), 'utf8'),
     search: readFileSync(join(siteRoot, 'buscar', 'index.html'), 'utf8'),
     enSearch: readFileSync(join(siteRoot, 'en', 'search', 'index.html'), 'utf8'),
   };
@@ -329,13 +335,18 @@ function assertPhotoData() {
   assertCollectionPhotoData(photoDataPath, 145, 'tubb2026lavuelta-current-', '/assets/media/la-vuelta-current/', 'la vuelta photo data');
   assertCollectionPhotoData(marshallPhotoDataPath, 21, 'marshall-colombia-photos-', '/assets/media/marshall-colombia/', 'marshall photo data');
   assertCollectionPhotoData(agnPhotoDataPath, 70, 'archivo-general-nacion-photos-', '/assets/media/archivo-general-nacion/', 'agn photo data');
+  assertCollectionPhotoData(houghtonPhotoDataPath, 278, 'houghton-photos-', '/assets/media/houghton/', 'houghton photo data');
+  assertCollectionPhotoData(platinumPhotoDataPath, 11, 'platinum-pamphlet-1920-', '/assets/media/platinum-pamphlet-1920/', 'platinum photo data');
+  assertCollectionPhotoData(riversGoldPhotoDataPath, 10, 'rivers-gold-pamphlet-1940s-', '/assets/media/rivers-gold/', 'rivers gold photo data');
 }
 
 function assertAdditionalPhotoArchive(archiveHtml, label, options) {
   assertArchivePageBasics(archiveHtml, label);
   assert.ok(archiveHtml.includes(options.mediaPrefix), `${label}: expected collection thumbnails`);
   assert.ok(archiveHtml.includes(`data-gallery="${options.galleryId}"`), `${label}: expected dynamic gallery id`);
-  assert.ok(archiveHtml.includes(options.sourceLink), `${label}: source link should be rendered from YAML`);
+  if (options.sourceLink) {
+    assert.ok(archiveHtml.includes(options.sourceLink), `${label}: source link should be rendered from YAML`);
+  }
   assert.ok(archiveHtml.includes(`@misc{${options.citationKey}`), `${label}: citation key should be rendered`);
 }
 
@@ -493,6 +504,24 @@ try {
     sourceLink: 'https://upenn.box.com/s/kafp5sfpz66kts02a7mprjau3i98a248',
     citationKey: 'archivo-general-nacion-photos',
   });
+  assertAdditionalPhotoArchive(localBuild.houghtonArchive, 'local / houghton archive', {
+    mediaPrefix: '/assets/media/houghton/',
+    galleryId: 'houghton_photos',
+    sourceLink: 'https://upenn.box.com/s/8qkvpjyejqz4cdez7ivkyfmo74dlue5e',
+    citationKey: 'houghton-photos',
+  });
+  assertAdditionalPhotoArchive(localBuild.platinumArchive, 'local / platinum archive', {
+    mediaPrefix: '/assets/media/platinum-pamphlet-1920/',
+    galleryId: 'platinum_photos',
+    sourceLink: '',
+    citationKey: 'platinum-pamphlet-1920',
+  });
+  assertAdditionalPhotoArchive(localBuild.riversGoldArchive, 'local / rivers gold archive', {
+    mediaPrefix: '/assets/media/rivers-gold/',
+    galleryId: 'rivers_gold_photos',
+    sourceLink: 'https://upenn.box.com/v/RiversofGold',
+    citationKey: 'rivers-gold-pamphlet-1940s',
+  });
   assertSearchPage(localBuild.search, 'local / buscar', 'Buscar');
   assertSearchPage(localBuild.enSearch, 'local / en/search', 'Search');
   assertBuiltLinks('');
@@ -515,6 +544,24 @@ try {
     galleryId: 'agn_photos',
     sourceLink: 'https://upenn.box.com/s/kafp5sfpz66kts02a7mprjau3i98a248',
     citationKey: 'archivo-general-nacion-photos',
+  });
+  assertAdditionalPhotoArchive(prefixedBuild.houghtonArchive, 'prefixed / houghton archive', {
+    mediaPrefix: '/archivos_nuestros/assets/media/houghton/',
+    galleryId: 'houghton_photos',
+    sourceLink: 'https://upenn.box.com/s/8qkvpjyejqz4cdez7ivkyfmo74dlue5e',
+    citationKey: 'houghton-photos',
+  });
+  assertAdditionalPhotoArchive(prefixedBuild.platinumArchive, 'prefixed / platinum archive', {
+    mediaPrefix: '/archivos_nuestros/assets/media/platinum-pamphlet-1920/',
+    galleryId: 'platinum_photos',
+    sourceLink: '',
+    citationKey: 'platinum-pamphlet-1920',
+  });
+  assertAdditionalPhotoArchive(prefixedBuild.riversGoldArchive, 'prefixed / rivers gold archive', {
+    mediaPrefix: '/archivos_nuestros/assets/media/rivers-gold/',
+    galleryId: 'rivers_gold_photos',
+    sourceLink: 'https://upenn.box.com/v/RiversofGold',
+    citationKey: 'rivers-gold-pamphlet-1940s',
   });
   assertSearchPage(prefixedBuild.search, 'prefixed / buscar', 'Buscar');
   assertSearchPage(prefixedBuild.enSearch, 'prefixed / en/search', 'Search');

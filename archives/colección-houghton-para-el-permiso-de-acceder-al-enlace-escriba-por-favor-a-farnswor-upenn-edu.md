@@ -4,8 +4,10 @@ title: Álbum de fotos - Colección Houghton - para el permiso de acceder al enl
 author: N.C. Marshall, Michigan Technological University Archives.
 topic: Colombia, Chocó, Río San Juan, Istmina, Minería, Vida cotidiana, Compañías extranjeras
 type: fotos
-thumbnail: /assets/media/screen-shot-2025-06-26-at-11.09.25-am.png
+thumbnail: /assets/media/houghton/houghton-photos-0001.jpg
 link: https://upenn.box.com/s/8qkvpjyejqz4cdez7ivkyfmo74dlue5e
+citationKey: houghton-photos
+photoGrid: houghton_photos
 layout: archive.njk
 tags:
   - archives

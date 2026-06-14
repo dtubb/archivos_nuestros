@@ -22,6 +22,12 @@ hideFooter: true
   {% set photoGrid = marshall_photos %}
 {% elif record.data.photoGrid == 'agn_photos' %}
   {% set photoGrid = agn_photos %}
+{% elif record.data.photoGrid == 'houghton_photos' %}
+  {% set photoGrid = houghton_photos %}
+{% elif record.data.photoGrid == 'platinum_photos' %}
+  {% set photoGrid = platinum_photos %}
+{% elif record.data.photoGrid == 'rivers_gold_photos' %}
+  {% set photoGrid = rivers_gold_photos %}
 {% else %}
   {% set photoGrid = [] %}
 {% endif %}
