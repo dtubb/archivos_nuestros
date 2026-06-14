@@ -272,6 +272,27 @@ a:hover {
   transform: translateY(-6px);
 }
 
+.archive-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.archive-filter {
+  background: rgba(184, 144, 71, 0.08);
+  color: var(--indigo);
+  cursor: pointer;
+}
+
+.archive-filter.is-active {
+  background: var(--indigo);
+  color: var(--parchment);
+}
+
+.archive-item.is-hidden {
+  display: none !important;
+}
+
 .acknowledgements-band {
   background: linear-gradient(180deg, rgba(184, 144, 71, 0.12), rgba(184, 144, 71, 0.05));
   border-top: 1px solid rgba(184, 144, 71, 0.24);

@@ -2,17 +2,83 @@
 layout: vanilla.njk
 ---
 
-{# This is the template for the Archives page–it lists the archives in the collection #}
-
-Is anything here????
+{% set archiveItems = collections.archives | sort(attribute="data.title") %}
+{% set archiveTypes = [] %}
+{% for archive in archiveItems %}
+  {% if archive.data.type and archive.data.type not in archiveTypes %}
+    {% set archiveTypes = archiveTypes.concat([archive.data.type]) %}
+  {% endif %}
+{% endfor %}
 
 <div class="wrapper home">
   <div class="content">
-    {{ content | safe }}
-    <ul>
-      {%- for archive in collections.archives -%}
-        <li{% if page.url == archive.url %} aria-current="page"{% endif %}><a href='{{ archive.url }}'>{{ archive.data.title }}</a></li>
-      {%- endfor -%}
-    </ul>
+    <section class="reading-zone section-band archives-browse">
+      <div class="container-xl">
+        <div class="section-title d-flex flex-wrap justify-content-between align-items-end gap-3">
+          <div>
+            <h1 class="mb-0">{% if page.lang == 'en' %}Primary Sources{% else %}Fuentes primarias{% endif %}</h1>
+          </div>
+
+          {% if archiveTypes.length > 1 %}
+          <div class="archive-filters" role="group" aria-label="{% if page.lang == 'en' %}Filter archives by type{% else %}Filtrar archivos por tipo{% endif %}">
+            <button class="ui-chip archive-filter is-active" type="button" data-archive-filter="all">
+              {% if page.lang == 'en' %}All{% else %}Todas{% endif %}
+            </button>
+            {% for type in archiveTypes %}
+            <button class="ui-chip archive-filter" type="button" data-archive-filter="{{ type }}">{{ type }}</button>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="row g-4 archive-grid archives-browse__grid" data-archive-grid>
+          {%- for archive in archiveItems -%}
+          {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
+          <div class="col-xl-4 col-md-6 d-flex archive-item" data-archive-item data-archive-type="{{ archive.data.type or '' }}">
+            <a href="{{ archive.url | sitePath }}" class="archive-card-link d-flex flex-fill">
+              <article class="doc-frame">
+                <div class="doc-frame__media">
+                  {% if archive.data.thumbnail %}
+                  <img src="{{ archive.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ archiveTitle }}">
+                  {% endif %}
+                </div>
+                <div class="doc-frame__body">
+                  <h2 class="doc-frame__title">{{ archiveTitle }}</h2>
+                </div>
+              </article>
+            </a>
+          </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </section>
   </div>
 </div>
+
+{% if archiveTypes.length > 1 %}
+<script>
+  (() => {
+    const buttons = Array.from(document.querySelectorAll('[data-archive-filter]'));
+    const cards = Array.from(document.querySelectorAll('[data-archive-item]'));
+    if (!buttons.length || !cards.length) return;
+
+    const setActiveFilter = (filter) => {
+      buttons.forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.archiveFilter === filter);
+      });
+
+      cards.forEach((card) => {
+        const cardType = card.dataset.archiveType || '';
+        const shouldShow = filter === 'all' || cardType === filter;
+        card.classList.toggle('is-hidden', !shouldShow);
+      });
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => setActiveFilter(button.dataset.archiveFilter || 'all'));
+    });
+
+    setActiveFilter('all');
+  })();
+</script>
+{% endif %}

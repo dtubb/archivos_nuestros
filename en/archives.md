@@ -1,7 +1,8 @@
 ---
 layout: archives.njk
-lang: es
-title: Fuentes primarias
+lang: en
+title: Primary Sources
+permalink: /en/archives/
 compactChrome: true
 hideFooter: true
 ---

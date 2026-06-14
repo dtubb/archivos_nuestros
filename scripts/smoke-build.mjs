@@ -131,6 +131,8 @@ function runEleventy(siteBasePath) {
   return {
     index: readFileSync(join(siteRoot, 'index.html'), 'utf8'),
     enIndex: readFileSync(join(siteRoot, 'en', 'index.html'), 'utf8'),
+    archives: readFileSync(join(siteRoot, 'archives', 'index.html'), 'utf8'),
+    enArchives: readFileSync(join(siteRoot, 'en', 'archives', 'index.html'), 'utf8'),
     archive: readFileSync(join(siteRoot, 'archives', 'tubb-hidroelectrica-la-vuelta-actualidad', 'index.html'), 'utf8'),
     search: readFileSync(join(siteRoot, 'buscar', 'index.html'), 'utf8'),
     enSearch: readFileSync(join(siteRoot, 'en', 'search', 'index.html'), 'utf8'),
@@ -173,12 +175,32 @@ function assertLocalBuild(indexHtml, enIndexHtml) {
   assert.ok(enIndexHtml.includes('Primary Sources'), 'local / en/index: English homepage heading should be present');
   assert.ok(indexHtml.includes('href="/personas/'), 'local / index: expected Spanish people link');
   assert.ok(indexHtml.includes('href="/buscar/'), 'local / index: expected Spanish search link');
+  assert.ok(indexHtml.includes('href="/archives/'), 'local / index: expected Spanish archives link');
   assert.ok(enIndexHtml.includes('href="/en/personas/'), 'local / en/index: expected English people link');
+  assert.ok(enIndexHtml.includes('href="/en/archives/'), 'local / en/index: expected English archives link');
   assert.ok(enIndexHtml.includes('href="/en/search/'), 'local / en/index: expected English search link');
   assert.ok(indexHtml.includes('href="/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'local / index: expected local archive link');
   assert.ok(enIndexHtml.includes('href="/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'local / en/index: expected local archive link');
   assert.ok(!indexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'local / index: source link belongs on record page');
   assert.ok(!enIndexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'local / en/index: source link belongs on record page');
+}
+
+function assertArchiveBrowsePage(archivesHtml, label) {
+  assertCommon(archivesHtml, label);
+  assert.ok(!archivesHtml.includes('Is this thing on?'), `${label}: placeholder copy should not be present`);
+  assert.ok(!archivesHtml.includes('Is anything here????'), `${label}: placeholder copy should not be present`);
+  assert.ok(archivesHtml.includes('archive-card-link'), `${label}: browse cards should be present`);
+  assert.ok(archivesHtml.includes('doc-frame__title'), `${label}: browse cards should include titles`);
+  assert.ok(archivesHtml.includes('archives/tubb-hidroelectrica-la-vuelta-actualidad/'), `${label}: browse cards should link to local archive records`);
+  assert.ok(archivesHtml.includes('data-archive-item'), `${label}: archive items should be annotated for filtering`);
+  assert.ok(archivesHtml.includes('data-archive-filter'), `${label}: filter controls should be present when multiple types exist`);
+  assert.ok(archivesHtml.includes('archive-filter'), `${label}: filter button class should be present`);
+  assert.ok(!archivesHtml.includes('/Users/'), `${label}: should not expose local filesystem paths`);
+  assert.ok(!archivesHtml.includes('staged_source_path'), `${label}: should not expose staged provenance fields`);
+  assert.ok(!archivesHtml.includes('original_source_path'), `${label}: should not expose original provenance fields`);
+  assert.ok(!archivesHtml.includes('Box-Box'), `${label}: should not expose local Box paths`);
+  assert.ok(!archivesHtml.includes('coming soon'), `${label}: coming-soon copy should not be present`);
+  assert.ok(!archivesHtml.includes('próximamente'), `${label}: coming-soon copy should not be present`);
 }
 
 function assertArchivePage(archiveHtml, label) {
@@ -353,6 +375,8 @@ try {
 
   const localBuild = runEleventy('');
   assertLocalBuild(localBuild.index, localBuild.enIndex);
+  assertArchiveBrowsePage(localBuild.archives, 'local / archives');
+  assertArchiveBrowsePage(localBuild.enArchives, 'local / en/archives');
   assertArchivePage(localBuild.archive, 'local / archive');
   assertSearchPage(localBuild.search, 'local / buscar', 'Buscar');
   assertSearchPage(localBuild.enSearch, 'local / en/search', 'Search');
@@ -361,6 +385,8 @@ try {
 
   const prefixedBuild = runEleventy('/archivos_nuestros');
   assertPrefixedBuild(prefixedBuild.index, prefixedBuild.enIndex);
+  assertArchiveBrowsePage(prefixedBuild.archives, 'prefixed / archives');
+  assertArchiveBrowsePage(prefixedBuild.enArchives, 'prefixed / en/archives');
   assertArchivePage(prefixedBuild.archive, 'prefixed / archive');
   assertSearchPage(prefixedBuild.search, 'prefixed / buscar', 'Buscar');
   assertSearchPage(prefixedBuild.enSearch, 'prefixed / en/search', 'Search');
