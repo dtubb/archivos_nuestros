@@ -63,7 +63,7 @@ hideFooter: true
             <span class="visually-hidden">{% if page.lang == 'en' %}Next photograph{% else %}Fotografía siguiente{% endif %}</span>
           </button>
         </div>
-        <p class="photo-viewer__caption" data-photo-active-caption>{{ firstPhoto.sequence }}</p>
+        <p class="photo-viewer__caption visually-hidden" data-photo-active-caption>{{ firstPhoto.sequence }}</p>
       </section>
 
       <div class="photo-lightbox-list" aria-hidden="true">
@@ -166,6 +166,8 @@ hideFooter: true
   (() => {
     const viewer = document.querySelector('[data-photo-viewer]');
     if (!viewer) return;
+    const page = viewer.closest('article.record-layout');
+    if (!page) return;
 
     const activeImage = viewer.querySelector('[data-photo-active-image]');
     const activeCaption = viewer.querySelector('[data-photo-active-caption]');
@@ -174,8 +176,8 @@ hideFooter: true
     const prevButton = viewer.querySelector('[data-photo-prev]');
     const nextButton = viewer.querySelector('[data-photo-next]');
     const jumpSelect = viewer.querySelector('[data-photo-jump]');
-    const thumbs = Array.from(viewer.querySelectorAll('[data-photo-thumb]'));
-    const lightboxLinks = Array.from(viewer.querySelectorAll('[data-photo-lightbox-link]'));
+    const thumbs = Array.from(page.querySelectorAll('[data-photo-thumb]'));
+    const lightboxLinks = Array.from(page.querySelectorAll('[data-photo-lightbox-link]'));
     let activeIndex = 0;
 
     const syncControls = () => {

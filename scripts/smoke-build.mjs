@@ -213,8 +213,14 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(archiveHtml.includes('photo-viewer__controls'), `${label}: viewer controls wrapper should be present`);
   assert.ok(archiveHtml.includes('photo-viewer__nav'), `${label}: compact nav buttons should be present`);
   assert.ok(archiveHtml.includes('photo-viewer__select'), `${label}: sequence jump select should be present`);
+  assert.ok(archiveHtml.includes('photo-viewer__caption visually-hidden'), `${label}: active sequence caption should stay visually hidden`);
   assert.ok(archiveHtml.includes('data-gallery="la-vuelta-photos"'), `${label}: photo grid should be one navigable gallery`);
   assert.ok(archiveHtml.includes('data-description="Daniel Tubb, con apoyo de la SSHRC'), `${label}: lightbox should include compact citation metadata`);
+  assert.ok(archiveHtml.includes("const page = viewer.closest('article.record-layout');"), `${label}: script should scope lookups to the archive page`);
+  assert.ok(archiveHtml.includes("Array.from(page.querySelectorAll('[data-photo-thumb]'))"), `${label}: script should reach thumbnails outside the viewer section`);
+  assert.ok(archiveHtml.includes("Array.from(page.querySelectorAll('[data-photo-lightbox-link]'))"), `${label}: script should reach lightbox links outside the viewer section`);
+  assert.ok(!archiveHtml.includes("viewer.querySelectorAll('[data-photo-thumb]')"), `${label}: script should not scope thumbnails to the viewer section`);
+  assert.ok(!archiveHtml.includes("viewer.querySelectorAll('[data-photo-lightbox-link]')"), `${label}: script should not scope lightbox links to the viewer section`);
   assert.ok(archiveHtml.includes('lightboxLinks[activeIndex]?.click();'), `${label}: main image should open the active lightbox item`);
   assert.ok(archiveHtml.includes('prevButton.addEventListener(\'click\''), `${label}: previous control should be wired`);
   assert.ok(archiveHtml.includes('nextButton.addEventListener(\'click\''), `${label}: next control should be wired`);
