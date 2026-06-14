@@ -4,7 +4,7 @@ titleEng: Rivers of Gold - Pamphlet (1945) published by CMCP in collaboration wi
   Magazine
 author: Lewis Carroll
 topic: Colombia, Chocó, Río San Juan, Istmina, Minería, Compañías extranjeras
-type: otros
+type: other
 thumbnail: /assets/media/screenshot-2025-12-18-at-8.03.38 am.png
 link: https://upenn.box.com/v/RiversofGold
 layout: archive.njk
