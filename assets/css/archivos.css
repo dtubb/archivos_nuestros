@@ -356,6 +356,14 @@ a:hover {
   margin: 0;
   color: var(--indigo);
   font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+.record-meta-link {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .record-note {

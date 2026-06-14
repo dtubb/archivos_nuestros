@@ -16,15 +16,16 @@ hideFooter: true
 
 {% set recordTitle = record.data.titleEng if page.lang == 'en' and record.data.titleEng else record.data.title %}
 {% set recordDesc = record.data['desc-en'] if page.lang == 'en' and record.data['desc-en'] else record.data['desc-es'] %}
-{% set recordRole = 'Creator / author' if page.lang == 'en' else 'Creador / autor' %}
 {% set photoGrid = la_vuelta_photos if record.data.photoGrid == 'la_vuelta_photos' else [] %}
-{% if record.data.type == 'photographs' %}
-  {% set recordTypeLabel = 'Photographs' if page.lang == 'en' else 'Fotografías' %}
+{% if record.data.type == 'photographs' or record.data.type == 'fotos' %}
+  {% set recordTypeLabel = 'Photos' if page.lang == 'en' else 'Fotos' %}
 {% elif page.lang == 'en' %}
   {% set recordTypeLabel = record.data.type or 'collection' %}
 {% else %}
   {% set recordTypeLabel = record.data.type or 'colección' %}
 {% endif %}
+{% set recordSourceLabel = 'Source' if page.lang == 'en' else 'Fuente' %}
+{% set recordSourceLinkLabel = 'Open source' if page.lang == 'en' else 'Abrir fuente' %}
 {% set visiblePhotos = photoGrid | selectattr('thumbnail') | list %}
 
 <article class="container-xl py-4 record-layout">
@@ -103,7 +104,7 @@ hideFooter: true
         {% if record.data.author %}
         <div>
           <dt>{% if page.lang == 'en' %}Creator{% else %}Creador{% endif %}</dt>
-          <dd>{{ record.data.author }} · {{ recordRole }}</dd>
+          <dd>{{ record.data.author }}</dd>
         </div>
         {% endif %}
         {% if record.data.topic %}
@@ -116,6 +117,16 @@ hideFooter: true
         <div>
           <dt>{% if page.lang == 'en' %}Type{% else %}Tipo{% endif %}</dt>
           <dd>{{ recordTypeLabel }}</dd>
+        </div>
+        {% endif %}
+        {% if record.data.link %}
+        <div>
+          <dt>{{ recordSourceLabel }}</dt>
+          <dd>
+            <a class="record-meta-link" href="{{ record.data.link }}" rel="noreferrer" target="_blank" title="{{ record.data.link }}">
+              {{ recordSourceLinkLabel }}
+            </a>
+          </dd>
         </div>
         {% endif %}
         {% if record.data.date %}

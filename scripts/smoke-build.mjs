@@ -171,8 +171,10 @@ function assertLocalBuild(indexHtml, enIndexHtml) {
   assert.ok(enIndexHtml.includes('Primary Sources'), 'local / en/index: English homepage heading should be present');
   assert.ok(indexHtml.includes('href="/personas/'), 'local / index: expected Spanish people link');
   assert.ok(enIndexHtml.includes('href="/en/personas/'), 'local / en/index: expected English people link');
-  assert.ok(!indexHtml.includes('href="/#'), 'local / index: should not include placeholder section links');
-  assert.ok(!enIndexHtml.includes('href="/en/#'), 'local / en/index: should not include placeholder section links');
+  assert.ok(indexHtml.includes('href="/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'local / index: expected local archive link');
+  assert.ok(enIndexHtml.includes('href="/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'local / en/index: expected local archive link');
+  assert.ok(!indexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'local / index: source link belongs on record page');
+  assert.ok(!enIndexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'local / en/index: source link belongs on record page');
 }
 
 function assertArchivePage(archiveHtml, label) {
@@ -186,6 +188,10 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(!archiveHtml.includes('id="footer"'), `${label}: archive page should not include the footer block`);
   assert.ok(!archiveHtml.includes('hosted externally in Box'), `${label}: Box-hosting wording should not be present`);
   assert.ok(!archiveHtml.includes('alojados externamente en Box'), `${label}: Box-hosting wording should not be present`);
+  assert.ok(!archiveHtml.includes('Primer prototipo'), `${label}: prototype scaffold copy should not be present`);
+  assert.ok(!archiveHtml.includes('First prototype'), `${label}: prototype scaffold copy should not be present`);
+  assert.ok(!archiveHtml.includes('This is the first working collection'), `${label}: workflow scaffold copy should not be present`);
+  assert.ok(!archiveHtml.includes('source review'), `${label}: workflow scaffold copy should not be present`);
   assert.ok(!archiveHtml.includes('pendientes de revisión'), `${label}: workflow note should not be present`);
   assert.ok(!archiveHtml.includes('pending review'), `${label}: workflow note should not be present`);
   assert.ok(archiveHtml.includes('photo-grid'), `${label}: photo grid should be present`);
@@ -194,8 +200,12 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(archiveHtml.includes('data-photo-thumb'), `${label}: thumbnails should update the large photograph`);
   assert.ok(archiveHtml.includes('data-photo-lightbox-link'), `${label}: lightbox links should be available for full-screen viewing`);
   assert.ok(archiveHtml.includes('data-gallery="la-vuelta-photos"'), `${label}: photo grid should be one navigable gallery`);
-  assert.ok(archiveHtml.includes('data-description="Daniel Tubb.'), `${label}: lightbox should include compact citation metadata`);
+  assert.ok(archiveHtml.includes('data-description="Daniel Tubb, con apoyo de la SSHRC'), `${label}: lightbox should include compact citation metadata`);
   assert.ok(archiveHtml.includes('/assets/media/la-vuelta-current/'), `${label}: photo grid thumbnails should be present`);
+  assert.ok(
+    archiveHtml.includes('https://upenn.box.com/v/AndaguedaPresente'),
+    `${label}: source link should be rendered when metadata provides it`
+  );
 }
 
 function assertPhotoData() {
@@ -263,17 +273,19 @@ function assertPrefixedBuild(indexHtml, enIndexHtml) {
   assert.ok(indexHtml.includes('href="/archivos_nuestros/assets'), 'prefixed / index: expected prefixed assets links');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/personas'), 'prefixed / index: expected prefixed personas links');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/en'), 'prefixed / index: expected prefixed en links');
-  assert.ok(indexHtml.includes('href="/archivos_nuestros/archives'), 'prefixed / index: expected prefixed archives links');
+  assert.ok(indexHtml.includes('href="/archivos_nuestros/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'prefixed / index: expected prefixed archive link');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/assets'), 'prefixed / en/index: expected prefixed assets links');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en/personas/'), 'prefixed / en/index: expected prefixed English people link');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en'), 'prefixed / en/index: expected prefixed en links');
-  assert.ok(enIndexHtml.includes('href="/archivos_nuestros/archives'), 'prefixed / en/index: expected prefixed archives links');
+  assert.ok(enIndexHtml.includes('href="/archivos_nuestros/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'prefixed / en/index: expected prefixed archive link');
   assert.ok(!/href="\/(assets|personas|en|archives)/.test(indexHtml), 'prefixed / index: no bare internal hrefs');
   assert.ok(!/src="\/(assets|personas|en|archives)/.test(indexHtml), 'prefixed / index: no bare internal srcs');
   assert.ok(!/href="\/(assets|personas|en|archives)/.test(enIndexHtml), 'prefixed / en/index: no bare internal hrefs');
   assert.ok(!/src="\/(assets|personas|en|archives)/.test(enIndexHtml), 'prefixed / en/index: no bare internal srcs');
   assert.ok(indexHtml.includes('Fuentes primarias'), 'prefixed / index: Spanish homepage heading should be present');
   assert.ok(enIndexHtml.includes('Primary Sources'), 'prefixed / en/index: English homepage heading should be present');
+  assert.ok(!indexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'prefixed / index: source link belongs on record page');
+  assert.ok(!enIndexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'prefixed / en/index: source link belongs on record page');
 }
 
 try {
