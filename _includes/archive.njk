@@ -27,8 +27,35 @@ hideFooter: true
 {% set recordSourceLabel = 'Source' if page.lang == 'en' else 'Fuente' %}
 {% set recordSourceLinkLabel = 'Open source' if page.lang == 'en' else 'Abrir fuente' %}
 {% set visiblePhotos = photoGrid | selectattr('thumbnail') | list %}
+{% set firstPhoto = visiblePhotos | first %}
 
-<article class="container-xl py-4 record-layout">
+<div class="visually-hidden" aria-hidden="true">
+  {% if record.data.type %}
+  <span data-pagefind-meta="type">{{ record.data.type }}</span>
+  <span data-pagefind-filter="type">{{ record.data.type }}</span>
+  {% endif %}
+  {% if record.data.author %}
+  <span data-pagefind-meta="author">{{ record.data.author }}</span>
+  <span data-pagefind-filter="author">{{ record.data.author }}</span>
+  {% endif %}
+  {% if record.data.topic %}
+    {% set topicValues = record.data.topic.split(',') %}
+  <span data-pagefind-meta="topic">{{ record.data.topic }}</span>
+    {% for topic in topicValues %}
+  <span data-pagefind-filter="topic">{{ topic | trim }}</span>
+    {% endfor %}
+  {% endif %}
+  {% if record.data.link %}
+  <span data-pagefind-meta="source_link">{{ record.data.link }}</span>
+  {% endif %}
+  {% if visiblePhotos.length %}
+  <span data-pagefind-meta="image">{{ firstPhoto.thumbnail | sitePath }}</span>
+  {% elif record.data.thumbnail %}
+  <span data-pagefind-meta="image">{{ record.data.thumbnail | sitePath }}</span>
+  {% endif %}
+</div>
+
+<article class="container-xl py-4 record-layout" data-pagefind-body>
   <div class="row g-4 g-lg-5 align-items-start">
     <div class="col-lg-8 record-main">
       {% if visiblePhotos.length %}
@@ -120,7 +147,7 @@ hideFooter: true
 
     <aside class="col-lg-4 record-rail record-rail--right">
       <p class="eyebrow mb-2">{{ recordTypeLabel }}</p>
-      <h1 class="record-title mb-3">{{ recordTitle }}</h1>
+      <h1 class="record-title mb-3" data-pagefind-meta="title">{{ recordTitle }}</h1>
 
       <dl class="record-meta-list mb-0">
         {% if record.data.author %}

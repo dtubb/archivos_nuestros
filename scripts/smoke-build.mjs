@@ -205,6 +205,17 @@ function assertArchiveBrowsePage(archivesHtml, label) {
 
 function assertArchivePage(archiveHtml, label) {
   assert.ok(!archiveHtml.includes('id="preloader"'), `${label}: preloader should not be present`);
+  assert.ok(archiveHtml.includes('data-pagefind-body'), `${label}: archive page should mark the searchable body`);
+  assert.ok(archiveHtml.includes('data-pagefind-meta="title"'), `${label}: title metadata hook should be present`);
+  assert.ok(archiveHtml.includes('data-pagefind-meta="type"'), `${label}: type metadata hook should be present`);
+  assert.ok(archiveHtml.includes('data-pagefind-filter="type"'), `${label}: type filter hook should be present`);
+  assert.ok(archiveHtml.includes('data-pagefind-meta="author"'), `${label}: author metadata hook should be present`);
+  assert.ok(archiveHtml.includes('data-pagefind-filter="author"'), `${label}: author filter hook should be present`);
+  assert.ok(archiveHtml.includes('data-pagefind-meta="topic"'), `${label}: topic metadata hook should be present`);
+  assert.ok(archiveHtml.includes('data-pagefind-meta="source_link"'), `${label}: source link metadata hook should be present`);
+  assert.ok(archiveHtml.includes('data-pagefind-meta="image"'), `${label}: image metadata hook should be present`);
+  const topicFilterHooks = archiveHtml.match(/data-pagefind-filter="topic"/g) || [];
+  assert.ok(topicFilterHooks.length >= 2, `${label}: topic filters should be split into multiple values`);
   assert.ok(archiveHtml.includes('record-layout'), `${label}: record layout should be present`);
   assert.ok(archiveHtml.includes('record-rail--right'), `${label}: right metadata rail should be present`);
   assert.ok(
@@ -369,6 +380,24 @@ function assertPagefindOutput() {
   );
 }
 
+function assertPagefindFilters() {
+  const result = spawnSync('npx', ['pagefind', '--site', '_site', '--glob', '**/*.html', '--verbose'], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+
+  if (result.status !== 0) {
+    process.stderr.write(result.stdout || '');
+    process.stderr.write(result.stderr || '');
+    throw new Error('Pagefind verbose run failed');
+  }
+
+  const output = `${result.stdout || ''}${result.stderr || ''}`;
+  assert.ok(/Indexed [1-9]\d* filters/.test(output), 'pagefind: expected nonzero filters after indexing');
+  assert.ok(!output.includes('Indexed 0 filters'), 'pagefind: expected filters to be present');
+}
+
 try {
   runMainJsSmoke();
   assertPhotoData();
@@ -382,6 +411,7 @@ try {
   assertSearchPage(localBuild.enSearch, 'local / en/search', 'Search');
   assertBuiltLinks('');
   assertPagefindOutput();
+  assertPagefindFilters();
 
   const prefixedBuild = runEleventy('/archivos_nuestros');
   assertPrefixedBuild(prefixedBuild.index, prefixedBuild.enIndex);
@@ -392,6 +422,7 @@ try {
   assertSearchPage(prefixedBuild.enSearch, 'prefixed / en/search', 'Search');
   assertBuiltLinks('/archivos_nuestros');
   assertPagefindOutput();
+  assertPagefindFilters();
 
   console.log('Smoke tests passed.');
 } finally {
