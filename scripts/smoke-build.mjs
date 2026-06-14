@@ -56,6 +56,10 @@ function runMainJsSmoke() {
   const source = readFileSync(join(repoRoot, 'assets/js/main.js'), 'utf8');
   const fired = [];
 
+  assert.ok(source.includes('zoomable: true'), 'main.js smoke: GLightbox zoom should stay enabled');
+  assert.ok(source.includes('draggable: true'), 'main.js smoke: GLightbox drag/pan should stay enabled');
+  assert.ok(source.includes('touchNavigation: true'), 'main.js smoke: GLightbox touch navigation should stay enabled');
+
   const documentStub = {
     querySelector: () => null,
     querySelectorAll: () => [],
@@ -249,6 +253,7 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(archiveHtml.includes('photo-viewer__caption visually-hidden'), `${label}: active sequence caption should stay visually hidden`);
   assert.ok(archiveHtml.includes('data-gallery="la-vuelta-photos"'), `${label}: photo grid should be one navigable gallery`);
   assert.ok(archiveHtml.includes('data-description="Daniel Tubb, con apoyo de la SSHRC'), `${label}: lightbox should include compact citation metadata`);
+  assert.ok(archiveHtml.includes('secuencia 1'), `${label}: lightbox citation should include photo sequence`);
   assert.ok(archiveHtml.includes("const page = viewer.closest('article.record-layout');"), `${label}: script should scope lookups to the archive page`);
   assert.ok(archiveHtml.includes("Array.from(page.querySelectorAll('[data-photo-thumb]'))"), `${label}: script should reach thumbnails outside the viewer section`);
   assert.ok(archiveHtml.includes("Array.from(page.querySelectorAll('[data-photo-lightbox-link]'))"), `${label}: script should reach lightbox links outside the viewer section`);

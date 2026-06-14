@@ -174,7 +174,11 @@
    */
   if (typeof GLightbox !== 'undefined') {
     GLightbox({
-      selector: '.glightbox'
+      selector: '.glightbox',
+      touchNavigation: true,
+      draggable: true,
+      zoomable: true,
+      loop: false,
     });
   }
 

@@ -28,6 +28,7 @@ hideFooter: true
 {% set recordSourceLinkLabel = 'Open source' if page.lang == 'en' else 'Abrir fuente' %}
 {% set visiblePhotos = photoGrid | selectattr('thumbnail') | list %}
 {% set firstPhoto = visiblePhotos | first %}
+{% set sequenceLabel = 'sequence' if page.lang == 'en' else 'secuencia' %}
 
 <div class="visually-hidden" aria-hidden="true">
   {% if record.data.type %}
@@ -102,7 +103,7 @@ hideFooter: true
             data-photo-lightbox-link
             data-photo-index="{{ loop.index0 }}"
             data-title="{{ recordTitle }}"
-            data-description="{{ record.data.author }}. {{ photo.sequence }}."
+            data-description="{{ record.data.author }}. {{ recordTitle }}. {{ sequenceLabel }} {{ photo.sequence }}."
           ></a>
         {% endfor %}
       </div>
