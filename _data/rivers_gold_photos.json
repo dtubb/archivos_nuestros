@@ -21,13 +21,15 @@
     "key": "rivers-gold-pamphlet-1940s-0005",
     "sequence": 4,
     "thumbnail": "/assets/media/rivers-gold/rivers-gold-pamphlet-1940s-0005.jpg",
-    "source_status": "thumbnail_generated"
+    "source_status": "thumbnail_generated",
+    "orientation_correction": "rotated_90_ccw_public_derivative"
   },
   {
     "key": "rivers-gold-pamphlet-1940s-0006",
     "sequence": 5,
     "thumbnail": "/assets/media/rivers-gold/rivers-gold-pamphlet-1940s-0006.jpg",
-    "source_status": "thumbnail_generated"
+    "source_status": "thumbnail_generated",
+    "orientation_correction": "rotated_90_ccw_public_derivative"
   },
   {
     "key": "rivers-gold-pamphlet-1940s-0007",
@@ -39,19 +41,22 @@
     "key": "rivers-gold-pamphlet-1940s-0008",
     "sequence": 7,
     "thumbnail": "/assets/media/rivers-gold/rivers-gold-pamphlet-1940s-0008.jpg",
-    "source_status": "thumbnail_generated"
+    "source_status": "thumbnail_generated",
+    "orientation_correction": "rotated_90_ccw_public_derivative"
   },
   {
     "key": "rivers-gold-pamphlet-1940s-0009",
     "sequence": 8,
     "thumbnail": "/assets/media/rivers-gold/rivers-gold-pamphlet-1940s-0009.jpg",
-    "source_status": "thumbnail_generated"
+    "source_status": "thumbnail_generated",
+    "orientation_correction": "rotated_90_ccw_public_derivative"
   },
   {
     "key": "rivers-gold-pamphlet-1940s-0010",
     "sequence": 9,
     "thumbnail": "/assets/media/rivers-gold/rivers-gold-pamphlet-1940s-0010.jpg",
-    "source_status": "thumbnail_generated"
+    "source_status": "thumbnail_generated",
+    "orientation_correction": "rotated_90_ccw_public_derivative"
   },
   {
     "key": "rivers-gold-pamphlet-1940s-0011",
