@@ -298,9 +298,6 @@ function assertBuiltLinks(siteBasePath) {
   const localPathPattern = /\/Users\/|Box-Box/;
 
   for (const htmlFile of findHtmlFiles(siteRoot)) {
-    if (htmlFile.includes(`${siteRoot}/WORKER-REPORT/`)) {
-      continue;
-    }
     const html = readFileSync(htmlFile, 'utf8');
     assert.ok(!localPathPattern.test(html), `${htmlFile}: should not expose local filesystem paths`);
 
