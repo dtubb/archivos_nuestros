@@ -144,6 +144,10 @@ function assertAdminConfigSchema() {
     assert.ok(typeField.includes(`"${value}"`), `admin config: archive type option ${value} should be present`);
   }
 
+  for (const field of ['citationKey', 'bibtex', 'photoGrid']) {
+    assert.ok(archiveCollection.includes(`name: "${field}"`), `admin config: ${field} field should be present`);
+  }
+
   for (const value of oldTypeValues) {
     assert.ok(!typeField.includes(`"${value}"`), `admin config: old archive type option ${value} should not return`);
   }
@@ -233,7 +237,15 @@ function assertLocalBuild(indexHtml, enIndexHtml) {
 }
 
 function assertArchiveBrowsePage(archivesHtml, label) {
-  assertCommon(archivesHtml, label);
+  assert.ok(!archivesHtml.includes('id="preloader"'), `${label}: preloader should not be present`);
+  assert.ok(archivesHtml.includes('vault-zone'), `${label}: vault-zone should still be present`);
+  assert.ok(archivesHtml.includes('assets/css/archivos.css'), `${label}: archivos stylesheet should be linked`);
+  assert.ok(!archivesHtml.includes('Secciones públicas actuales'), `${label}: old marker should not be present`);
+  assert.ok(!archivesHtml.includes('1 colección publicada'), `${label}: hero stat text should not be present`);
+  assert.ok(!archivesHtml.includes('1 collection published'), `${label}: hero stat text should not be present`);
+  assert.ok(!archivesHtml.includes('theme-ribbon'), `${label}: inactive thematic ribbon should not be present`);
+  assert.ok(!archivesHtml.includes('Acknowledgements'), `${label}: credits block should not be on the browse page`);
+  assert.ok(!archivesHtml.includes('Agradecimientos'), `${label}: credits block should not be on the browse page`);
   assert.ok(!archivesHtml.includes('Is this thing on?'), `${label}: placeholder copy should not be present`);
   assert.ok(!archivesHtml.includes('Is anything here????'), `${label}: placeholder copy should not be present`);
   assert.ok(archivesHtml.includes('archive-card-link'), `${label}: browse cards should be present`);
@@ -242,6 +254,11 @@ function assertArchiveBrowsePage(archivesHtml, label) {
   assert.ok(archivesHtml.includes('data-archive-item'), `${label}: archive items should be annotated for filtering`);
   assert.ok(archivesHtml.includes('data-archive-filter'), `${label}: filter controls should be present when multiple types exist`);
   assert.ok(archivesHtml.includes('archive-filter'), `${label}: filter button class should be present`);
+  assert.ok(archivesHtml.includes('data-archive-view="grid"'), `${label}: grid view control should be present`);
+  assert.ok(archivesHtml.includes('data-archive-view="table"'), `${label}: table view control should be present`);
+  assert.ok(archivesHtml.includes('data-archive-view-panel="table"'), `${label}: table panel should be present`);
+  assert.ok(archivesHtml.includes('archive-table'), `${label}: table view should be present`);
+  assert.ok(archivesHtml.includes('data-archive-source-link'), `${label}: source links should be represented in table view`);
   assert.ok(!archivesHtml.includes('/Users/'), `${label}: should not expose local filesystem paths`);
   assert.ok(!archivesHtml.includes('staged_source_path'), `${label}: should not expose staged provenance fields`);
   assert.ok(!archivesHtml.includes('original_source_path'), `${label}: should not expose original provenance fields`);
@@ -296,7 +313,9 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(archiveHtml.includes('photo-viewer__caption visually-hidden'), `${label}: active sequence caption should stay visually hidden`);
   assert.ok(archiveHtml.includes('data-gallery="la_vuelta_photos"'), `${label}: photo grid should be one navigable gallery`);
   assert.ok(archiveHtml.includes('record-citation-block'), `${label}: citation block should be present in the metadata rail`);
-  assert.ok(archiveHtml.includes('@misc{tubb2026lavuelta'), `${label}: BibTeX-style citation should be rendered from metadata`);
+  assert.ok(archiveHtml.includes('@misc{tubb2026lavuelta-current'), `${label}: BibTeX citation should be rendered from YAML`);
+  assert.ok(archiveHtml.includes('download="tubb2026lavuelta-current.bib"'), `${label}: BibTeX download should be available`);
+  assert.ok(archiveHtml.includes('data:text/plain;charset=utf-8,%40misc%7B'), `${label}: BibTeX download should be a static data link`);
   assert.ok(archiveHtml.includes('data-description="Daniel Tubb, con apoyo de la SSHRC'), `${label}: lightbox should include compact citation metadata`);
   assert.ok(archiveHtml.includes('secuencia 1'), `${label}: lightbox citation should include photo sequence`);
   assert.ok(archiveHtml.includes("const page = viewer.closest('article.record-layout');"), `${label}: script should scope lookups to the archive page`);
@@ -358,6 +377,7 @@ function assertArchivePageBasics(archiveHtml, label) {
   assert.ok(archiveHtml.includes('photo-grid'), `${label}: photo grid should be present`);
   assert.ok(archiveHtml.includes('data-photo-viewer'), `${label}: in-page photo viewer should be present`);
   assert.ok(archiveHtml.includes('record-citation-block'), `${label}: citation block should be present`);
+  assert.ok(archiveHtml.includes('record-citation-download'), `${label}: BibTeX download link should be present`);
   assert.ok(!archiveHtml.includes('/Users/'), `${label}: should not expose local source paths`);
   assert.ok(!archiveHtml.includes('Box-Box'), `${label}: should not expose local Box paths`);
 }

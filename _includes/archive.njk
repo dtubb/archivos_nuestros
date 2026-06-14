@@ -45,6 +45,15 @@ hideFooter: true
 {% set firstPhoto = visiblePhotos | first %}
 {% set sequenceLabel = 'sequence' if page.lang == 'en' else 'secuencia' %}
 {% set citationKey = record.data.citationKey or record.fileSlug %}
+{% if record.data.bibtex %}
+  {% set citationBibtex = record.data.bibtex %}
+{% else %}
+  {% set citationBibtex %}@misc{ {{- citationKey -}},
+  title = { {{- recordTitle -}} },
+  author = { {{- record.data.author -}} }{% if record.data.link %},
+  url = { {{- record.data.link -}} }{% endif %}
+}{% endset %}
+{% endif %}
 
 <div class="visually-hidden" aria-hidden="true">
   {% if record.data.type %}
@@ -206,11 +215,12 @@ hideFooter: true
       <div class="record-citation-block">
         <h2>{% if page.lang == 'en' %}Citation{% else %}Cita{% endif %}</h2>
         <p class="record-citation-key">{{ citationKey }}</p>
-        <pre><code>@misc{ {{- citationKey -}},
-  title = { {{- recordTitle -}} },
-  author = { {{- record.data.author -}} }{% if record.data.link %},
-  url = { {{- record.data.link -}} }{% endif %}
-}</code></pre>
+        <pre><code>{{ citationBibtex | escape }}</code></pre>
+        <a
+          class="record-citation-download"
+          download="{{ citationKey }}.bib"
+          href="data:text/plain;charset=utf-8,{{ citationBibtex | urlEncode }}"
+        >{% if page.lang == 'en' %}Download BibTeX{% else %}Descargar BibTeX{% endif %}</a>
       </div>
     </aside>
   </div>

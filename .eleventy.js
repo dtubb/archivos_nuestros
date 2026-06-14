@@ -20,6 +20,11 @@ module.exports = function (eleventyConfig) {
         return date.toISOString().slice(0, 10);
     });
 
+    eleventyConfig.addFilter("urlEncode", (value) => {
+        if (!value) return "";
+        return encodeURIComponent(String(value));
+    });
+
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("admin");
 

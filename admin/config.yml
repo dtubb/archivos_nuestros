@@ -26,6 +26,9 @@ collections:
       - { label: "Date", name: "date", widget: "datetime", required: false }
       - { label: "Image", name: "thumbnail", widget: "image", required: false }
       - { label: "Link", name: "link", widget: "string", required: false }
+      - { label: "Citation key", name: "citationKey", widget: "string", required: false }
+      - { label: "BibTeX", name: "bibtex", widget: "text", required: false }
+      - { label: "Photo grid data key", name: "photoGrid", widget: "string", required: false }
       - { label: "Description (Spanish)", name: "desc-es", widget: "markdown", required: false }
       - { label: "Description (English)", name: "desc-en", widget: "markdown", required: false }
 

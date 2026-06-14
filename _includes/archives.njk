@@ -19,66 +19,122 @@ layout: vanilla.njk
             <h1 class="mb-0">{% if page.lang == 'en' %}Primary Sources{% else %}Fuentes primarias{% endif %}</h1>
           </div>
 
-          {% if archiveTypes.length > 1 %}
-          <div class="archive-filters" role="group" aria-label="{% if page.lang == 'en' %}Filter archives by type{% else %}Filtrar archivos por tipo{% endif %}">
-            <button class="ui-chip archive-filter is-active" type="button" data-archive-filter="all">
-              {% if page.lang == 'en' %}All{% else %}Todas{% endif %}
-            </button>
-            {% for type in archiveTypes %}
-            <button class="ui-chip archive-filter" type="button" data-archive-filter="{{ type }}">{{ type }}</button>
-            {% endfor %}
+          <div class="archive-toolbar">
+            {% if archiveTypes.length > 1 %}
+            <div class="archive-filters" role="group" aria-label="{% if page.lang == 'en' %}Filter archives by type{% else %}Filtrar archivos por tipo{% endif %}">
+              <button class="ui-chip archive-filter is-active" type="button" data-archive-filter="all">
+                {% if page.lang == 'en' %}All{% else %}Todas{% endif %}
+              </button>
+              {% for type in archiveTypes %}
+              <button class="ui-chip archive-filter" type="button" data-archive-filter="{{ type }}">{{ type }}</button>
+              {% endfor %}
+            </div>
+            {% endif %}
+            <div class="archive-view-toggle" role="group" aria-label="{% if page.lang == 'en' %}Archive view{% else %}Vista del archivo{% endif %}">
+              <button class="ui-chip archive-view-button is-active" type="button" data-archive-view="grid">
+                {% if page.lang == 'en' %}Grid{% else %}Cuadrícula{% endif %}
+              </button>
+              <button class="ui-chip archive-view-button" type="button" data-archive-view="table">
+                {% if page.lang == 'en' %}Table{% else %}Tabla{% endif %}
+              </button>
+            </div>
           </div>
-          {% endif %}
         </div>
 
-        <div class="row g-4 archive-grid archives-browse__grid" data-archive-grid>
-          {%- for archive in archiveItems -%}
-          {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
-          <div class="col-xl-4 col-md-6 d-flex archive-item" data-archive-item data-archive-type="{{ archive.data.type or '' }}">
-            <a href="{{ archive.url | sitePath }}" class="archive-card-link d-flex flex-fill">
-              <article class="doc-frame">
-                <div class="doc-frame__media">
-                  {% if archive.data.thumbnail %}
-                  <img src="{{ archive.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ archiveTitle }}">
-                  {% endif %}
-                </div>
-                <div class="doc-frame__body">
-                  <h2 class="doc-frame__title">{{ archiveTitle }}</h2>
-                </div>
-              </article>
-            </a>
+        <div class="archive-view-panel is-active" data-archive-view-panel="grid">
+          <div class="row g-4 archive-grid archives-browse__grid" data-archive-grid>
+            {%- for archive in archiveItems -%}
+            {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
+            <div class="col-xl-4 col-md-6 d-flex archive-item" data-archive-item data-archive-type="{{ archive.data.type or '' }}">
+              <a href="{{ archive.url | sitePath }}" class="archive-card-link d-flex flex-fill">
+                <article class="doc-frame">
+                  <div class="doc-frame__media">
+                    {% if archive.data.thumbnail %}
+                    <img src="{{ archive.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ archiveTitle }}">
+                    {% endif %}
+                  </div>
+                  <div class="doc-frame__body">
+                    <h2 class="doc-frame__title">{{ archiveTitle }}</h2>
+                  </div>
+                </article>
+              </a>
+            </div>
+            {%- endfor -%}
           </div>
-          {%- endfor -%}
+        </div>
+
+        <div class="archive-view-panel" data-archive-view-panel="table">
+          <div class="archive-table-wrap">
+            <table class="archive-table">
+              <thead>
+                <tr>
+                  <th scope="col">{% if page.lang == 'en' %}Title{% else %}Título{% endif %}</th>
+                  <th scope="col">{% if page.lang == 'en' %}Creator{% else %}Creador{% endif %}</th>
+                  <th scope="col">{% if page.lang == 'en' %}Type{% else %}Tipo{% endif %}</th>
+                  <th scope="col">{% if page.lang == 'en' %}Source{% else %}Fuente{% endif %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for archive in archiveItems -%}
+                {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
+                <tr class="archive-item" data-archive-item data-archive-type="{{ archive.data.type or '' }}">
+                  <td><a href="{{ archive.url | sitePath }}">{{ archiveTitle }}</a></td>
+                  <td>{{ archive.data.author or '' }}</td>
+                  <td>{{ archive.data.type or '' }}</td>
+                  <td>
+                    {% if archive.data.link %}
+                    <a data-archive-source-link href="{{ archive.data.link }}" rel="noreferrer" target="_blank">{% if page.lang == 'en' %}Source{% else %}Fuente{% endif %}</a>
+                    {% endif %}
+                  </td>
+                </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
   </div>
 </div>
 
-{% if archiveTypes.length > 1 %}
 <script>
   (() => {
-    const buttons = Array.from(document.querySelectorAll('[data-archive-filter]'));
-    const cards = Array.from(document.querySelectorAll('[data-archive-item]'));
-    if (!buttons.length || !cards.length) return;
+    const filterButtons = Array.from(document.querySelectorAll('[data-archive-filter]'));
+    const items = Array.from(document.querySelectorAll('[data-archive-item]'));
+    const viewButtons = Array.from(document.querySelectorAll('[data-archive-view]'));
+    const viewPanels = Array.from(document.querySelectorAll('[data-archive-view-panel]'));
+    if (!items.length) return;
 
     const setActiveFilter = (filter) => {
-      buttons.forEach((button) => {
+      filterButtons.forEach((button) => {
         button.classList.toggle('is-active', button.dataset.archiveFilter === filter);
       });
 
-      cards.forEach((card) => {
-        const cardType = card.dataset.archiveType || '';
-        const shouldShow = filter === 'all' || cardType === filter;
-        card.classList.toggle('is-hidden', !shouldShow);
+      items.forEach((item) => {
+        const itemType = item.dataset.archiveType || '';
+        const shouldShow = filter === 'all' || itemType === filter;
+        item.classList.toggle('is-hidden', !shouldShow);
       });
     };
 
-    buttons.forEach((button) => {
+    const setActiveView = (view) => {
+      viewButtons.forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.archiveView === view);
+      });
+
+      viewPanels.forEach((panel) => {
+        panel.classList.toggle('is-active', panel.dataset.archiveViewPanel === view);
+      });
+    };
+
+    filterButtons.forEach((button) => {
       button.addEventListener('click', () => setActiveFilter(button.dataset.archiveFilter || 'all'));
+    });
+    viewButtons.forEach((button) => {
+      button.addEventListener('click', () => setActiveView(button.dataset.archiveView || 'grid'));
     });
 
     setActiveFilter('all');
+    setActiveView('grid');
   })();
 </script>
-{% endif %}
