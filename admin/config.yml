@@ -13,16 +13,16 @@ editor:
 # publish_mode: editorial_workflow
 collections:
   - name: "archive" # Used in routes, e.g., /admin/collections/blog
-    label: "Archival and Primary Materials" # Used in the UI
+    label: "Primary Sources" # Used in the UI
     folder: "archives" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
+    fields: # Canonical site record data lives in Markdown/YAML front matter edited here.
       - { label: "Title (Spanish)", name: "title", widget: "string"}
       - { label: "Title (English)", name: "titleEng", widget: "string", required: false }
       - { label: "Author", name: "author", widget: "string", required: false }
       - { label: "Topic", name: "topic", widget: "string", required: false }
-      - { label: "Type", name: "type", widget: "select", options: ["collections", "documents", "photographs", "maps", "field_notes", "finding_aids", "catalogues", "search_tools", "other"], required: false }
+      - { label: "Type", name: "type", widget: "select", options: ["fotos", "documentos", "mapas", "entrevistas", "audiovisuales", "other"], required: false }
       - { label: "Date", name: "date", widget: "datetime", required: false }
       - { label: "Image", name: "thumbnail", widget: "image", required: false }
       - { label: "Link", name: "link", widget: "string", required: false }

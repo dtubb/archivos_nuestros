@@ -11,6 +11,7 @@ const repoRoot = process.cwd();
 const siteRoot = join(repoRoot, '_site');
 const workerReport = join(repoRoot, 'WORKER-REPORT.md');
 const photoDataPath = join(repoRoot, '_data/la_vuelta_photos.json');
+const adminConfigPath = join(repoRoot, 'admin/config.yml');
 const workerReportTmpDir = mkdtempSync(join(tmpdir(), 'site-shell-worker-report-'));
 const workerReportTmp = join(workerReportTmpDir, 'WORKER-REPORT.md');
 
@@ -109,6 +110,38 @@ function runMainJsSmoke() {
   vm.runInNewContext(source, context, { filename: 'assets/js/main.js' });
   assert.ok(fired.includes('window:load'), 'main.js smoke: window load listeners should run');
   assert.ok(fired.includes('document:scroll') || fired.includes('window:scroll'), 'main.js smoke: scroll listeners should run');
+}
+
+function assertAdminConfigSchema() {
+  const config = readFileSync(adminConfigPath, 'utf8');
+  const oldTypeValues = [
+    'collections',
+    'documents',
+    'photographs',
+    'maps',
+    'field_notes',
+    'finding_aids',
+    'catalogues',
+    'search_tools',
+  ];
+  const expectedTypeValues = ['fotos', 'documentos', 'mapas', 'entrevistas', 'audiovisuales', 'other'];
+  const archiveCollection = config.match(/- name: "archive"[\s\S]*?(?=\n\s*- name: "exhibit"|$)/)?.[0] || '';
+  const typeField = archiveCollection.match(/name: "type"[\s\S]*?\]/)?.[0] || '';
+
+  assert.ok(archiveCollection, 'admin config: archive collection should be present');
+  assert.ok(archiveCollection.includes('label: "Primary Sources"'), 'admin config: archive collection label should be Primary Sources');
+  assert.ok(
+    !archiveCollection.includes('Archival and Primary Materials'),
+    'admin config: old archive collection label should not return'
+  );
+
+  for (const value of expectedTypeValues) {
+    assert.ok(typeField.includes(`"${value}"`), `admin config: archive type option ${value} should be present`);
+  }
+
+  for (const value of oldTypeValues) {
+    assert.ok(!typeField.includes(`"${value}"`), `admin config: old archive type option ${value} should not return`);
+  }
 }
 
 function runEleventy(siteBasePath) {
@@ -405,6 +438,7 @@ function assertPagefindFilters() {
 
 try {
   runMainJsSmoke();
+  assertAdminConfigSchema();
   assertPhotoData();
 
   const localBuild = runEleventy('');
