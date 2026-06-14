@@ -33,14 +33,36 @@ hideFooter: true
     <div class="col-lg-8 record-main">
       {% if visiblePhotos.length %}
       {% set firstPhoto = visiblePhotos | first %}
-      <section class="photo-viewer" data-photo-viewer>
+      <section class="photo-viewer" data-photo-viewer data-photo-count="{{ visiblePhotos | length }}">
         <button class="photo-viewer__open" type="button" data-photo-open aria-label="{% if page.lang == 'en' %}Open photograph viewer{% else %}Abrir visor de fotografía{% endif %}">
           <img
             src="{{ firstPhoto.thumbnail | sitePath }}"
             alt="{% if page.lang == 'en' %}Photograph{% else %}Fotografía{% endif %} {{ firstPhoto.sequence }}"
             data-photo-active-image
+            data-photo-active-sequence="{{ firstPhoto.sequence }}"
+            data-photo-active-position="1"
+            data-photo-active-total="{{ visiblePhotos | length }}"
           >
         </button>
+        <div class="photo-viewer__controls" data-photo-controls>
+          <button class="photo-viewer__nav" type="button" data-photo-prev aria-label="{% if page.lang == 'en' %}Previous photograph{% else %}Fotografía anterior{% endif %}">
+            <span aria-hidden="true">‹</span>
+            <span class="visually-hidden">{% if page.lang == 'en' %}Previous photograph{% else %}Fotografía anterior{% endif %}</span>
+          </button>
+          <label class="photo-viewer__jump" for="photo-jump">
+            <span class="visually-hidden">{% if page.lang == 'en' %}Jump to photograph{% else %}Ir a fotografía{% endif %}</span>
+            <select class="photo-viewer__select" id="photo-jump" data-photo-jump aria-label="{% if page.lang == 'en' %}Jump to photograph{% else %}Ir a fotografía{% endif %}">
+              {% for photo in visiblePhotos %}
+              <option value="{{ loop.index0 }}"{% if loop.first %} selected{% endif %}>{{ photo.sequence }}</option>
+              {% endfor %}
+            </select>
+          </label>
+          <span class="photo-viewer__status" data-photo-status aria-live="polite">1 / {{ visiblePhotos | length }}</span>
+          <button class="photo-viewer__nav" type="button" data-photo-next aria-label="{% if page.lang == 'en' %}Next photograph{% else %}Fotografía siguiente{% endif %}">
+            <span aria-hidden="true">›</span>
+            <span class="visually-hidden">{% if page.lang == 'en' %}Next photograph{% else %}Fotografía siguiente{% endif %}</span>
+          </button>
+        </div>
         <p class="photo-viewer__caption" data-photo-active-caption>{{ firstPhoto.sequence }}</p>
       </section>
 
@@ -53,7 +75,7 @@ hideFooter: true
             data-photo-lightbox-link
             data-photo-index="{{ loop.index0 }}"
             data-title="{{ recordTitle }}"
-            data-description="{{ record.data.author }}. {{ recordTitle }}. {% if page.lang == 'en' %}Photograph{% else %}Fotografía{% endif %} {{ photo.sequence }}."
+            data-description="{{ record.data.author }}. {{ photo.sequence }}."
           ></a>
         {% endfor %}
       </div>
@@ -147,27 +169,53 @@ hideFooter: true
 
     const activeImage = viewer.querySelector('[data-photo-active-image]');
     const activeCaption = viewer.querySelector('[data-photo-active-caption]');
+    const activeStatus = viewer.querySelector('[data-photo-status]');
     const openButton = viewer.querySelector('[data-photo-open]');
-    const thumbs = Array.from(document.querySelectorAll('[data-photo-thumb]'));
-    const lightboxLinks = Array.from(document.querySelectorAll('[data-photo-lightbox-link]'));
+    const prevButton = viewer.querySelector('[data-photo-prev]');
+    const nextButton = viewer.querySelector('[data-photo-next]');
+    const jumpSelect = viewer.querySelector('[data-photo-jump]');
+    const thumbs = Array.from(viewer.querySelectorAll('[data-photo-thumb]'));
+    const lightboxLinks = Array.from(viewer.querySelectorAll('[data-photo-lightbox-link]'));
     let activeIndex = 0;
 
-    const setActivePhoto = (thumb) => {
-      activeIndex = Number(thumb.dataset.photoIndex || 0);
-      activeImage.src = thumb.dataset.photoSrc;
-      activeImage.alt = thumb.dataset.photoLabel;
-      activeCaption.textContent = thumb.dataset.photoCaption;
+    const syncControls = () => {
+      const currentThumb = thumbs[activeIndex];
+      if (!currentThumb) return;
+
+      activeImage.src = currentThumb.dataset.photoSrc;
+      activeImage.alt = currentThumb.dataset.photoLabel;
+      activeImage.dataset.photoActiveSequence = currentThumb.dataset.photoCaption || '';
+      activeImage.dataset.photoActivePosition = String(activeIndex + 1);
+      activeImage.dataset.photoActiveTotal = String(thumbs.length);
+      activeCaption.textContent = currentThumb.dataset.photoCaption;
+      activeStatus.textContent = `${activeIndex + 1} / ${thumbs.length}`;
+      jumpSelect.value = String(activeIndex);
+      prevButton.disabled = activeIndex === 0;
+      nextButton.disabled = activeIndex === thumbs.length - 1;
       thumbs.forEach((item) => {
-        item.classList.toggle('is-active', item === thumb);
+        item.classList.toggle('is-active', item === currentThumb);
       });
     };
 
+    const setActivePhoto = (index) => {
+      if (index < 0 || index >= thumbs.length) return;
+      activeIndex = index;
+      syncControls();
+    };
+
     thumbs.forEach((thumb) => {
-      thumb.addEventListener('click', () => setActivePhoto(thumb));
+      thumb.addEventListener('click', () => {
+        setActivePhoto(Number(thumb.dataset.photoIndex || 0));
+      });
     });
 
+    prevButton.addEventListener('click', () => setActivePhoto(activeIndex - 1));
+    nextButton.addEventListener('click', () => setActivePhoto(activeIndex + 1));
+    jumpSelect.addEventListener('change', () => setActivePhoto(Number(jumpSelect.value)));
     openButton.addEventListener('click', () => {
       lightboxLinks[activeIndex]?.click();
     });
+
+    syncControls();
   })();
 </script>

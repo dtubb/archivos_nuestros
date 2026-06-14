@@ -203,13 +203,29 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(archiveHtml.includes('data-photo-open'), `${label}: large photograph should open the lightbox`);
   assert.ok(archiveHtml.includes('data-photo-thumb'), `${label}: thumbnails should update the large photograph`);
   assert.ok(archiveHtml.includes('data-photo-lightbox-link'), `${label}: lightbox links should be available for full-screen viewing`);
+  assert.ok(archiveHtml.includes('data-photo-prev'), `${label}: previous control should be present`);
+  assert.ok(archiveHtml.includes('data-photo-next'), `${label}: next control should be present`);
+  assert.ok(archiveHtml.includes('data-photo-jump'), `${label}: jump control should be present`);
+  assert.ok(archiveHtml.includes('data-photo-status'), `${label}: active position status should be present`);
+  assert.ok(archiveHtml.includes('data-photo-active-sequence="1"'), `${label}: active image should expose the current sequence`);
+  assert.ok(archiveHtml.includes('data-photo-active-position="1"'), `${label}: active image should expose the current position`);
+  assert.ok(archiveHtml.includes('data-photo-active-total="'), `${label}: active image should expose the gallery size`);
+  assert.ok(archiveHtml.includes('photo-viewer__controls'), `${label}: viewer controls wrapper should be present`);
+  assert.ok(archiveHtml.includes('photo-viewer__nav'), `${label}: compact nav buttons should be present`);
+  assert.ok(archiveHtml.includes('photo-viewer__select'), `${label}: sequence jump select should be present`);
   assert.ok(archiveHtml.includes('data-gallery="la-vuelta-photos"'), `${label}: photo grid should be one navigable gallery`);
   assert.ok(archiveHtml.includes('data-description="Daniel Tubb, con apoyo de la SSHRC'), `${label}: lightbox should include compact citation metadata`);
+  assert.ok(archiveHtml.includes('lightboxLinks[activeIndex]?.click();'), `${label}: main image should open the active lightbox item`);
+  assert.ok(archiveHtml.includes('prevButton.addEventListener(\'click\''), `${label}: previous control should be wired`);
+  assert.ok(archiveHtml.includes('nextButton.addEventListener(\'click\''), `${label}: next control should be wired`);
+  assert.ok(archiveHtml.includes('jumpSelect.addEventListener(\'change\''), `${label}: jump control should be wired`);
   assert.ok(archiveHtml.includes('/assets/media/la-vuelta-current/'), `${label}: photo grid thumbnails should be present`);
   assert.ok(
     archiveHtml.includes('https://upenn.box.com/v/AndaguedaPresente'),
     `${label}: source link should be rendered when metadata provides it`
   );
+  assert.ok(!archiveHtml.includes('previous photo viewer'), `${label}: scaffold viewer copy should not be present`);
+  assert.ok(!archiveHtml.includes('jump to image sequence'), `${label}: scaffold jump copy should not be present`);
 }
 
 function assertPhotoData() {
