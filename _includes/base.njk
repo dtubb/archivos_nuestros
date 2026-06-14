@@ -64,7 +64,7 @@
         {%- for archive in collections.archives | sort(attribute="data.title") -%}
         {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
         <div class="col-xl-4 col-md-6 d-flex">
-          <a href="{% if archive.data.link %}{{ archive.data.link }}{% else %}{{ archive.url | sitePath }}{% endif %}" class="archive-card-link d-flex flex-fill">
+          <a href="{{ archive.url | sitePath }}" class="archive-card-link d-flex flex-fill">
             <article class="doc-frame">
               <div class="doc-frame__media">
                 {% if archive.data.thumbnail %}
