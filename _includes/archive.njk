@@ -25,10 +25,77 @@ hideFooter: true
 {% else %}
   {% set recordTypeLabel = record.data.type or 'colección' %}
 {% endif %}
+{% set visiblePhotos = photoGrid | selectattr('thumbnail') | list %}
 
 <article class="container-xl py-4 record-layout">
   <div class="row g-4 g-lg-5 align-items-start">
-    <aside class="col-lg-4 record-rail">
+    <div class="col-lg-8 record-main">
+      {% if visiblePhotos.length %}
+      {% set firstPhoto = visiblePhotos | first %}
+      <section class="photo-viewer" data-photo-viewer>
+        <button class="photo-viewer__open" type="button" data-photo-open aria-label="{% if page.lang == 'en' %}Open photograph viewer{% else %}Abrir visor de fotografía{% endif %}">
+          <img
+            src="{{ firstPhoto.thumbnail | sitePath }}"
+            alt="{% if page.lang == 'en' %}Photograph{% else %}Fotografía{% endif %} {{ firstPhoto.sequence }}"
+            data-photo-active-image
+          >
+        </button>
+        <p class="photo-viewer__caption" data-photo-active-caption>{{ firstPhoto.sequence }}</p>
+      </section>
+
+      <div class="photo-lightbox-list" aria-hidden="true">
+        {% for photo in visiblePhotos %}
+          <a
+            class="glightbox"
+            href="{{ photo.thumbnail | sitePath }}"
+            data-gallery="la-vuelta-photos"
+            data-photo-lightbox-link
+            data-photo-index="{{ loop.index0 }}"
+            data-title="{{ recordTitle }}"
+            data-description="{{ record.data.author }}. {{ recordTitle }}. {% if page.lang == 'en' %}Photograph{% else %}Fotografía{% endif %} {{ photo.sequence }}."
+          ></a>
+        {% endfor %}
+      </div>
+
+      <div class="photo-grid" aria-label="{% if page.lang == 'en' %}Photographs{% else %}Fotografías{% endif %}">
+        {% for photo in visiblePhotos %}
+        <figure class="photo-grid__item">
+          <button
+            class="photo-grid__button{% if loop.first %} is-active{% endif %}"
+            type="button"
+            data-photo-thumb
+            data-photo-index="{{ loop.index0 }}"
+            data-photo-src="{{ photo.thumbnail | sitePath }}"
+            data-photo-label="{% if page.lang == 'en' %}Photograph{% else %}Fotografía{% endif %} {{ photo.sequence }}"
+            data-photo-caption="{{ photo.sequence }}"
+            aria-label="{% if page.lang == 'en' %}Show photograph{% else %}Mostrar fotografía{% endif %} {{ photo.sequence }}"
+          >
+            <img src="{{ photo.thumbnail | sitePath }}" alt="{% if page.lang == 'en' %}Photograph{% else %}Fotografía{% endif %} {{ photo.sequence }}">
+          </button>
+          <figcaption>{{ photo.sequence }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+      {% elif record.data.thumbnail %}
+      <figure class="record-thumb mb-4">
+        <a class="glightbox" href="{{ record.data.thumbnail | sitePath }}" data-gallery="record-image">
+          <img src="{{ record.data.thumbnail | sitePath }}" alt="{{ recordTitle }}" class="img-fluid">
+        </a>
+      </figure>
+      {% endif %}
+
+      {% if recordDesc %}
+      <p class="record-lede mb-4">{{ recordDesc }}</p>
+      {% endif %}
+
+      {% if content | striptags | trim %}
+      <div class="archive-body">
+        {{ content | safe }}
+      </div>
+      {% endif %}
+    </div>
+
+    <aside class="col-lg-4 record-rail record-rail--right">
       <p class="eyebrow mb-2">{{ recordTypeLabel }}</p>
       <h1 class="record-title mb-3">{{ recordTitle }}</h1>
 
@@ -59,35 +126,37 @@ hideFooter: true
         {% endif %}
       </dl>
     </aside>
-
-    <div class="col-lg-8 record-main">
-      {% if record.data.thumbnail %}
-      <figure class="record-thumb mb-4">
-        <img src="{{ record.data.thumbnail | sitePath }}" alt="{{ recordTitle }}" class="img-fluid">
-      </figure>
-      {% endif %}
-
-      {% set visiblePhotos = photoGrid | selectattr('thumbnail') | list %}
-      {% if visiblePhotos.length %}
-      <div class="photo-grid" aria-label="{% if page.lang == 'en' %}Photograph previews{% else %}Vistas previas de fotografías{% endif %}">
-        {% for photo in visiblePhotos %}
-        <figure class="photo-grid__item">
-          <img src="{{ photo.thumbnail | sitePath }}" alt="{% if page.lang == 'en' %}Photograph{% else %}Fotografía{% endif %} {{ photo.sequence }}" loading="lazy">
-          <figcaption>{{ photo.sequence }}</figcaption>
-        </figure>
-        {% endfor %}
-      </div>
-      {% endif %}
-
-      {% if recordDesc %}
-      <p class="record-lede mb-4">{{ recordDesc }}</p>
-      {% endif %}
-
-      {% if content | striptags | trim %}
-      <div class="archive-body">
-        {{ content | safe }}
-      </div>
-      {% endif %}
-    </div>
   </div>
 </article>
+
+<script>
+  (() => {
+    const viewer = document.querySelector('[data-photo-viewer]');
+    if (!viewer) return;
+
+    const activeImage = viewer.querySelector('[data-photo-active-image]');
+    const activeCaption = viewer.querySelector('[data-photo-active-caption]');
+    const openButton = viewer.querySelector('[data-photo-open]');
+    const thumbs = Array.from(document.querySelectorAll('[data-photo-thumb]'));
+    const lightboxLinks = Array.from(document.querySelectorAll('[data-photo-lightbox-link]'));
+    let activeIndex = 0;
+
+    const setActivePhoto = (thumb) => {
+      activeIndex = Number(thumb.dataset.photoIndex || 0);
+      activeImage.src = thumb.dataset.photoSrc;
+      activeImage.alt = thumb.dataset.photoLabel;
+      activeCaption.textContent = thumb.dataset.photoCaption;
+      thumbs.forEach((item) => {
+        item.classList.toggle('is-active', item === thumb);
+      });
+    };
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => setActivePhoto(thumb));
+    });
+
+    openButton.addEventListener('click', () => {
+      lightboxLinks[activeIndex]?.click();
+    });
+  })();
+</script>

@@ -157,6 +157,7 @@ function assertCommon(html, label) {
   assert.ok(!html.includes('Agradecimientos'), `${label}: credits block should not be on the material-first homepage`);
   assert.ok(!html.includes('id="footer"'), `${label}: footer should not be on the material-first homepage`);
   assert.ok(!html.includes('doc-frame__meta'), `${label}: homepage cards should not render metadata pills`);
+  assert.ok(!html.includes('doc-frame__date'), `${label}: homepage cards should not foreground record dates`);
 }
 
 function assertLocalBuild(indexHtml, enIndexHtml) {
@@ -177,13 +178,23 @@ function assertLocalBuild(indexHtml, enIndexHtml) {
 function assertArchivePage(archiveHtml, label) {
   assert.ok(!archiveHtml.includes('id="preloader"'), `${label}: preloader should not be present`);
   assert.ok(archiveHtml.includes('record-layout'), `${label}: record layout should be present`);
-  assert.ok(archiveHtml.includes('record-rail'), `${label}: left rail should be present`);
+  assert.ok(archiveHtml.includes('record-rail--right'), `${label}: right metadata rail should be present`);
+  assert.ok(
+    archiveHtml.indexOf('record-main') < archiveHtml.indexOf('record-rail--right'),
+    `${label}: media should appear before metadata in the archive page source`
+  );
   assert.ok(!archiveHtml.includes('id="footer"'), `${label}: archive page should not include the footer block`);
   assert.ok(!archiveHtml.includes('hosted externally in Box'), `${label}: Box-hosting wording should not be present`);
   assert.ok(!archiveHtml.includes('alojados externamente en Box'), `${label}: Box-hosting wording should not be present`);
   assert.ok(!archiveHtml.includes('pendientes de revisión'), `${label}: workflow note should not be present`);
   assert.ok(!archiveHtml.includes('pending review'), `${label}: workflow note should not be present`);
   assert.ok(archiveHtml.includes('photo-grid'), `${label}: photo grid should be present`);
+  assert.ok(archiveHtml.includes('data-photo-viewer'), `${label}: in-page photo viewer should be present`);
+  assert.ok(archiveHtml.includes('data-photo-open'), `${label}: large photograph should open the lightbox`);
+  assert.ok(archiveHtml.includes('data-photo-thumb'), `${label}: thumbnails should update the large photograph`);
+  assert.ok(archiveHtml.includes('data-photo-lightbox-link'), `${label}: lightbox links should be available for full-screen viewing`);
+  assert.ok(archiveHtml.includes('data-gallery="la-vuelta-photos"'), `${label}: photo grid should be one navigable gallery`);
+  assert.ok(archiveHtml.includes('data-description="Daniel Tubb.'), `${label}: lightbox should include compact citation metadata`);
   assert.ok(archiveHtml.includes('/assets/media/la-vuelta-current/'), `${label}: photo grid thumbnails should be present`);
 }
 

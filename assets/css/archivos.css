@@ -319,6 +319,8 @@ a:hover {
 }
 
 .record-rail {
+  border-left: 1px solid var(--ochre-dim);
+  padding-left: 1.5rem;
   position: sticky;
   top: 1.25rem;
   align-self: start;
@@ -371,20 +373,75 @@ a:hover {
   color: var(--indigo);
 }
 
+.photo-viewer {
+  margin-bottom: 1rem;
+}
+
+.photo-viewer__open {
+  background: transparent;
+  border: 0;
+  display: block;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.photo-viewer__open img {
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--ochre-line);
+  border-radius: 0.35rem;
+  box-shadow: 0 4px 18px rgba(26, 37, 48, 0.08);
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+.photo-viewer__open:focus-visible,
+.photo-grid__button:focus-visible {
+  outline: 3px solid var(--ochre);
+  outline-offset: 3px;
+}
+
+.photo-viewer__caption {
+  color: var(--sage);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  margin: 0.35rem 0 0;
+}
+
+.photo-lightbox-list {
+  display: none;
+}
+
 .photo-grid {
   display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .photo-grid__item {
   margin: 0;
 }
 
-.photo-grid__item img {
-  aspect-ratio: 4 / 3;
+.photo-grid__button {
+  background: transparent;
   border: 1px solid var(--ochre-line);
   border-radius: 0.25rem;
+  display: block;
+  padding: 0;
+  width: 100%;
+}
+
+.photo-grid__button.is-active {
+  border-color: var(--ochre);
+  box-shadow: 0 0 0 2px rgba(184, 144, 71, 0.2);
+}
+
+.photo-grid__button img {
+  aspect-ratio: 4 / 3;
+  border-radius: calc(0.25rem - 1px);
   display: block;
   height: auto;
   object-fit: cover;
@@ -397,6 +454,30 @@ a:hover {
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   margin-top: 0.25rem;
+}
+
+.glightbox-clean .gslide-description {
+  background: rgba(26, 37, 48, 0.82);
+  border-left: 1px solid rgba(184, 144, 71, 0.55);
+  color: var(--parchment);
+  margin-left: auto;
+  max-width: min(34rem, calc(100vw - 2rem));
+}
+
+.glightbox-clean .gslide-title,
+.glightbox-clean .gslide-desc {
+  color: var(--parchment);
+  font-family: var(--font-ui);
+}
+
+.glightbox-clean .gslide-title {
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.glightbox-clean .gslide-desc {
+  color: rgba(249, 246, 240, 0.82);
+  font-size: 0.8rem;
 }
 
 .people-list {
@@ -415,6 +496,18 @@ a:hover {
 
 @media (max-width: 991.98px) {
   .record-rail {
+    border-left: 0;
+    padding-left: 0;
     position: static;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .photo-viewer__open img {
+    max-height: 58vh;
   }
 }
