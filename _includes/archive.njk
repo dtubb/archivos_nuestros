@@ -16,7 +16,16 @@ hideFooter: true
 
 {% set recordTitle = record.data.titleEng if page.lang == 'en' and record.data.titleEng else record.data.title %}
 {% set recordDesc = record.data['desc-en'] if page.lang == 'en' and record.data['desc-en'] else record.data['desc-es'] %}
-{% set photoGrid = la_vuelta_photos if record.data.photoGrid == 'la_vuelta_photos' else [] %}
+{% if record.data.photoGrid == 'la_vuelta_photos' %}
+  {% set photoGrid = la_vuelta_photos %}
+{% elif record.data.photoGrid == 'marshall_photos' %}
+  {% set photoGrid = marshall_photos %}
+{% elif record.data.photoGrid == 'agn_photos' %}
+  {% set photoGrid = agn_photos %}
+{% else %}
+  {% set photoGrid = [] %}
+{% endif %}
+{% set photoGalleryId = record.data.photoGrid or 'record-image' %}
 {% if record.data.type == 'photographs' or record.data.type == 'fotos' %}
   {% set recordTypeLabel = 'Photos' if page.lang == 'en' else 'Fotos' %}
 {% elif page.lang == 'en' %}
@@ -29,6 +38,7 @@ hideFooter: true
 {% set visiblePhotos = photoGrid | selectattr('thumbnail') | list %}
 {% set firstPhoto = visiblePhotos | first %}
 {% set sequenceLabel = 'sequence' if page.lang == 'en' else 'secuencia' %}
+{% set citationKey = record.data.citationKey or record.fileSlug %}
 
 <div class="visually-hidden" aria-hidden="true">
   {% if record.data.type %}
@@ -99,7 +109,7 @@ hideFooter: true
           <a
             class="glightbox"
             href="{{ photo.thumbnail | sitePath }}"
-            data-gallery="la-vuelta-photos"
+            data-gallery="{{ photoGalleryId }}"
             data-photo-lightbox-link
             data-photo-index="{{ loop.index0 }}"
             data-title="{{ recordTitle }}"
@@ -186,6 +196,16 @@ hideFooter: true
         </div>
         {% endif %}
       </dl>
+
+      <div class="record-citation-block">
+        <h2>{% if page.lang == 'en' %}Citation{% else %}Cita{% endif %}</h2>
+        <p class="record-citation-key">{{ citationKey }}</p>
+        <pre><code>@misc{ {{- citationKey -}},
+  title = { {{- recordTitle -}} },
+  author = { {{- record.data.author -}} }{% if record.data.link %},
+  url = { {{- record.data.link -}} }{% endif %}
+}</code></pre>
+      </div>
     </aside>
   </div>
 </article>

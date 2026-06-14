@@ -9,6 +9,7 @@ desc-en: Photos taken in 2024 by Daniel Tubb, with support from SSHRC Canada and
 thumbnail: /assets/media/la-vuelta-current/tubb2026lavuelta-current-0001.jpg
 photoGrid: la_vuelta_photos
 link: https://upenn.box.com/v/AndaguedaPresente
+citationKey: tubb2026lavuelta-current
 layout: archive.njk
 tags:
   - archives

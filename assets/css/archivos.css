@@ -564,6 +564,43 @@ a:hover {
   font-size: 0.8rem;
 }
 
+.record-citation-block {
+  border-top: 1px solid var(--ochre-line);
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+}
+
+.record-citation-block h2 {
+  color: var(--sage);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.record-citation-key {
+  color: var(--indigo);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.record-citation-block pre {
+  background: rgba(26, 37, 48, 0.045);
+  border: 1px solid var(--ochre-dim);
+  border-radius: 0.25rem;
+  color: var(--indigo);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  margin: 0;
+  overflow-x: auto;
+  padding: 0.75rem;
+  white-space: pre;
+}
+
 .people-list {
   display: grid;
   gap: 0.75rem;

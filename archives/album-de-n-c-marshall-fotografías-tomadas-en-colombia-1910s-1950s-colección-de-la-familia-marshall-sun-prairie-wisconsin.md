@@ -6,8 +6,10 @@ titleEng: Fondo Chocó - Fotografías - Album of N. C. Marshall - Photographs ta
 author: Marshall, Newton C.
 topic: Colombia, Chocó, Istmina y el San Juan, Minería, Compañías extranjeras
 type: fotos
-thumbnail: /assets/media/andagoya-1952.png
+thumbnail: /assets/media/marshall-colombia/marshall-colombia-photos-0001.jpg
 link: https://upenn.box.com/v/ColeccionMarshall
+citationKey: marshall-colombia-photos
+photoGrid: marshall_photos
 layout: archive.njk
 tags:
   - archives

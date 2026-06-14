@@ -11,6 +11,8 @@ const repoRoot = process.cwd();
 const siteRoot = join(repoRoot, '_site');
 const workerReport = join(repoRoot, 'WORKER-REPORT.md');
 const photoDataPath = join(repoRoot, '_data/la_vuelta_photos.json');
+const marshallPhotoDataPath = join(repoRoot, '_data/marshall_photos.json');
+const agnPhotoDataPath = join(repoRoot, '_data/agn_photos.json');
 const adminConfigPath = join(repoRoot, 'admin/config.yml');
 const workerReportTmpDir = mkdtempSync(join(tmpdir(), 'site-shell-worker-report-'));
 const workerReportTmp = join(workerReportTmpDir, 'WORKER-REPORT.md');
@@ -171,6 +173,8 @@ function runEleventy(siteBasePath) {
     archives: readFileSync(join(siteRoot, 'archives', 'index.html'), 'utf8'),
     enArchives: readFileSync(join(siteRoot, 'en', 'archives', 'index.html'), 'utf8'),
     archive: readFileSync(join(siteRoot, 'archives', 'tubb-hidroelectrica-la-vuelta-actualidad', 'index.html'), 'utf8'),
+    marshallArchive: readFileSync(join(siteRoot, 'archives', 'album-de-n-c-marshall-fotografías-tomadas-en-colombia-1910s-1950s-colección-de-la-familia-marshall-sun-prairie-wisconsin', 'index.html'), 'utf8'),
+    agnArchive: readFileSync(join(siteRoot, 'archives', 'fotografías-en-el-archivo-general-de-la-nación', 'index.html'), 'utf8'),
     search: readFileSync(join(siteRoot, 'buscar', 'index.html'), 'utf8'),
     enSearch: readFileSync(join(siteRoot, 'en', 'search', 'index.html'), 'utf8'),
   };
@@ -284,7 +288,9 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(archiveHtml.includes('photo-viewer__nav'), `${label}: compact nav buttons should be present`);
   assert.ok(archiveHtml.includes('photo-viewer__select'), `${label}: sequence jump select should be present`);
   assert.ok(archiveHtml.includes('photo-viewer__caption visually-hidden'), `${label}: active sequence caption should stay visually hidden`);
-  assert.ok(archiveHtml.includes('data-gallery="la-vuelta-photos"'), `${label}: photo grid should be one navigable gallery`);
+  assert.ok(archiveHtml.includes('data-gallery="la_vuelta_photos"'), `${label}: photo grid should be one navigable gallery`);
+  assert.ok(archiveHtml.includes('record-citation-block'), `${label}: citation block should be present in the metadata rail`);
+  assert.ok(archiveHtml.includes('@misc{tubb2026lavuelta'), `${label}: BibTeX-style citation should be rendered from metadata`);
   assert.ok(archiveHtml.includes('data-description="Daniel Tubb, con apoyo de la SSHRC'), `${label}: lightbox should include compact citation metadata`);
   assert.ok(archiveHtml.includes('secuencia 1'), `${label}: lightbox citation should include photo sequence`);
   assert.ok(archiveHtml.includes("const page = viewer.closest('article.record-layout');"), `${label}: script should scope lookups to the archive page`);
@@ -305,15 +311,44 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(!archiveHtml.includes('jump to image sequence'), `${label}: scaffold jump copy should not be present`);
 }
 
-function assertPhotoData() {
-  const rows = JSON.parse(readFileSync(photoDataPath, 'utf8'));
-  assert.equal(rows.length, 145, 'photo data: expected one row per manifest item');
-  assert.ok(rows.some((row) => row.thumbnail), 'photo data: expected at least one generated thumbnail');
+function assertCollectionPhotoData(path, expectedCount, keyPrefix, mediaPrefix, label) {
+  const rows = JSON.parse(readFileSync(path, 'utf8'));
+  assert.equal(rows.length, expectedCount, `${label}: expected one row per manifest item`);
+  assert.ok(rows.every((row) => row.thumbnail), `${label}: expected generated thumbnails for every row`);
   for (const row of rows) {
-    assert.ok(row.key?.startsWith('tubb2026lavuelta-current-'), 'photo data: expected cite-key-style object key');
-    assert.ok(!JSON.stringify(row).includes('/Users/'), 'photo data: should not expose local source paths');
-    assert.ok(!JSON.stringify(row).includes('Box-Box'), 'photo data: should not expose Box paths');
+    assert.ok(row.key?.startsWith(keyPrefix), `${label}: expected cite-key-style object key`);
+    assert.ok(row.thumbnail?.startsWith(mediaPrefix), `${label}: expected thumbnail under ${mediaPrefix}`);
+    assert.ok(!JSON.stringify(row).includes('/Users/'), `${label}: should not expose local source paths`);
+    assert.ok(!JSON.stringify(row).includes('Box-Box'), `${label}: should not expose Box paths`);
+    const thumbnailPath = join(repoRoot, row.thumbnail.replace(/^\//, ''));
+    assert.ok(existsSync(thumbnailPath), `${label}: thumbnail file should exist: ${row.thumbnail}`);
   }
+}
+
+function assertPhotoData() {
+  assertCollectionPhotoData(photoDataPath, 145, 'tubb2026lavuelta-current-', '/assets/media/la-vuelta-current/', 'la vuelta photo data');
+  assertCollectionPhotoData(marshallPhotoDataPath, 21, 'marshall-colombia-photos-', '/assets/media/marshall-colombia/', 'marshall photo data');
+  assertCollectionPhotoData(agnPhotoDataPath, 70, 'archivo-general-nacion-photos-', '/assets/media/archivo-general-nacion/', 'agn photo data');
+}
+
+function assertAdditionalPhotoArchive(archiveHtml, label, options) {
+  assertArchivePageBasics(archiveHtml, label);
+  assert.ok(archiveHtml.includes(options.mediaPrefix), `${label}: expected collection thumbnails`);
+  assert.ok(archiveHtml.includes(`data-gallery="${options.galleryId}"`), `${label}: expected dynamic gallery id`);
+  assert.ok(archiveHtml.includes(options.sourceLink), `${label}: source link should be rendered from YAML`);
+  assert.ok(archiveHtml.includes(`@misc{${options.citationKey}`), `${label}: citation key should be rendered`);
+}
+
+function assertArchivePageBasics(archiveHtml, label) {
+  assert.ok(!archiveHtml.includes('id="preloader"'), `${label}: preloader should not be present`);
+  assert.ok(archiveHtml.includes('data-pagefind-body'), `${label}: archive page should mark the searchable body`);
+  assert.ok(archiveHtml.includes('record-layout'), `${label}: record layout should be present`);
+  assert.ok(archiveHtml.includes('record-rail--right'), `${label}: right metadata rail should be present`);
+  assert.ok(archiveHtml.includes('photo-grid'), `${label}: photo grid should be present`);
+  assert.ok(archiveHtml.includes('data-photo-viewer'), `${label}: in-page photo viewer should be present`);
+  assert.ok(archiveHtml.includes('record-citation-block'), `${label}: citation block should be present`);
+  assert.ok(!archiveHtml.includes('/Users/'), `${label}: should not expose local source paths`);
+  assert.ok(!archiveHtml.includes('Box-Box'), `${label}: should not expose local Box paths`);
 }
 
 function findHtmlFiles(directory) {
@@ -446,6 +481,18 @@ try {
   assertArchiveBrowsePage(localBuild.archives, 'local / archives');
   assertArchiveBrowsePage(localBuild.enArchives, 'local / en/archives');
   assertArchivePage(localBuild.archive, 'local / archive');
+  assertAdditionalPhotoArchive(localBuild.marshallArchive, 'local / marshall archive', {
+    mediaPrefix: '/assets/media/marshall-colombia/',
+    galleryId: 'marshall_photos',
+    sourceLink: 'https://upenn.box.com/v/ColeccionMarshall',
+    citationKey: 'marshall-colombia-photos',
+  });
+  assertAdditionalPhotoArchive(localBuild.agnArchive, 'local / agn archive', {
+    mediaPrefix: '/assets/media/archivo-general-nacion/',
+    galleryId: 'agn_photos',
+    sourceLink: 'https://upenn.box.com/s/kafp5sfpz66kts02a7mprjau3i98a248',
+    citationKey: 'archivo-general-nacion-photos',
+  });
   assertSearchPage(localBuild.search, 'local / buscar', 'Buscar');
   assertSearchPage(localBuild.enSearch, 'local / en/search', 'Search');
   assertBuiltLinks('');
@@ -457,6 +504,18 @@ try {
   assertArchiveBrowsePage(prefixedBuild.archives, 'prefixed / archives');
   assertArchiveBrowsePage(prefixedBuild.enArchives, 'prefixed / en/archives');
   assertArchivePage(prefixedBuild.archive, 'prefixed / archive');
+  assertAdditionalPhotoArchive(prefixedBuild.marshallArchive, 'prefixed / marshall archive', {
+    mediaPrefix: '/archivos_nuestros/assets/media/marshall-colombia/',
+    galleryId: 'marshall_photos',
+    sourceLink: 'https://upenn.box.com/v/ColeccionMarshall',
+    citationKey: 'marshall-colombia-photos',
+  });
+  assertAdditionalPhotoArchive(prefixedBuild.agnArchive, 'prefixed / agn archive', {
+    mediaPrefix: '/archivos_nuestros/assets/media/archivo-general-nacion/',
+    galleryId: 'agn_photos',
+    sourceLink: 'https://upenn.box.com/s/kafp5sfpz66kts02a7mprjau3i98a248',
+    citationKey: 'archivo-general-nacion-photos',
+  });
   assertSearchPage(prefixedBuild.search, 'prefixed / buscar', 'Buscar');
   assertSearchPage(prefixedBuild.enSearch, 'prefixed / en/search', 'Search');
   assertBuiltLinks('/archivos_nuestros');
