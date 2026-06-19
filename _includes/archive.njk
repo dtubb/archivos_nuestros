@@ -15,6 +15,7 @@ hideFooter: true
 {% endif %}
 
 {% set recordTitle = record.data.titleEng if page.lang == 'en' and record.data.titleEng else record.data.title %}
+{% set displayTitle = record.data.shortTitle or recordTitle %}
 {% set recordDesc = record.data['desc-en'] if page.lang == 'en' and record.data['desc-en'] else record.data['desc-es'] %}
 {% if record.data.photoGrid == 'la_vuelta_photos' %}
   {% set photoGrid = la_vuelta_photos %}
@@ -172,7 +173,7 @@ hideFooter: true
 
     <aside class="col-lg-4 record-rail record-rail--right">
       <p class="eyebrow mb-2">{% if record.data.fondo %}Fondo {{ record.data.fondo }} · {% endif %}{{ recordTypeLabel }}</p>
-      <h1 class="record-title mb-3" data-pagefind-meta="title">{{ recordTitle }}</h1>
+      <h1 class="record-title mb-3" data-pagefind-meta="title">{{ displayTitle }}</h1>
 
       <dl class="record-meta-list mb-0">
         {% if record.data.author %}

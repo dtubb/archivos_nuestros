@@ -55,7 +55,7 @@ layout: vanilla.njk
                     {% endif %}
                   </div>
                   <div class="doc-frame__body">
-                    <h2 class="doc-frame__title">{{ archiveTitle }}</h2>
+                    <h2 class="doc-frame__title">{{ archive.data.shortTitle or archiveTitle }}</h2>
                     {% set cardSection = sections[archive.data.type] %}
                     {% if archive.data.fondo or cardSection %}
                     <p class="doc-frame__breadcrumb">{% if archive.data.fondo %}Fondo {{ archive.data.fondo }}{% endif %}{% if archive.data.fondo and cardSection %} · {% endif %}{% if cardSection %}{{ cardSection.en if page.lang == 'en' else cardSection.es }}{% endif %}</p>
@@ -83,7 +83,7 @@ layout: vanilla.njk
                 {%- for archive in archiveItems -%}
                 {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
                 <tr class="archive-item" data-archive-item data-archive-type="{{ archive.data.type or '' }}">
-                  <td><a href="{{ archive.url | sitePath }}">{{ archiveTitle }}</a></td>
+                  <td><a href="{{ archive.url | sitePath }}">{{ archive.data.shortTitle or archiveTitle }}</a></td>
                   <td>{{ archive.data.author or '' }}</td>
                   {% set rowSection = sections[archive.data.type] %}
                   <td>{{ (rowSection.en if page.lang == 'en' else rowSection.es) if rowSection else (archive.data.type or '') }}</td>
