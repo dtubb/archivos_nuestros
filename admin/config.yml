@@ -56,6 +56,7 @@ collections:
       - { label: "Photo grid data key", name: "photoGrid", widget: "string", required: false }
       - { label: "Description (Spanish)", name: "desc-es", widget: "markdown", required: false }
       - { label: "Description (English)", name: "desc-en", widget: "markdown", required: false }
+      - { label: "Published", name: "published", widget: "boolean", default: true }
 
   - name: "exhibit" # Used in routes, e.g., /admin/collections/blog
     label: "Project Publications" # Used in the UI
