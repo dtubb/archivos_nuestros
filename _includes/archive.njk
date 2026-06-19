@@ -71,6 +71,12 @@ compactChrome: true
       {% if visiblePhotos.length %}
       {% set firstPhoto = visiblePhotos | first %}
       <section class="photo-viewer" data-photo-viewer aria-label="{% if page.lang == 'en' %}Photo gallery{% else %}Galería de fotografías{% endif %}">
+        {% if visiblePhotos.length > 1 %}
+        <div class="photo-viewer__toggle" role="group" aria-label="{% if page.lang == 'en' %}View mode{% else %}Modo de vista{% endif %}">
+          <button class="ui-chip" data-viewer-mode="carousel" aria-pressed="true">{% if page.lang == 'en' %}Carousel{% else %}Carrusel{% endif %}</button>
+          <button class="ui-chip" data-viewer-mode="grid" aria-pressed="false">{% if page.lang == 'en' %}Grid{% else %}Cuadrícula{% endif %}</button>
+        </div>
+        {% endif %}
         <div class="swiper photo-viewer__main" id="swiper-main-{{ photoGalleryId }}">
           <div class="swiper-wrapper">
             {% for photo in visiblePhotos %}
@@ -106,6 +112,20 @@ compactChrome: true
             {% endfor %}
           </div>
         </div>
+        {% if visiblePhotos.length > 1 %}
+        <div class="photo-viewer__grid" hidden>
+          {% for photo in visiblePhotos %}
+          <a
+            class="glightbox"
+            href="{{ photo.thumbnail | sitePath }}"
+            data-gallery="{{ photoGalleryId }}-grid"
+            data-title="{{ recordTitle }}"
+            data-description="{{ record.data.author }}. {{ recordTitle }}. {{ sequenceLabel }} {{ photo.sequence }}."
+            aria-label="{% if page.lang == 'en' %}Open full-screen: photograph{% else %}Abrir pantalla completa: fotografía{% endif %} {{ photo.sequence }}"
+          ><img src="{{ photo.thumbnail | sitePath }}" alt="{% if page.lang == 'en' %}Photograph{% else %}Fotografía{% endif %} {{ photo.sequence }}"></a>
+          {% endfor %}
+        </div>
+        {% endif %}
       </section>
       {% elif record.data.thumbnail %}
       <figure class="record-thumb mb-4">
@@ -209,6 +229,22 @@ compactChrome: true
   window.addEventListener('load', () => {
     const mainEl = document.getElementById('swiper-main-{{ photoGalleryId }}');
     const thumbEl = document.getElementById('swiper-thumbs-{{ photoGalleryId }}');
+    const gridEl = mainEl?.closest('.photo-viewer')?.querySelector('.photo-viewer__grid');
+    const toggleBtns = mainEl?.closest('.photo-viewer')?.querySelectorAll('[data-viewer-mode]');
+    if (toggleBtns) {
+      toggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mode = btn.dataset.viewerMode;
+          toggleBtns.forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+          const isGrid = mode === 'grid';
+          [mainEl, thumbEl, mainEl?.querySelector('.photo-viewer__caption')].forEach(el => {
+            if (el) el.hidden = isGrid;
+          });
+          mainEl?.closest('.photo-viewer')?.querySelector('.photo-viewer__controls') && (mainEl.querySelector('.photo-viewer__controls').hidden = isGrid);
+          if (gridEl) gridEl.hidden = !isGrid;
+        });
+      });
+    }
     if (!mainEl || !thumbEl || typeof Swiper === 'undefined') return;
 
     const statusEl = mainEl.querySelector('.photo-viewer__status');
