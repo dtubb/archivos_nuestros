@@ -36,7 +36,7 @@ h6,
 .record-title {
   color: var(--indigo);
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0;
 }
 
