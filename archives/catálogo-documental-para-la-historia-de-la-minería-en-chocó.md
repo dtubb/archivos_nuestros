@@ -7,7 +7,7 @@ author: Archivo de la Notaría Única de Nóvita. Digitalización y procesamient
   y Antonio Olmos.
 topics:
   - Colombia
-  - Choco
+  - Chocó
   - Minería
 type: documentos
 thumbnail: /assets/media/screenshot-2024-09-13-at-8.47.58 pm.png

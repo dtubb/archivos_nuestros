@@ -1,7 +1,7 @@
 :root {
   --indigo: #011f5b;       /* Penn Blue — chrome, headings, brand bar */
   --ink: #16181d;          /* near-black for body text (graphic contrast) */
-  --parchment: #f7f5ef;    /* warm paper, a touch cleaner */
+  --parchment: #ffffff;    /* white background (was cream) */
   --ochre: #9a7634;        /* deeper warm accent */
   --oxblood: #990000;      /* Penn Red — emphasis */
   --sage: #5f6b60;

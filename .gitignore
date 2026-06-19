@@ -9,3 +9,4 @@ CLAUDE.md
 
 # Local Netlify folder
 .netlify
+node_modules

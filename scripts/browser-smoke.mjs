@@ -160,7 +160,7 @@ async function assertStyledPage(page, label) {
     `${label}: body typography should be driven by the site stylesheet`
   );
   assert.ok(
-    styles.backgroundColor.includes('247, 245, 239'),
+    styles.backgroundColor.includes('255, 255, 255'),
     `${label}: body background should use the parchment site color`
   );
 }
