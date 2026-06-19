@@ -130,6 +130,7 @@ layout: vanilla.njk
                   {% if archive.data.themes %}
                   <p class="doc-frame__breadcrumb">{{ archive.data.themes | join(' · ') }}</p>
                   {% endif %}
+                  {% set cardSummary = archive.data['summary-en'] if page.lang == 'en' and archive.data['summary-en'] else archive.data['summary-es'] %}{% if cardSummary %}<p class="doc-frame__summary">{{ cardSummary }}</p>{% endif %}
                 </div>
               </article>
             </a>
@@ -153,6 +154,7 @@ layout: vanilla.njk
                   {% if archive.data.themes %}
                   <p class="doc-frame__breadcrumb">{{ archive.data.themes | join(' · ') }}</p>
                   {% endif %}
+                  {% set cardSummary = archive.data['summary-en'] if page.lang == 'en' and archive.data['summary-en'] else archive.data['summary-es'] %}{% if cardSummary %}<p class="doc-frame__summary">{{ cardSummary }}</p>{% endif %}
                 </div>
               </article>
             </a>

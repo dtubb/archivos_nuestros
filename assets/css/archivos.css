@@ -184,6 +184,14 @@ a:hover {
   text-transform: uppercase;
 }
 
+.doc-frame__summary {
+  margin: 0.25rem 0 0;
+  color: var(--indigo);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  opacity: 0.7;
+}
+
 .gallery-grid {
   align-items: stretch;
 }

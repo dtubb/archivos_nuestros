@@ -54,6 +54,8 @@ collections:
       - { label: "Citation key", name: "citationKey", widget: "string", required: false }
       - { label: "BibTeX", name: "bibtex", widget: "text", required: false }
       - { label: "Photo grid data key", name: "photoGrid", widget: "string", required: false }
+      - { label: "Resumen breve (ES)", name: "summary-es", widget: "string", required: false }
+      - { label: "Brief summary (EN)", name: "summary-en", widget: "string", required: false }
       - { label: "Description (Spanish)", name: "desc-es", widget: "markdown", required: false }
       - { label: "Description (English)", name: "desc-en", widget: "markdown", required: false }
       - { label: "Published", name: "published", widget: "boolean", default: true }

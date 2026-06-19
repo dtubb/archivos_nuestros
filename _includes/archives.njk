@@ -79,6 +79,7 @@ layout: vanilla.njk
                     {% if archive.data.themes or cardSection %}
                     <p class="doc-frame__breadcrumb">{% if archive.data.themes %}{{ archive.data.themes | join(' · ') }}{% endif %}{% if archive.data.themes and cardSection %} · {% endif %}{% if cardSection %}{{ cardSection.en if page.lang == 'en' else cardSection.es }}{% endif %}</p>
                     {% endif %}
+                    {% set cardSummary = archive.data['summary-en'] if page.lang == 'en' and archive.data['summary-en'] else archive.data['summary-es'] %}{% if cardSummary %}<p class="doc-frame__summary">{{ cardSummary }}</p>{% endif %}
                   </div>
                 </article>
               </a>
