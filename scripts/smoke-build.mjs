@@ -216,8 +216,8 @@ function assertCommon(html, label) {
 function assertLocalBuild(indexHtml, enIndexHtml) {
   assertCommon(indexHtml, 'local / index');
   assertCommon(enIndexHtml, 'local / en/index');
-  assert.ok(!indexHtml.includes('id="footer"'), 'local / index: footer should not be on the material-first homepage');
-  assert.ok(!enIndexHtml.includes('id="footer"'), 'local / en/index: footer should not be on the material-first homepage');
+  assert.ok(indexHtml.includes('id="footer"'), 'local / index: footer should be on the homepage (#56)');
+  assert.ok(enIndexHtml.includes('id="footer"'), 'local / en/index: footer should be on the homepage (#56)');
   assert.ok(indexHtml.includes('href="/assets'), 'local / index: expected bare /assets links');
   assert.ok(enIndexHtml.includes('href="/assets'), 'local / en/index: expected bare /assets links');
   assert.ok(!indexHtml.includes('/archivos_nuestros/'), 'local / index: should not include /archivos_nuestros prefix');
@@ -433,8 +433,8 @@ function assertBuiltLinks(siteBasePath) {
 function assertPrefixedBuild(indexHtml, enIndexHtml) {
   assertCommon(indexHtml, 'prefixed / index');
   assertCommon(enIndexHtml, 'prefixed / en/index');
-  assert.ok(!indexHtml.includes('id="footer"'), 'prefixed / index: footer should not be on the material-first homepage');
-  assert.ok(!enIndexHtml.includes('id="footer"'), 'prefixed / en/index: footer should not be on the material-first homepage');
+  assert.ok(indexHtml.includes('id="footer"'), 'prefixed / index: footer should be on the homepage (#56)');
+  assert.ok(enIndexHtml.includes('id="footer"'), 'prefixed / en/index: footer should be on the homepage (#56)');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/assets'), 'prefixed / index: expected prefixed assets links');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/personas'), 'prefixed / index: expected prefixed personas links');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/buscar'), 'prefixed / index: expected prefixed search link');
