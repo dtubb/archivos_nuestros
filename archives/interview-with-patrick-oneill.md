@@ -7,7 +7,12 @@ desc-es: Patrick O'Neill fue gerente de la Compañía Minera Chocó Pacífico du
 desc-en: Patrick O'Neill managed the Compañía Minera Chocó Pacífico for many years. In this
   interview, he reflects on his life experience.
 author: Patrick O'Neill, as interviewed by Ann Farnsworth-Alvear
-topic: Colombia, Chocó, San Juan, Minería, Compañías Extranjeras
+topics:
+  - Colombia
+  - Chocó
+  - San Juan
+  - Minería
+  - Compañías Extranjeras
 type: entrevistas
 thumbnail: /assets/media/screenshot-2024-10-11-at-7.57.05 pm.png
 link: https://upenn.box.com/v/entrevistapon

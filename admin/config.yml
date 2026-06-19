@@ -26,7 +26,21 @@ collections:
       - { label: "Short title (thin display title)", name: "shortTitle", widget: "string", required: false }
       - { label: "Place (entry point, e.g. Chocó)", name: "place", widget: "string", required: false }
       - { label: "Author", name: "author", widget: "string", required: false }
-      - { label: "Topic", name: "topic", widget: "string", required: false }
+      - label: "Topics"
+        name: "topics"
+        widget: "list"
+        required: false
+        field: { label: "Topic", name: "topic", widget: "string" }
+      - { label: "Material", name: "material", widget: "select", options: ["primary", "secondary", "publication"], required: false }
+      - { label: "Source / provenance — not the hosting link", name: "source", widget: "string", required: false }
+      - { label: "Order", name: "order", widget: "number", required: false }
+      - label: "Roles"
+        name: "roles"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Role", name: "role", widget: "select", options: ["curator", "creator_author", "rights_holder", "editor", "translator", "transcriber", "contributor"] }
+          - { label: "Name", name: "name", widget: "string" }
       - { label: "Type", name: "type", widget: "select", options: ["fotos", "documentos", "mapas", "entrevistas", "audiovisuales", "other"], required: false }
       - { label: "Date (free text — ranges ok, e.g. 1930–1980)", name: "date", widget: "string", required: false }
       - { label: "Access", name: "access", widget: "select", options: ["público", "permiso", "restringido"], required: false }

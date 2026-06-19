@@ -21,8 +21,16 @@ desc-en: '"El Archivo Fotográfico y Fílmico del Chocó, es una  unidad de docu
   Palabras de Gonzalo Díaz Cañadas, 2024 - https://videotecachoco.utch.edu.co/pdfs/circular.pdf'
 author: 'Universidad Tecnológica del Chocó. Archivo Fotográfico y Fílmico del Chocó - Videoteca.
   Director: Gonzalo Díaz Cañadas'
-topic: Colombia. Chocó, Quibdó, Istmina, Andagoya, Río Atrato, Río San Juan, Minería, Vida
-  cotidiana, Historia regional
+topics:
+  - Colombia. Chocó
+  - Quibdó
+  - Istmina
+  - Andagoya
+  - Río Atrato
+  - Río San Juan
+  - Minería
+  - Vida cotidiana
+  - Historia regional
 type: audiovisuales
 thumbnail: /assets/media/screenshot-2025-06-20-at-8.57.04 am.png
 link: https://videotecachoco.utch.edu.co/peliculas

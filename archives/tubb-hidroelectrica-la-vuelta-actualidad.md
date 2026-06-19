@@ -2,7 +2,13 @@
 title: "Álbum de fotos: La hidroeléctrica en La Vuelta, fotografías actuales de la  (2024)"
 titleEng: "Photo album: The hydroelectric site at La Vuelta, current photographs (2024)"
 author: Daniel Tubb, con apoyo de la SSHRC de Canadá y de la Universidad de New Brunswick
-topic: Colombia, Chocó, Minería, Hidroeléctrica de La Vuelta, Vida Cotidiana, Compañías extranjeras
+topics:
+  - Colombia
+  - Chocó
+  - Minería
+  - Hidroeléctrica de La Vuelta
+  - Vida Cotidiana
+  - Compañías extranjeras
 type: fotos
 desc-es: Fotos tomadas en 2024 por Daniel Tubb, con apoyo de la SSHRC de Canadá y de la Universidad de New Brunswick. Así son las instalaciones de la hidroeléctrica construída en los años 30 por la CMCP.
 desc-en: Photos taken in 2024 by Daniel Tubb, with support from SSHRC Canada and the University of New Brunswick. These show the hydroelectric facilities built in the 1930s by the CMCP.

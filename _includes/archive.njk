@@ -49,10 +49,9 @@ compactChrome: true
   <span data-pagefind-meta="author">{{ record.data.author }}</span>
   <span data-pagefind-filter="author">{{ record.data.author }}</span>
   {% endif %}
-  {% if record.data.topic %}
-    {% set topicValues = record.data.topic.split(',') %}
-  <span data-pagefind-meta="topic">{{ record.data.topic }}</span>
-    {% for topic in topicValues %}
+  {% if record.data.topics %}
+  <span data-pagefind-meta="topic">{{ record.data.topics | join(', ') }}</span>
+    {% for topic in record.data.topics %}
   <span data-pagefind-filter="topic">{{ topic | trim }}</span>
     {% endfor %}
   {% endif %}
@@ -167,10 +166,22 @@ compactChrome: true
           <dd>{{ record.data.author }}</dd>
         </div>
         {% endif %}
-        {% if record.data.topic %}
+        {% if record.data.topics %}
         <div>
           <dt>{% if page.lang == 'en' %}Topic{% else %}Tema{% endif %}</dt>
-          <dd>{{ record.data.topic }}</dd>
+          <dd>{{ record.data.topics | join(', ') }}</dd>
+        </div>
+        {% endif %}
+        {% if record.data.material %}
+        <div>
+          <dt>{% if page.lang == 'en' %}Material{% else %}Material{% endif %}</dt>
+          <dd>{{ record.data.material }}</dd>
+        </div>
+        {% endif %}
+        {% if record.data.source %}
+        <div>
+          <dt>{% if page.lang == 'en' %}Source{% else %}Fuente{% endif %}</dt>
+          <dd>{{ record.data.source }}</dd>
         </div>
         {% endif %}
         {% if record.data.type %}
