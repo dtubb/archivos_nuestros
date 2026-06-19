@@ -172,7 +172,7 @@ hideFooter: true
     </div>
 
     <aside class="col-lg-4 record-rail record-rail--right">
-      <p class="eyebrow mb-2">{% if record.data.fondo %}Fondo {{ record.data.fondo }} · {% endif %}{{ recordTypeLabel }}</p>
+      <p class="eyebrow mb-2">{% if record.data.fondo %}{{ record.data.fondo }} · {% endif %}{{ recordTypeLabel }}</p>
       <h1 class="record-title mb-3" data-pagefind-meta="title">{{ displayTitle }}</h1>
 
       <dl class="record-meta-list mb-0">

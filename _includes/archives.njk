@@ -58,7 +58,7 @@ layout: vanilla.njk
                     <h2 class="doc-frame__title">{{ archive.data.shortTitle or archiveTitle }}</h2>
                     {% set cardSection = sections[archive.data.type] %}
                     {% if archive.data.fondo or cardSection %}
-                    <p class="doc-frame__breadcrumb">{% if archive.data.fondo %}Fondo {{ archive.data.fondo }}{% endif %}{% if archive.data.fondo and cardSection %} · {% endif %}{% if cardSection %}{{ cardSection.en if page.lang == 'en' else cardSection.es }}{% endif %}</p>
+                    <p class="doc-frame__breadcrumb">{% if archive.data.fondo %}{{ archive.data.fondo }}{% endif %}{% if archive.data.fondo and cardSection %} · {% endif %}{% if cardSection %}{{ cardSection.en if page.lang == 'en' else cardSection.es }}{% endif %}</p>
                     {% endif %}
                   </div>
                 </article>
