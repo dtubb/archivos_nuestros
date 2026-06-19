@@ -197,13 +197,16 @@ async function smokeArchivePage(page, baseUrl, label, screenshotName) {
   const activeImage = page.locator('.photo-viewer__main .swiper-slide-active img');
   const activeStatus = page.locator('.photo-viewer__status');
   const openButton = page.locator('.photo-viewer__main .swiper-slide-active .glightbox');
-  const thumbs = page.locator('.photo-viewer__thumbs .swiper-slide');
+  const nextBtn = page.locator('.photo-viewer__main .swiper-button-next');
+  const prevBtn = page.locator('.photo-viewer__main .swiper-button-prev');
+  const gridThumbs = page.locator('.photo-viewer__grid a.glightbox');
   const lightbox = page.locator('#glightbox-body');
 
   const initialSrc = await activeImage.getAttribute('src');
   const initialStatus = await activeStatus.textContent();
 
-  await thumbs.nth(1).click();
+  // carousel navigates via prev/next buttons
+  await nextBtn.click();
   await page.waitForFunction(
     ([selector, previousSrc]) => document.querySelector(selector)?.getAttribute('src') !== previousSrc,
     ['.photo-viewer__main .swiper-slide-active img', initialSrc]
@@ -211,13 +214,16 @@ async function smokeArchivePage(page, baseUrl, label, screenshotName) {
   await assert.match(await activeStatus.textContent(), /^\s*2\s*\/\s*\d+\s*$/);
   assert.notStrictEqual(await activeImage.getAttribute('src'), initialSrc);
 
-  await thumbs.nth(0).click();
+  await prevBtn.click();
   await page.waitForFunction(
     ([selector, previousSrc]) => document.querySelector(selector)?.getAttribute('src') === previousSrc,
     ['.photo-viewer__main .swiper-slide-active img', initialSrc]
   );
   assert.equal(await activeStatus.textContent(), initialStatus);
   assert.equal(await activeImage.getAttribute('src'), initialSrc);
+
+  // the full thumbnail grid below shows every photo
+  assert.ok(await gridThumbs.count() > 1, 'photo viewer grid should list all thumbnails below');
 
   await openButton.click();
   await lightbox.waitFor({ state: 'visible', timeout: 10000 });

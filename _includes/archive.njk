@@ -71,12 +71,6 @@ compactChrome: true
       {% if visiblePhotos.length %}
       {% set firstPhoto = visiblePhotos | first %}
       <section class="photo-viewer" data-photo-viewer aria-label="{% if page.lang == 'en' %}Photo gallery{% else %}Galería de fotografías{% endif %}">
-        {% if visiblePhotos.length > 1 %}
-        <div class="photo-viewer__toggle" role="group" aria-label="{% if page.lang == 'en' %}View mode{% else %}Modo de vista{% endif %}">
-          <button class="ui-chip" data-viewer-mode="carousel" aria-pressed="true">{% if page.lang == 'en' %}Carousel{% else %}Carrusel{% endif %}</button>
-          <button class="ui-chip" data-viewer-mode="grid" aria-pressed="false">{% if page.lang == 'en' %}Grid{% else %}Cuadrícula{% endif %}</button>
-        </div>
-        {% endif %}
         <div class="swiper photo-viewer__main" id="swiper-main-{{ photoGalleryId }}">
           <div class="swiper-wrapper">
             {% for photo in visiblePhotos %}
@@ -102,7 +96,7 @@ compactChrome: true
           </div>
         </div>
         <p class="photo-viewer__caption visually-hidden" aria-live="polite">{{ firstPhoto.sequence }}</p>
-        <div class="swiper photo-grid photo-viewer__thumbs" id="swiper-thumbs-{{ photoGalleryId }}" aria-label="{% if page.lang == 'en' %}Photographs{% else %}Fotografías{% endif %}">
+        <div class="swiper photo-grid photo-viewer__thumbs" id="swiper-thumbs-{{ photoGalleryId }}" hidden aria-label="{% if page.lang == 'en' %}Photographs{% else %}Fotografías{% endif %}">
           <div class="swiper-wrapper">
             {% for photo in visiblePhotos %}
             <div class="swiper-slide photo-grid__item">
@@ -113,7 +107,7 @@ compactChrome: true
           </div>
         </div>
         {% if visiblePhotos.length > 1 %}
-        <div class="photo-viewer__grid" hidden>
+        <div class="photo-viewer__grid">
           {% for photo in visiblePhotos %}
           <a
             class="glightbox"
