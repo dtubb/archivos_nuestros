@@ -42,8 +42,8 @@ layout: vanilla.njk
 
 <section class="home-hero vault-zone">
   <div class="container-xl">
-    <h1 class="home-hero__title">Archivos con Vida</h1>
-    <p class="home-hero__mission">{% if page.lang == 'en' %}A bilingual repository of primary sources and research materials on the Colombian Pacific.{% else %}Un repositorio bilingüe de fuentes primarias y materiales de investigación sobre el Pacífico colombiano.{% endif %}</p>
+    <h1 class="home-hero__title">{{ site.hero.title }}</h1>
+    <p class="home-hero__mission">{% if page.lang == 'en' %}{{ site.hero.subtitle_en }}{% else %}{{ site.hero.subtitle_es }}{% endif %}</p>
   </div>
 </section>
 

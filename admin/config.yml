@@ -73,3 +73,27 @@ collections:
       - { label: "Link", name: "link", widget: "string", required: false }
       - { label: "Description (Spanish)", name: "desc-es", widget: "markdown", required: false }
       - { label: "Description (English)", name: "desc-en", widget: "markdown", required: false }
+
+  - name: "settings"
+    label: "Sitio"
+    files:
+      - name: "site"
+        label: "Configuración del sitio"
+        file: "_data/site.yml"
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Subtítulo (español)", name: "subtitle_es", widget: "text" }
+              - { label: "Subtítulo (inglés)", name: "subtitle_en", widget: "text" }
+          - label: "Apoyos institucionales"
+            name: "funders"
+            widget: "list"
+            field: { label: "Institución", name: "funder", widget: "string" }
+          - label: "Instituciones aliadas"
+            name: "partners"
+            widget: "list"
+            field: { label: "Institución", name: "partner", widget: "string" }
+          - { label: "Atribución", name: "attribution", widget: "string" }

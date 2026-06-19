@@ -4,6 +4,11 @@ const { execSync } = require('child_process')
 module.exports = function (eleventyConfig) {
     const siteBasePath = process.env.SITE_BASE_PATH || "";
 
+    eleventyConfig.addDataExtension("yml", (contents) => {
+        const yaml = require("js-yaml");
+        return yaml.load(contents);
+    });
+
     eleventyConfig.addFilter("sitePath", (value) => {
         if (!value) return value;
         if (/^(https?:)?\/\//.test(value) || value.startsWith("mailto:") || value.startsWith("#")) {

@@ -1,0 +1,23 @@
+hero:
+  title: "Archivos con Vida"
+  subtitle_es: "Un repositorio bilingüe de fuentes primarias y materiales de investigación sobre el Pacífico colombiano."
+  subtitle_en: "A bilingual repository of primary sources and research materials on the Colombian Pacific."
+
+funders:
+  - "Fundación Mellon (Just Futures — Dispossessions in the Americas)"
+  - "SSHRC Canadá"
+  - "University of Pennsylvania (Penn Libraries)"
+  - "Universidad de New Brunswick"
+  - "Universidad de Michigan"
+  - "Hobart and William Smith Colleges"
+  - "Wolf Humanities Center (Penn)"
+  - "Universidad de Villanova (LePage Center)"
+  - "British Library (EAP1477)"
+
+partners:
+  - "Universidad Tecnológica del Chocó"
+  - "Archivo General de la Nación"
+  - "Michigan Technological University Archives"
+  - "Library of Congress"
+
+attribution: "Muntú Bantú / Fundación Social Afrocolombiana — Quibdó, Chocó, Colombia"

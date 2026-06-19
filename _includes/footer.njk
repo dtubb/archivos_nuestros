@@ -16,26 +16,17 @@
             <div class="col-sm-6">
               <p class="footer-support-group-label">Funders</p>
               <ul class="footer-support-list">
-                <li>Mellon Foundation (Just Futures — Dispossessions in the Americas)</li>
-                <li>SSHRC Canada</li>
-                <li>University of Pennsylvania (Penn Libraries)</li>
-                <li>University of New Brunswick</li>
-                <li>University of Michigan</li>
-                <li>Hobart and William Smith Colleges</li>
-                <li>Wolf Humanities Center (Penn)</li>
-                <li>Villanova University (LePage Center)</li>
-                <li>British Library (EAP1477)</li>
+                {% for funder in site.funders %}<li>{{ funder }}</li>
+                {% endfor %}
               </ul>
             </div>
             <div class="col-sm-6">
               <p class="footer-support-group-label">Partner Institutions</p>
               <ul class="footer-support-list">
-                <li>Universidad Tecnológica del Chocó</li>
-                <li>Archivo General de la Nación</li>
-                <li>Michigan Technological University Archives</li>
-                <li>Library of Congress</li>
+                {% for partner in site.partners %}<li>{{ partner }}</li>
+                {% endfor %}
               </ul>
-              <p class="footer-attribution mt-3">Muntú Bantú / Fundación Social Afrocolombiana — Quibdó, Chocó, Colombia</p>
+              <p class="footer-attribution mt-3">{{ site.attribution }}</p>
             </div>
           </div>
           {% else %}
@@ -44,26 +35,17 @@
             <div class="col-sm-6">
               <p class="footer-support-group-label">Apoyos institucionales</p>
               <ul class="footer-support-list">
-                <li>Fundación Mellon (Just Futures — Dispossessions in the Americas)</li>
-                <li>SSHRC Canadá</li>
-                <li>University of Pennsylvania (Penn Libraries)</li>
-                <li>Universidad de New Brunswick</li>
-                <li>Universidad de Michigan</li>
-                <li>Hobart and William Smith Colleges</li>
-                <li>Wolf Humanities Center (Penn)</li>
-                <li>Universidad de Villanova (LePage Center)</li>
-                <li>British Library (EAP1477)</li>
+                {% for funder in site.funders %}<li>{{ funder }}</li>
+                {% endfor %}
               </ul>
             </div>
             <div class="col-sm-6">
               <p class="footer-support-group-label">Instituciones aliadas</p>
               <ul class="footer-support-list">
-                <li>Universidad Tecnológica del Chocó</li>
-                <li>Archivo General de la Nación</li>
-                <li>Michigan Technological University Archives</li>
-                <li>Library of Congress</li>
+                {% for partner in site.partners %}<li>{{ partner }}</li>
+                {% endfor %}
               </ul>
-              <p class="footer-attribution mt-3">Muntú Bantú / Fundación Social Afrocolombiana — Quibdó, Chocó, Colombia</p>
+              <p class="footer-attribution mt-3">{{ site.attribution }}</p>
             </div>
           </div>
           {% endif %}
