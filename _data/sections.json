@@ -1,8 +1,30 @@
 {
-  "documentos":    { "es": "Archivos",      "en": "Archives" },
-  "entrevistas":   { "es": "Entrevistas",   "en": "Interviews" },
-  "fotos":         { "es": "Fotografías",   "en": "Photographs" },
-  "photographs":   { "es": "Fotografías",   "en": "Photographs" },
-  "mapas":         { "es": "Mapas",         "en": "Maps" },
-  "audiovisuales": { "es": "Audiovisuales", "en": "Audiovisual" }
+  "documentos": {
+    "es": "Archivos",
+    "en": "Archives"
+  },
+  "entrevistas": {
+    "es": "Entrevistas",
+    "en": "Interviews"
+  },
+  "fotos": {
+    "es": "Fotografías",
+    "en": "Photographs"
+  },
+  "photographs": {
+    "es": "Fotografías",
+    "en": "Photographs"
+  },
+  "mapas": {
+    "es": "Mapas",
+    "en": "Maps"
+  },
+  "audiovisuales": {
+    "es": "Audiovisuales",
+    "en": "Audiovisual"
+  },
+  "link": {
+    "es": "Enlace",
+    "en": "Link"
+  }
 }
