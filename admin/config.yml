@@ -20,6 +20,8 @@ collections:
     fields: # Canonical site record data lives in Markdown/YAML front matter edited here.
       - { label: "Title (Spanish)", name: "title", widget: "string"}
       - { label: "Title (English)", name: "titleEng", widget: "string", required: false }
+      - { label: "Short title (thin display title)", name: "shortTitle", widget: "string", required: false }
+      - { label: "Fondo (entry point, e.g. Chocó)", name: "fondo", widget: "string", required: false }
       - { label: "Author", name: "author", widget: "string", required: false }
       - { label: "Topic", name: "topic", widget: "string", required: false }
       - { label: "Type", name: "type", widget: "select", options: ["fotos", "documentos", "mapas", "entrevistas", "audiovisuales", "other"], required: false }
