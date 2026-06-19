@@ -17,21 +17,7 @@ hideFooter: true
 {% set recordTitle = record.data.titleEng if page.lang == 'en' and record.data.titleEng else record.data.title %}
 {% set displayTitle = record.data.shortTitle or recordTitle %}
 {% set recordDesc = record.data['desc-en'] if page.lang == 'en' and record.data['desc-en'] else record.data['desc-es'] %}
-{% if record.data.photoGrid == 'la_vuelta_photos' %}
-  {% set photoGrid = la_vuelta_photos %}
-{% elif record.data.photoGrid == 'marshall_photos' %}
-  {% set photoGrid = marshall_photos %}
-{% elif record.data.photoGrid == 'agn_photos' %}
-  {% set photoGrid = agn_photos %}
-{% elif record.data.photoGrid == 'houghton_photos' %}
-  {% set photoGrid = houghton_photos %}
-{% elif record.data.photoGrid == 'platinum_photos' %}
-  {% set photoGrid = platinum_photos %}
-{% elif record.data.photoGrid == 'rivers_gold_photos' %}
-  {% set photoGrid = rivers_gold_photos %}
-{% else %}
-  {% set photoGrid = [] %}
-{% endif %}
+{% set photoGrid = photoGrids[record.data.photoGrid] or [] %}
 {% set photoGalleryId = record.data.photoGrid or 'record-image' %}
 {% set section = sections[record.data.type] %}
 {% if section %}
