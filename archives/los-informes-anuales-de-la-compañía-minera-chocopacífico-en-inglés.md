@@ -1,6 +1,6 @@
 ---
 title: Los informes anuales de la Compañía Minera Chocopacífico (en inglés)
-fondo: Chocó
+place: Chocó
 author: South American Gold and Platinum (1919-1973)
 topic: Colombia, Chocó, Minería, Compañías Extranjeras
 type: documentos

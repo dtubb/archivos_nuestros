@@ -24,11 +24,13 @@ collections:
       - { label: "Title (Spanish)", name: "title", widget: "string"}
       - { label: "Title (English)", name: "titleEng", widget: "string", required: false }
       - { label: "Short title (thin display title)", name: "shortTitle", widget: "string", required: false }
-      - { label: "Entry point (e.g. Chocó) — public label TBD, see issue", name: "fondo", widget: "string", required: false }
+      - { label: "Place (entry point, e.g. Chocó)", name: "place", widget: "string", required: false }
       - { label: "Author", name: "author", widget: "string", required: false }
       - { label: "Topic", name: "topic", widget: "string", required: false }
       - { label: "Type", name: "type", widget: "select", options: ["fotos", "documentos", "mapas", "entrevistas", "audiovisuales", "other"], required: false }
-      - { label: "Date", name: "date", widget: "datetime", required: false }
+      - { label: "Date (free text — ranges ok, e.g. 1930–1980)", name: "date", widget: "string", required: false }
+      - { label: "Access", name: "access", widget: "select", options: ["público", "permiso", "restringido"], required: false }
+      - { label: "Contact (for permission)", name: "contact", widget: "string", required: false }
       - { label: "Image", name: "thumbnail", widget: "image", required: false }
       - { label: "Link", name: "link", widget: "string", required: false }
       - { label: "Citation key", name: "citationKey", widget: "string", required: false }

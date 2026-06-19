@@ -158,7 +158,7 @@ hideFooter: true
     </div>
 
     <aside class="col-lg-4 record-rail record-rail--right">
-      <p class="eyebrow mb-2">{% if record.data.fondo %}{{ record.data.fondo }} · {% endif %}{{ recordTypeLabel }}</p>
+      <p class="eyebrow mb-2">{% if record.data.place %}{{ record.data.place }} · {% endif %}{{ recordTypeLabel }}</p>
       <h1 class="record-title mb-3" data-pagefind-meta="title">{{ displayTitle }}</h1>
 
       <dl class="record-meta-list mb-0">
@@ -193,7 +193,19 @@ hideFooter: true
         {% if record.data.date %}
         <div>
           <dt>{% if page.lang == 'en' %}Date{% else %}Fecha{% endif %}</dt>
-          <dd>{{ record.data.date | displayDate }}</dd>
+          <dd>{{ record.data.date }}</dd>
+        </div>
+        {% endif %}
+        {% if record.data.place %}
+        <div>
+          <dt>{% if page.lang == 'en' %}Place{% else %}Lugar{% endif %}</dt>
+          <dd>{{ record.data.place }}</dd>
+        </div>
+        {% endif %}
+        {% if record.data.access %}
+        <div>
+          <dt>{% if page.lang == 'en' %}Access{% else %}Acceso{% endif %}</dt>
+          <dd>{{ record.data.access }}{% if record.data.contact %} — <a class="record-meta-link" href="mailto:{{ record.data.contact }}">{{ record.data.contact }}</a>{% endif %}</dd>
         </div>
         {% endif %}
       </dl>

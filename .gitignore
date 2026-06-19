@@ -6,3 +6,6 @@ _site-local/
 # Never commit AI/agent tooling to the public site
 .claude/
 CLAUDE.md
+
+# Local Netlify folder
+.netlify
