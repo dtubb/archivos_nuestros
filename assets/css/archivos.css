@@ -1,9 +1,10 @@
 :root {
-  --indigo: #1a2530;
-  --parchment: #f9f6f0;
-  --ochre: #b89047;
-  --oxblood: #4a1e1b;
-  --sage: #7e8a7d;
+  --indigo: #011f5b;       /* Penn Blue — chrome, headings, brand bar */
+  --ink: #16181d;          /* near-black for body text (graphic contrast) */
+  --parchment: #f7f5ef;    /* warm paper, a touch cleaner */
+  --ochre: #9a7634;        /* deeper warm accent */
+  --oxblood: #990000;      /* Penn Red — emphasis */
+  --sage: #5f6b60;
   --ochre-dim: rgba(184, 144, 71, 0.18);
   --ochre-line: rgba(184, 144, 71, 0.35);
   --font-display: "Source Serif 4", Georgia, serif;
@@ -17,7 +18,7 @@ html {
 
 body {
   background: var(--parchment);
-  color: var(--indigo);
+  color: var(--ink);
   font-family: var(--font-body);
   font-size: 1.15rem;
   line-height: 1.6;
