@@ -4,7 +4,6 @@ title: Search
 lang: en
 permalink: /en/search/
 compactChrome: true
-hideFooter: true
 ---
 
 <section class="container-xl py-5">

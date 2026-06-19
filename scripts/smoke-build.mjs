@@ -207,10 +207,8 @@ function assertCommon(html, label) {
   assert.ok(!html.includes('145 image files'), `${label}: inventory workflow copy should not be present`);
   assert.ok(!html.includes('Los originales en alta resolución'), `${label}: storage workflow note should not be present`);
   assert.ok(!html.includes('Full-resolution originals'), `${label}: storage workflow note should not be present`);
-  assert.ok(!html.includes('Muntú Bantú'), `${label}: old project framing should not be present`);
-  assert.ok(!html.includes('Acknowledgements'), `${label}: credits block should not be on the material-first homepage`);
-  assert.ok(!html.includes('Agradecimientos'), `${label}: credits block should not be on the material-first homepage`);
-  assert.ok(!html.includes('id="footer"'), `${label}: footer should not be on the material-first homepage`);
+  assert.ok(!html.includes('Acknowledgements'), `${label}: old credits block label should not be present`);
+  assert.ok(!html.includes('Agradecimientos'), `${label}: old credits block label should not be present`);
   assert.ok(!html.includes('doc-frame__meta'), `${label}: homepage cards should not render metadata pills`);
   assert.ok(!html.includes('doc-frame__date'), `${label}: homepage cards should not foreground record dates`);
 }
@@ -218,6 +216,8 @@ function assertCommon(html, label) {
 function assertLocalBuild(indexHtml, enIndexHtml) {
   assertCommon(indexHtml, 'local / index');
   assertCommon(enIndexHtml, 'local / en/index');
+  assert.ok(!indexHtml.includes('id="footer"'), 'local / index: footer should not be on the material-first homepage');
+  assert.ok(!enIndexHtml.includes('id="footer"'), 'local / en/index: footer should not be on the material-first homepage');
   assert.ok(indexHtml.includes('href="/assets'), 'local / index: expected bare /assets links');
   assert.ok(enIndexHtml.includes('href="/assets'), 'local / en/index: expected bare /assets links');
   assert.ok(!indexHtml.includes('/archivos_nuestros/'), 'local / index: should not include /archivos_nuestros prefix');
@@ -286,7 +286,7 @@ function assertArchivePage(archiveHtml, label) {
     archiveHtml.indexOf('record-main') < archiveHtml.indexOf('record-rail--right'),
     `${label}: media should appear before metadata in the archive page source`
   );
-  assert.ok(!archiveHtml.includes('id="footer"'), `${label}: archive page should not include the footer block`);
+  assert.ok(archiveHtml.includes('id="footer"'), `${label}: archive page should include the footer block (#56)`);
   assert.ok(!archiveHtml.includes('hosted externally in Box'), `${label}: Box-hosting wording should not be present`);
   assert.ok(!archiveHtml.includes('alojados externamente en Box'), `${label}: Box-hosting wording should not be present`);
   assert.ok(!archiveHtml.includes('Primer prototipo'), `${label}: prototype scaffold copy should not be present`);
@@ -433,6 +433,8 @@ function assertBuiltLinks(siteBasePath) {
 function assertPrefixedBuild(indexHtml, enIndexHtml) {
   assertCommon(indexHtml, 'prefixed / index');
   assertCommon(enIndexHtml, 'prefixed / en/index');
+  assert.ok(!indexHtml.includes('id="footer"'), 'prefixed / index: footer should not be on the material-first homepage');
+  assert.ok(!enIndexHtml.includes('id="footer"'), 'prefixed / en/index: footer should not be on the material-first homepage');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/assets'), 'prefixed / index: expected prefixed assets links');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/personas'), 'prefixed / index: expected prefixed personas links');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/buscar'), 'prefixed / index: expected prefixed search link');

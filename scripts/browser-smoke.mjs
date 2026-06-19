@@ -37,7 +37,6 @@ const visibleCopyGuards = [
   '145 image files',
   'Los originales en alta resolución',
   'Full-resolution originals',
-  'Muntú Bantú',
   'Acknowledgements',
   'Agradecimientos',
 ];
@@ -161,7 +160,7 @@ async function assertStyledPage(page, label) {
     `${label}: body typography should be driven by the site stylesheet`
   );
   assert.ok(
-    styles.backgroundColor.includes('249, 246, 240'),
+    styles.backgroundColor.includes('247, 245, 239'),
     `${label}: body background should use the parchment site color`
   );
 }

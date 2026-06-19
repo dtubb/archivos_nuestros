@@ -382,14 +382,56 @@ a:hover {
 .footer.dark-background {
   background: var(--indigo);
   color: var(--parchment);
+  font-family: var(--font-ui);
 }
 
-.footer .sitename {
-  color: var(--parchment);
+/* ponytail: overrides dark-background's greenish color-mix(--background-color) */
+.footer .footer-top {
+  background: var(--indigo);
 }
 
-.footer p {
+.footer p,
+.footer li {
   color: rgba(249, 246, 240, 0.82);
+  font-family: var(--font-ui);
+}
+
+.footer h4 {
+  color: var(--parchment);
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+/* override main.css accent-color (brownish gold) with muted parchment line */
+.footer h4::after {
+  background: rgba(249, 246, 240, 0.3);
+}
+
+.footer-support-group-label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(249, 246, 240, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.footer-support-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.footer-support-list li {
+  padding-block: 0.2rem;
+}
+
+.footer-attribution {
+  font-size: 0.78rem;
+  color: rgba(249, 246, 240, 0.5);
+  font-style: italic;
 }
 
 #preloader {

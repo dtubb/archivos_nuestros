@@ -1,25 +1,75 @@
-{% set home_url = '/en/' if page.lang == 'en' else '/' %}
-
 <footer id="footer" class="footer dark-background">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row gy-4">
 
-    <div class="footer-top">
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-5 col-md-6 footer-about">
-            <a href="{{ home_url | sitePath }}" class="logo d-flex align-items-center">
-              <span class="sitename">Archivos con Vida</span>
-            </a>
-            <div class="footer-contact pt-3">
-              <p>{% if page.lang == 'en' %}Preview{% else %}Vista previa{% endif %}</p>
+        <div class="col-lg-3 col-md-6">
+          <p class="mb-2"><strong>{% if page.lang == 'en' %}Project{% else %}Proyecto{% endif %}</strong></p>
+          <p class="mb-2">Ann Farnsworth-Alvear</p>
+          <p class="mb-0">Daniel Tubb</p>
+        </div>
+
+        <div class="col-lg-9 col-md-12">
+          {% if page.lang == 'en' %}
+          <h4>Supporters</h4>
+          <div class="row gy-3">
+            <div class="col-sm-6">
+              <p class="footer-support-group-label">Funders</p>
+              <ul class="footer-support-list">
+                <li>Mellon Foundation (Just Futures — Dispossessions in the Americas)</li>
+                <li>SSHRC Canada</li>
+                <li>University of Pennsylvania (Penn Libraries)</li>
+                <li>University of New Brunswick</li>
+                <li>University of Michigan</li>
+                <li>Hobart and William Smith Colleges</li>
+                <li>Wolf Humanities Center (Penn)</li>
+                <li>Villanova University (LePage Center)</li>
+                <li>British Library (EAP1477)</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <p class="footer-support-group-label">Partner Institutions</p>
+              <ul class="footer-support-list">
+                <li>Universidad Tecnológica del Chocó</li>
+                <li>Archivo General de la Nación</li>
+                <li>Michigan Technological University Archives</li>
+                <li>Library of Congress</li>
+              </ul>
+              <p class="footer-attribution mt-3">Muntú Bantú / Fundación Social Afrocolombiana — Quibdó, Chocó, Colombia</p>
             </div>
           </div>
-          <div class="col-lg-7 col-md-6">
-            <p class="mb-2"><strong>{% if page.lang == 'en' %}Project{% else %}Proyecto{% endif %}</strong></p>
-            <p class="mb-2">Ann Farnsworth-Alvear</p>
-            <p class="mb-0">Daniel Tubb</p>
+          {% else %}
+          <h4>Apoyos</h4>
+          <div class="row gy-3">
+            <div class="col-sm-6">
+              <p class="footer-support-group-label">Apoyos institucionales</p>
+              <ul class="footer-support-list">
+                <li>Fundación Mellon (Just Futures — Dispossessions in the Americas)</li>
+                <li>SSHRC Canadá</li>
+                <li>University of Pennsylvania (Penn Libraries)</li>
+                <li>Universidad de New Brunswick</li>
+                <li>Universidad de Michigan</li>
+                <li>Hobart and William Smith Colleges</li>
+                <li>Wolf Humanities Center (Penn)</li>
+                <li>Universidad de Villanova (LePage Center)</li>
+                <li>British Library (EAP1477)</li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <p class="footer-support-group-label">Instituciones aliadas</p>
+              <ul class="footer-support-list">
+                <li>Universidad Tecnológica del Chocó</li>
+                <li>Archivo General de la Nación</li>
+                <li>Michigan Technological University Archives</li>
+                <li>Library of Congress</li>
+              </ul>
+              <p class="footer-attribution mt-3">Muntú Bantú / Fundación Social Afrocolombiana — Quibdó, Chocó, Colombia</p>
+            </div>
           </div>
+          {% endif %}
         </div>
+
       </div>
     </div>
-
-  </footer>
+  </div>
+</footer>

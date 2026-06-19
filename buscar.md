@@ -4,7 +4,6 @@ title: Buscar
 lang: es
 permalink: /buscar/
 compactChrome: true
-hideFooter: true
 ---
 
 <section class="container-xl py-5">
