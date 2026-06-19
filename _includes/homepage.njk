@@ -34,7 +34,7 @@ layout: vanilla.njk
 {% for archive in archiveItems %}
   {% if archive.data.order %}
     {% set featuredOrdered = featuredOrdered.concat([archive]) %}
-  {% else %}
+  {% elif archive.data.thumbnail %}
     {% set featuredRest = featuredRest.concat([archive]) %}
   {% endif %}
 {% endfor %}

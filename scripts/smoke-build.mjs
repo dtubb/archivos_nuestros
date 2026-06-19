@@ -230,8 +230,8 @@ function assertLocalBuild(indexHtml, enIndexHtml) {
   assert.ok(enIndexHtml.includes('href="/en/personas/'), 'local / en/index: expected English people link');
   assert.ok(enIndexHtml.includes('href="/en/archives/'), 'local / en/index: expected English archives link');
   assert.ok(enIndexHtml.includes('href="/en/search/'), 'local / en/index: expected English search link');
-  assert.ok(indexHtml.includes('href="/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'local / index: expected local archive link');
-  assert.ok(enIndexHtml.includes('href="/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'local / en/index: expected local archive link');
+  assert.ok(indexHtml.includes('home-featured') && /href="\/archives\/[^"]+\//.test(indexHtml), 'local / index: expected featured collection link');
+  assert.ok(enIndexHtml.includes('home-featured') && /href="\/archives\/[^"]+\//.test(enIndexHtml), 'local / en/index: expected featured collection link');
   assert.ok(!indexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'local / index: source link belongs on record page');
   assert.ok(!enIndexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'local / en/index: source link belongs on record page');
 }
@@ -431,12 +431,12 @@ function assertPrefixedBuild(indexHtml, enIndexHtml) {
   assert.ok(indexHtml.includes('href="/archivos_nuestros/personas'), 'prefixed / index: expected prefixed personas links');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/buscar'), 'prefixed / index: expected prefixed search link');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/en'), 'prefixed / index: expected prefixed en links');
-  assert.ok(indexHtml.includes('href="/archivos_nuestros/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'prefixed / index: expected prefixed archive link');
+  assert.ok(indexHtml.includes('home-featured') && /href="\/archivos_nuestros\/archives\/[^"]+\//.test(indexHtml), 'prefixed / index: expected featured collection link');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/assets'), 'prefixed / en/index: expected prefixed assets links');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en/personas/'), 'prefixed / en/index: expected prefixed English people link');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en/search/'), 'prefixed / en/index: expected prefixed English search link');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en'), 'prefixed / en/index: expected prefixed en links');
-  assert.ok(enIndexHtml.includes('href="/archivos_nuestros/archives/tubb-hidroelectrica-la-vuelta-actualidad/'), 'prefixed / en/index: expected prefixed archive link');
+  assert.ok(enIndexHtml.includes('home-featured') && /href="\/archivos_nuestros\/archives\/[^"]+\//.test(enIndexHtml), 'prefixed / en/index: expected featured collection link');
   assert.ok(!/href="\/(assets|personas|buscar|en|archives|search)/.test(indexHtml), 'prefixed / index: no bare internal hrefs');
   assert.ok(!/src="\/(assets|personas|buscar|en|archives|search)/.test(indexHtml), 'prefixed / index: no bare internal srcs');
   assert.ok(!/href="\/(assets|personas|buscar|en|archives|search)/.test(enIndexHtml), 'prefixed / en/index: no bare internal hrefs');

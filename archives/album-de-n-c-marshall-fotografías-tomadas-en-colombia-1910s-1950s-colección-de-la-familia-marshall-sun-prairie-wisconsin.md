@@ -1,5 +1,4 @@
 ---
-order: 3
 title: Álbum de fotos - N.C. Marshall - tomadas en Colombia, 1910s-1950s - Colección de la
   familia Marshall, Sun Prairie, Wisconsin
 themes:
