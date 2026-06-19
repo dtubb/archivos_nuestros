@@ -2,8 +2,11 @@
 local_backend: true
 
 backend:
-  name: git-gateway
-  branch: main # Branch to update (optional; defaults to master)
+  name: github
+  repo: dtubb/archivos_nuestros
+  branch: main
+  base_url: https://archivosconvida.netlify.app
+  auth_endpoint: .netlify/functions/auth
 # This line should *not* be indented
 media_folder: "assets/media" # Media files will be stored in the repo under images/uploads  
 

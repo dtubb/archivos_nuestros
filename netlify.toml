@@ -1,3 +1,10 @@
+[build]
+  command = "npm run build && npx pagefind --site _site"
+  publish = "_site"
+
+[functions]
+  directory = "netlify/functions"
+
 # Important: Per shadowing rules (force = false) URLs for the
 # language-specific content files are served without redirects.
 
