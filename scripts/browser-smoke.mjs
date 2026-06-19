@@ -194,11 +194,10 @@ async function smokeArchivePage(page, baseUrl, label, screenshotName) {
   const assertIssues = capturePageIssues(page, label);
   await smokePage(page, baseUrl, '/archives/tubb-hidroelectrica-la-vuelta-actualidad/', label, screenshotName);
 
-  const activeImage = page.locator('[data-photo-active-image]');
-  const activeStatus = page.locator('[data-photo-status]');
-  const jumpSelect = page.locator('[data-photo-jump]');
-  const openButton = page.locator('[data-photo-open]');
-  const thumbs = page.locator('[data-photo-thumb]');
+  const activeImage = page.locator('.photo-viewer__main .swiper-slide-active img');
+  const activeStatus = page.locator('.photo-viewer__status');
+  const openButton = page.locator('.photo-viewer__main .swiper-slide-active .glightbox');
+  const thumbs = page.locator('.photo-viewer__thumbs .swiper-slide');
   const lightbox = page.locator('#glightbox-body');
 
   const initialSrc = await activeImage.getAttribute('src');
@@ -207,15 +206,15 @@ async function smokeArchivePage(page, baseUrl, label, screenshotName) {
   await thumbs.nth(1).click();
   await page.waitForFunction(
     ([selector, previousSrc]) => document.querySelector(selector)?.getAttribute('src') !== previousSrc,
-    ['[data-photo-active-image]', initialSrc]
+    ['.photo-viewer__main .swiper-slide-active img', initialSrc]
   );
   await assert.match(await activeStatus.textContent(), /^\s*2\s*\/\s*\d+\s*$/);
   assert.notStrictEqual(await activeImage.getAttribute('src'), initialSrc);
 
-  await jumpSelect.selectOption('0');
+  await thumbs.nth(0).click();
   await page.waitForFunction(
     ([selector, previousSrc]) => document.querySelector(selector)?.getAttribute('src') === previousSrc,
-    ['[data-photo-active-image]', initialSrc]
+    ['.photo-viewer__main .swiper-slide-active img', initialSrc]
   );
   assert.equal(await activeStatus.textContent(), initialStatus);
   assert.equal(await activeImage.getAttribute('src'), initialSrc);
