@@ -4,13 +4,17 @@ layout: vanilla.njk
 
 {% set archiveItems = collections.archives | sort(attribute="data.title") %}
 {% set archiveTypes = [] %}
-{% set archivePlaces = [] %}
+{% set archiveThemes = [] %}
 {% for archive in archiveItems %}
   {% if archive.data.type and archive.data.type not in archiveTypes %}
     {% set archiveTypes = archiveTypes.concat([archive.data.type]) %}
   {% endif %}
-  {% if archive.data.place and archive.data.place not in archivePlaces %}
-    {% set archivePlaces = archivePlaces.concat([archive.data.place]) %}
+  {% if archive.data.themes %}
+    {% for theme in archive.data.themes %}
+      {% if theme and theme not in archiveThemes %}
+        {% set archiveThemes = archiveThemes.concat([theme]) %}
+      {% endif %}
+    {% endfor %}
   {% endif %}
 {% endfor %}
 
@@ -24,14 +28,14 @@ layout: vanilla.njk
           </div>
 
           <div class="archive-toolbar">
-            {% if archivePlaces.length > 1 %}
-            <div class="archive-place-filters" role="group" aria-label="{% if page.lang == 'en' %}Filter archives by place{% else %}Filtrar archivos por lugar{% endif %}">
-              <span class="archive-filter-label">{% if page.lang == 'en' %}Place{% else %}Lugar{% endif %}</span>
-              <button class="ui-chip place-filter is-active" type="button" data-place-filter="all">
+            {% if archiveThemes.length > 1 %}
+            <div class="archive-theme-filters" role="group" aria-label="{% if page.lang == 'en' %}Filter archives by theme{% else %}Filtrar archivos por tema{% endif %}">
+              <span class="archive-filter-label">{% if page.lang == 'en' %}Theme{% else %}Tema{% endif %}</span>
+              <button class="ui-chip theme-filter is-active" type="button" data-theme-filter="all">
                 {% if page.lang == 'en' %}All{% else %}Todas{% endif %}
               </button>
-              {% for place in archivePlaces %}
-              <button class="ui-chip place-filter" type="button" data-place-filter="{{ place }}">{{ place }}</button>
+              {% for theme in archiveThemes %}
+              <button class="ui-chip theme-filter" type="button" data-theme-filter="{{ theme }}">{{ theme }}</button>
               {% endfor %}
             </div>
             {% endif %}
@@ -61,7 +65,7 @@ layout: vanilla.njk
           <div class="row g-4 archive-grid archives-browse__grid" data-archive-grid>
             {%- for archive in archiveItems -%}
             {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
-            <div class="col-xl-4 col-md-6 d-flex archive-item" data-archive-item data-archive-type="{{ archive.data.type or '' }}" data-archive-place="{{ archive.data.place or '' }}">
+            <div class="col-xl-4 col-md-6 d-flex archive-item" data-archive-item data-archive-type="{{ archive.data.type or '' }}" data-archive-themes="{{ archive.data.themes | join('|') if archive.data.themes else '' }}">
               <a href="{{ archive.url | sitePath }}" class="archive-card-link d-flex flex-fill">
                 <article class="doc-frame">
                   <div class="doc-frame__media">
@@ -72,8 +76,8 @@ layout: vanilla.njk
                   <div class="doc-frame__body">
                     <h2 class="doc-frame__title">{{ archive.data.shortTitle or archiveTitle }}</h2>
                     {% set cardSection = sections[archive.data.type] %}
-                    {% if archive.data.place or cardSection %}
-                    <p class="doc-frame__breadcrumb">{% if archive.data.place %}{{ archive.data.place }}{% endif %}{% if archive.data.place and cardSection %} · {% endif %}{% if cardSection %}{{ cardSection.en if page.lang == 'en' else cardSection.es }}{% endif %}</p>
+                    {% if archive.data.themes or cardSection %}
+                    <p class="doc-frame__breadcrumb">{% if archive.data.themes %}{{ archive.data.themes | join(' · ') }}{% endif %}{% if archive.data.themes and cardSection %} · {% endif %}{% if cardSection %}{{ cardSection.en if page.lang == 'en' else cardSection.es }}{% endif %}</p>
                     {% endif %}
                   </div>
                 </article>
@@ -97,7 +101,7 @@ layout: vanilla.njk
               <tbody>
                 {%- for archive in archiveItems -%}
                 {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
-                <tr class="archive-item" data-archive-item data-archive-type="{{ archive.data.type or '' }}" data-archive-place="{{ archive.data.place or '' }}">
+                <tr class="archive-item" data-archive-item data-archive-type="{{ archive.data.type or '' }}" data-archive-themes="{{ archive.data.themes | join('|') if archive.data.themes else '' }}">
                   <td><a href="{{ archive.url | sitePath }}">{{ archive.data.shortTitle or archiveTitle }}</a></td>
                   <td>{{ archive.data.author or '' }}</td>
                   {% set rowSection = sections[archive.data.type] %}
@@ -121,20 +125,21 @@ layout: vanilla.njk
 <script>
   (() => {
     const filterButtons = Array.from(document.querySelectorAll('[data-archive-filter]'));
-    const placeButtons = Array.from(document.querySelectorAll('[data-place-filter]'));
+    const themeButtons = Array.from(document.querySelectorAll('[data-theme-filter]'));
     const items = Array.from(document.querySelectorAll('[data-archive-item]'));
     const viewButtons = Array.from(document.querySelectorAll('[data-archive-view]'));
     const viewPanels = Array.from(document.querySelectorAll('[data-archive-view-panel]'));
     if (!items.length) return;
 
     let activeType = 'all';
-    let activePlace = 'all';
+    let activeTheme = 'all';
 
     const applyFilters = () => {
       items.forEach((item) => {
         const typeMatch = activeType === 'all' || (item.dataset.archiveType || '') === activeType;
-        const placeMatch = activePlace === 'all' || (item.dataset.archivePlace || '') === activePlace;
-        item.classList.toggle('is-hidden', !(typeMatch && placeMatch));
+        const itemThemes = (item.dataset.archiveThemes || '').split('|').filter(Boolean);
+        const themeMatch = activeTheme === 'all' || itemThemes.includes(activeTheme);
+        item.classList.toggle('is-hidden', !(typeMatch && themeMatch));
       });
     };
 
@@ -146,10 +151,10 @@ layout: vanilla.njk
       applyFilters();
     };
 
-    const setActivePlace = (place) => {
-      activePlace = place;
-      placeButtons.forEach((button) => {
-        button.classList.toggle('is-active', button.dataset.placeFilter === place);
+    const setActiveTheme = (theme) => {
+      activeTheme = theme;
+      themeButtons.forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.themeFilter === theme);
       });
       applyFilters();
     };
@@ -167,15 +172,15 @@ layout: vanilla.njk
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => setActiveFilter(button.dataset.archiveFilter || 'all'));
     });
-    placeButtons.forEach((button) => {
-      button.addEventListener('click', () => setActivePlace(button.dataset.placeFilter || 'all'));
+    themeButtons.forEach((button) => {
+      button.addEventListener('click', () => setActiveTheme(button.dataset.themeFilter || 'all'));
     });
     viewButtons.forEach((button) => {
       button.addEventListener('click', () => setActiveView(button.dataset.archiveView || 'grid'));
     });
 
     setActiveFilter('all');
-    setActivePlace('all');
+    setActiveTheme('all');
     setActiveView('grid');
   })();
 </script>

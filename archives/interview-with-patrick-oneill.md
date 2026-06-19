@@ -1,6 +1,7 @@
 ---
 title: Entrevista con Patrick O'Neill (New Canaan, CT--2007)
-place: Chocó
+themes:
+  - Chocó
 titleEng: Interview with Patrick O'Neill (New Canaan, CT--2007)
 desc-es: Patrick O'Neill fue gerente de la Compañía Minera Chocó Pacífico durante años. En
   esta entrevista él cuenta algo de su experiencia de vida.

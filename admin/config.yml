@@ -24,14 +24,18 @@ collections:
       - { label: "Title (Spanish)", name: "title", widget: "string"}
       - { label: "Title (English)", name: "titleEng", widget: "string", required: false }
       - { label: "Short title (thin display title)", name: "shortTitle", widget: "string", required: false }
-      - { label: "Place (entry point, e.g. Chocó)", name: "place", widget: "string", required: false }
+      - label: "Themes"
+        name: "themes"
+        widget: "list"
+        required: false
+        field: { label: "Theme", name: "theme", widget: "string" }
       - { label: "Author", name: "author", widget: "string", required: false }
       - label: "Topics"
         name: "topics"
         widget: "list"
         required: false
         field: { label: "Topic", name: "topic", widget: "string" }
-      - { label: "Material", name: "material", widget: "select", options: ["primary", "secondary", "publication"], required: false }
+      - { label: "Section (primary/secondary/publication)", name: "section", widget: "select", options: ["archival-primary", "research-library", "project-publications"], required: false }
       - { label: "Source / provenance — not the hosting link", name: "source", widget: "string", required: false }
       - { label: "Order", name: "order", widget: "number", required: false }
       - label: "Roles"

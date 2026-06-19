@@ -1,6 +1,7 @@
 ---
 title: Catálogo Documental para la Historia de la Minería en Chocó
-place: Chocó
+themes:
+  - Chocó
 titleEng: Documentary Catalog for the History of Mining in the Chocó
 author: Archivo de la Notaría Única de Nóvita. Digitalización y procesamiento por Daniel Varela
   y Antonio Olmos.

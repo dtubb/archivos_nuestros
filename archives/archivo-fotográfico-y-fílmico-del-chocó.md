@@ -1,6 +1,7 @@
 ---
 title: Archivo Fotográfico y Fílmico del Chocó - Videoteca
-place: Chocó
+themes:
+  - Chocó
 desc-es: '"El Archivo Fotográfico y Fílmico del Chocó, es una  unidad de documentación, sistematización
   y producción audiovisual, creado con la Resolución No 5061 de agosto 05 de 2015, coordinado
   por la Oficina de Comunicaciones de la UTCH y adscrita a la vicerrectoría de Investigación

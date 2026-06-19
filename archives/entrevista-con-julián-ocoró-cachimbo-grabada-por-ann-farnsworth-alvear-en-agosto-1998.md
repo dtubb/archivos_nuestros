@@ -1,6 +1,7 @@
 ---
 title: Entrevista con Julián Ocoró Cachimbo, grabada por Ann Farnsworth-Alvear en Agosto 1998
-place: Chocó
+themes:
+  - Chocó
 author: 'Ocoró Cachimbo, Julián '
 topics:
   - Colombia

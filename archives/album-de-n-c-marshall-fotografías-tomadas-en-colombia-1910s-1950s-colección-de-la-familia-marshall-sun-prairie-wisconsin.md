@@ -1,7 +1,8 @@
 ---
 title: Álbum de fotos - N.C. Marshall - tomadas en Colombia, 1910s-1950s - Colección de la
   familia Marshall, Sun Prairie, Wisconsin
-place: Chocó
+themes:
+  - Chocó
 titleEng: Album of N. C. Marshall - Photographs taken in Colombia, 1910s - 1950s - Marshall Family Collection, Sun Prairie, Wisconsin
 author: Marshall, Newton C.
 topics:
