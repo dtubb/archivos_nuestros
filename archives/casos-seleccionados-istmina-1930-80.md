@@ -1,8 +1,7 @@
 ---
 title: Archivo Histórico Judicial de Istmina 1930-80, Casos procesados en formato Word. Fondo
   Minería 1930-1980.
-titleEng: Fondo Chocó - Archivos - Archivo Histórico Judicial de Istmina 1930-80, Casos procesados
-  en formato Word. Fondo Minería 1930-1980.
+fondo: Chocó
 desc-es: 'Casos seleccionados por Daniel Varela y Angelica Aqualimpia, y procesados usando
   inteligencia artificial por Daniel Tubb, Kelly López Roldán, y Ernestina Lemos Rentería.
 

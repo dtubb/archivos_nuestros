@@ -176,6 +176,16 @@ a:hover {
   margin-top: auto;
 }
 
+/* Entry-point caption under the thin card title: Fondo · Section */
+.doc-frame__breadcrumb {
+  margin: 0;
+  color: var(--ochre);
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .gallery-grid {
   align-items: stretch;
 }

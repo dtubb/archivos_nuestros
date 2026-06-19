@@ -2,3 +2,7 @@ node_modules/
 _site/
 _site-local/
 .DS_Store
+
+# Never commit AI/agent tooling to the public site
+.claude/
+CLAUDE.md
