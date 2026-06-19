@@ -855,6 +855,46 @@ a:hover {
   color: var(--ochre);
 }
 
+/* Homepage v2: hero band ─────────────────────── */
+
+.home-hero {
+  padding-block: 4rem 4.5rem;
+  border-bottom: 1px solid rgba(249, 246, 240, 0.08);
+}
+
+.home-hero__title {
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 0.9rem;
+}
+
+.home-hero__mission {
+  color: rgba(249, 246, 240, 0.78);
+  font-family: var(--font-ui);
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
+  margin: 0;
+  max-width: 58ch;
+}
+
+/* Homepage v2: stronger section entry cards */
+
+.section-card {
+  min-height: 16rem;
+  border-top: 3px solid var(--ochre);
+}
+
+.section-card__title {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+}
+
+.section-card__count {
+  font-size: 0.88rem;
+  color: var(--indigo);
+  font-weight: 600;
+}
+
 /* Photo viewer (Swiper main + thumbnail strip) — size the gallery (#62 follow-up) */
 .photo-viewer__main {
   margin-bottom: 0.6rem;

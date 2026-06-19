@@ -1,4 +1,5 @@
 ---
+order: 6
 title: Ríos del Oro- Folleto (1945), publicado por la CMCP con el apoyo de la revista Forbes
 titleEng: Rivers of Gold - Pamphlet (1945) published by CMCP in collaboration with Forbes
   Magazine

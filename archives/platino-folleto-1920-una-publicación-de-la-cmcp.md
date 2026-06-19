@@ -1,4 +1,5 @@
 ---
+order: 5
 title: Platino - Folleto (1920), una publicación de la CMCP
 titleEng: Platinum - Pamphlet (1920), a publication by CMCP
 author: South American Gold and Platinum

@@ -1,4 +1,5 @@
 ---
+order: 2
 title: Álbum de fotografías - Archivo General de la Nación
 author: Archivo General de la Nación. Fotógrafos varios
 topics:

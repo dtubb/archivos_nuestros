@@ -28,6 +28,25 @@ layout: vanilla.njk
   {% endif %}
 {% endfor %}
 
+{# Split into explicitly ordered (have data.order) and rest (title-sorted) #}
+{% set featuredOrdered = [] %}
+{% set featuredRest = [] %}
+{% for archive in archiveItems %}
+  {% if archive.data.order %}
+    {% set featuredOrdered = featuredOrdered.concat([archive]) %}
+  {% else %}
+    {% set featuredRest = featuredRest.concat([archive]) %}
+  {% endif %}
+{% endfor %}
+{% set featuredOrdered = featuredOrdered | sort(false, false, 'data.order') %}
+
+<section class="home-hero vault-zone">
+  <div class="container-xl">
+    <h1 class="home-hero__title">Archivos con Vida</h1>
+    <p class="home-hero__mission">{% if page.lang == 'en' %}A bilingual repository of primary sources and research materials on the Colombian Pacific.{% else %}Un repositorio bilingüe de fuentes primarias y materiales de investigación sobre el Pacífico colombiano.{% endif %}</p>
+  </div>
+</section>
+
 <div class="wrapper home">
   <div class="content">
 
@@ -94,7 +113,9 @@ layout: vanilla.njk
           <h2>{% if page.lang == 'en' %}Primary Sources{% else %}Fuentes primarias{% endif %}</h2>
         </div>
         <div class="row g-4 archive-grid">
-          {%- for archive in archiveItems -%}
+          {%- set featuredCount = 0 -%}
+          {%- for archive in featuredOrdered -%}
+          {%- if featuredCount < 6 -%}
           {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
           <div class="col-xl-4 col-md-6 d-flex">
             <a href="{{ archive.url | sitePath }}" class="archive-card-link d-flex flex-fill">
@@ -113,6 +134,31 @@ layout: vanilla.njk
               </article>
             </a>
           </div>
+          {%- set featuredCount = featuredCount + 1 -%}
+          {%- endif -%}
+          {%- endfor -%}
+          {%- for archive in featuredRest -%}
+          {%- if featuredCount < 6 -%}
+          {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
+          <div class="col-xl-4 col-md-6 d-flex">
+            <a href="{{ archive.url | sitePath }}" class="archive-card-link d-flex flex-fill">
+              <article class="doc-frame">
+                <div class="doc-frame__media">
+                  {% if archive.data.thumbnail %}
+                  <img src="{{ archive.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ archiveTitle }}">
+                  {% endif %}
+                </div>
+                <div class="doc-frame__body">
+                  <h3 class="doc-frame__title">{{ archive.data.shortTitle or archiveTitle }}</h3>
+                  {% if archive.data.themes %}
+                  <p class="doc-frame__breadcrumb">{{ archive.data.themes | join(' · ') }}</p>
+                  {% endif %}
+                </div>
+              </article>
+            </a>
+          </div>
+          {%- set featuredCount = featuredCount + 1 -%}
+          {%- endif -%}
           {%- endfor -%}
         </div>
       </div>
