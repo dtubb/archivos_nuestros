@@ -231,32 +231,10 @@ compactChrome: true
       {% if record.data.bibtex %}
       <div class="record-citation-block">
         <h2>{% if page.lang == 'en' %}Citation{% else %}Cita{% endif %}</h2>
-        {% if citationBibtex %}
-        <div class="citation-styles">
-          <details class="citation-style" open>
-            <summary>Chicago (CMOS 17)</summary>
-            <div class="citation-formatted">{{ citationBibtex | citeStyle('chicago-author-date') | safe }}</div>
-          </details>
-          <details class="citation-style">
-            <summary>APA 7th</summary>
-            <div class="citation-formatted">{{ citationBibtex | citeStyle('apa') | safe }}</div>
-          </details>
-          <details class="citation-style">
-            <summary>Vancouver</summary>
-            <div class="citation-formatted">{{ citationBibtex | citeStyle('vancouver') | safe }}</div>
-          </details>
-        </div>
-        {% endif %}
-        <details>
-          <summary>BibTeX</summary>
-          <p class="record-citation-key">{{ citationKey }}</p>
-          <pre><code>{{ citationBibtex | escape }}</code></pre>
-          <a
-            class="record-citation-download"
-            download="{{ citationKey }}.bib"
-            href="data:text/plain;charset=utf-8,{{ citationBibtex | urlEncode }}"
-          >{% if page.lang == 'en' %}Download BibTeX{% else %}Descargar BibTeX{% endif %}</a>
-        </details>
+        <div class="citation-formatted">{{ citationBibtex | citeStyle('chicago-author-date') | safe }}</div>
+        <a class="record-citation-download" download="{{ citationKey }}.bib"
+           href="data:text/plain;charset=utf-8,{{ citationBibtex | urlEncode }}"
+        >{% if page.lang == 'en' %}Download BibTeX{% else %}Descargar BibTeX{% endif %}</a>
       </div>
       {% endif %}
     </aside>
