@@ -1027,3 +1027,19 @@ details[open] > .record-details__summary::before { transform: rotate(90deg); }
   background: #ede8de;
 }
 .section-card__media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Collection card summary (homepage) */
+.section-card__summary { margin: 0.4rem 0 0; font-size: 0.9rem; color: var(--ink); opacity: 0.78; }
+
+/* Collection page: scoped search + info aside */
+.coleccion-search {
+  width: 100%; padding: 0.55rem 0.8rem; margin-bottom: 1.5rem;
+  border: 1px solid #d7d0c4; border-radius: 4px; font: inherit; background: #fff;
+}
+.coleccion-aside { position: sticky; top: 1.5rem; align-self: flex-start; }
+.coleccion-aside__map { width: 100%; border-radius: 4px; margin-bottom: 1rem; }
+.coleccion-aside__title { font-size: 1.4rem; margin: 0 0 0.6rem; }
+.coleccion-aside__label { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--oxblood); margin: 1rem 0 0.3rem; }
+.coleccion-aside__curators { list-style: none; padding: 0; margin: 0; }
+.coleccion-aside__curators li { padding: 0.1rem 0; }
+.coleccion-aside__desc { margin-top: 0.8rem; line-height: 1.55; }

@@ -1,28 +1,53 @@
-# The landing-page entry points (Ann + Daniel, 2026-06-20).
-# Records carry the `name_es` value in their `themes` list to join a collection.
-# Inside a collection the records show by the 3 categories:
+# Landing-page entry points (Ann + Daniel). Editable in Decap → "Colecciones".
+# Records join a collection by carrying `name_es` in their `themes` list.
+# Inside a collection, records group by the 3 categories:
 # Fuente primaria · Bibliografía secundaria · Publicaciones nuestras.
-- slug: choco
-  name_es: Chocó
-  name_en: Chocó
-  image: ""
-- slug: mapas
-  name_es: Mapas
-  name_en: Maps
-  image: ""
-- slug: pcn
-  name_es: PCN
-  name_en: PCN
-  image: ""
-- slug: amazonas
-  name_es: Amazonas
-  name_en: Amazonas
-  image: ""
-- slug: afrodiasporica
-  name_es: Afro-Diaspórica
-  name_en: Afro-Diasporic
-  image: ""
-- slug: cauca
-  name_es: Cauca
-  name_en: Cauca
-  image: ""
+colecciones:
+  - slug: choco
+    name_es: Chocó
+    name_en: Chocó
+    image: ""
+    map: ""
+    curators: []
+    description_es: ""
+    description_en: ""
+  - slug: mapas
+    name_es: Mapas
+    name_en: Maps
+    image: ""
+    map: ""
+    curators: []
+    description_es: ""
+    description_en: ""
+  - slug: pcn
+    name_es: PCN
+    name_en: PCN
+    image: ""
+    map: ""
+    curators: []
+    description_es: ""
+    description_en: ""
+  - slug: amazonas
+    name_es: Amazonas
+    name_en: Amazonas
+    image: ""
+    map: ""
+    curators: []
+    description_es: ""
+    description_en: ""
+  - slug: afrodiasporica
+    name_es: Afro-Diaspórica
+    name_en: Afro-Diasporic
+    image: ""
+    map: ""
+    curators: []
+    description_es: ""
+    description_en: ""
+  - slug: cauca
+    name_es: Cauca
+    name_en: Cauca
+    image: ""
+    map: ""
+    curators: []
+    description_es: ""
+    description_en: ""

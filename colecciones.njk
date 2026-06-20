@@ -2,7 +2,7 @@
 layout: vanilla.njk
 lang: es
 pagination:
-  data: colecciones
+  data: colecciones.colecciones
   size: 1
   alias: col
 permalink: "/colecciones/{{ col.slug }}/"
@@ -10,6 +10,7 @@ eleventyComputed:
   title: "Colección {{ col.name_es }}"
 ---
 {%- set colName = col.name_en if page.lang == 'en' else col.name_es -%}
+{%- set colDesc = col.description_en if page.lang == 'en' and col.description_en else col.description_es -%}
 {%- set items = [] -%}
 {%- for a in collections.archives -%}
   {%- if a.data.themes and col.name_es in a.data.themes -%}{%- set items = items.concat([a]) -%}{%- endif -%}
@@ -24,43 +25,87 @@ eleventyComputed:
   <div class="content">
     <section class="reading-zone section-band">
       <div class="container-xl">
-        <p class="eyebrow mb-2">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
-        <h1 class="mb-4">{{ colName }}</h1>
+        <div class="row g-4 g-lg-5">
 
-        {%- for cat in categories -%}
-        {%- set catItems = [] -%}
-        {%- for a in items -%}
-          {%- set sec = a.data.section or 'archival-primary' -%}
-          {%- if sec == cat.key -%}{%- set catItems = catItems.concat([a]) -%}{%- endif -%}
-        {%- endfor -%}
-        {% if catItems.length %}
-        <h2 class="coleccion-category">{% if page.lang == 'en' %}{{ cat.en }}{% else %}{{ cat.es }}{% endif %}</h2>
-        <div class="row g-4 archive-grid mb-4">
-          {%- for a in catItems -%}
-          {%- set href = a.data.link if a.data.type == 'link' and a.data.link else (a.url | sitePath) -%}
-          <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 d-flex">
-            <a href="{{ href }}" class="archive-card-link d-flex flex-fill"{% if a.data.type == 'link' %} target="_blank" rel="noreferrer"{% endif %}>
-              <article class="doc-frame">
-                <div class="doc-frame__media">
-                  {% if a.data.thumbnail %}<img src="{{ a.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ a.data.title }}">{% endif %}
+          <div class="col-lg-8 coleccion-records">
+            <p class="eyebrow mb-2">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
+            <h1 class="mb-3">{{ colName }}</h1>
+
+            {% if items.length %}
+            <input type="search" class="coleccion-search" data-coleccion-search
+                   placeholder="{% if page.lang == 'en' %}Search in this collection…{% else %}Buscar en esta colección…{% endif %}"
+                   aria-label="{% if page.lang == 'en' %}Search in this collection{% else %}Buscar en esta colección{% endif %}">
+            {% endif %}
+
+            {%- for cat in categories -%}
+            {%- set catItems = [] -%}
+            {%- for a in items -%}
+              {%- set sec = a.data.section or 'archival-primary' -%}
+              {%- if sec == cat.key -%}{%- set catItems = catItems.concat([a]) -%}{%- endif -%}
+            {%- endfor -%}
+            {% if catItems.length %}
+            <section class="coleccion-cat" data-coleccion-cat>
+              <h2 class="coleccion-category">{% if page.lang == 'en' %}{{ cat.en }}{% else %}{{ cat.es }}{% endif %}</h2>
+              <div class="row g-4 archive-grid mb-4">
+                {%- for a in catItems -%}
+                {%- set href = a.data.link if a.data.type == 'link' and a.data.link else (a.url | sitePath) -%}
+                {%- set cardTitle = a.data.shortTitle or a.data.title -%}
+                <div class="col-xl-4 col-md-6 d-flex coleccion-card" data-search-text="{{ cardTitle | lower }}">
+                  <a href="{{ href }}" class="archive-card-link d-flex flex-fill"{% if a.data.type == 'link' %} target="_blank" rel="noreferrer"{% endif %}>
+                    <article class="doc-frame">
+                      <div class="doc-frame__media">
+                        {% if a.data.thumbnail %}<img src="{{ a.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ a.data.title }}">{% endif %}
+                      </div>
+                      <div class="doc-frame__body">
+                        <h3 class="doc-frame__title">{{ cardTitle }}</h3>
+                        {% set cardSummary = a.data['summary-en'] if page.lang == 'en' and a.data['summary-en'] else a.data['summary-es'] %}
+                        {% if cardSummary %}<p class="doc-frame__summary">{{ cardSummary }}</p>{% endif %}
+                      </div>
+                    </article>
+                  </a>
                 </div>
-                <div class="doc-frame__body">
-                  <h3 class="doc-frame__title">{{ a.data.shortTitle or a.data.title }}</h3>
-                  {% set cardSummary = a.data['summary-en'] if page.lang == 'en' and a.data['summary-en'] else a.data['summary-es'] %}
-                  {% if cardSummary %}<p class="doc-frame__summary">{{ cardSummary }}</p>{% endif %}
-                </div>
-              </article>
-            </a>
+                {%- endfor -%}
+              </div>
+            </section>
+            {% endif %}
+            {%- endfor -%}
+
+            {% if not items.length %}
+            <p class="record-lede">{% if page.lang == 'en' %}This collection is coming soon.{% else %}Esta colección estará disponible próximamente.{% endif %}</p>
+            {% endif %}
           </div>
-          {%- endfor -%}
-        </div>
-        {% endif %}
-        {%- endfor -%}
 
-        {% if not items.length %}
-        <p class="record-lede">{% if page.lang == 'en' %}This collection is coming soon.{% else %}Esta colección estará disponible próximamente.{% endif %}</p>
-        {% endif %}
+          <aside class="col-lg-4 coleccion-aside">
+            {% if col.map %}<img class="coleccion-aside__map" src="{{ col.map | sitePath }}" alt="{% if page.lang == 'en' %}Map{% else %}Mapa{% endif %} — {{ colName }}">{% endif %}
+            <h2 class="coleccion-aside__title">{{ colName }}</h2>
+            {% if col.curators and col.curators.length %}
+            <p class="coleccion-aside__label">{% if page.lang == 'en' %}Curated by{% else %}Curaduría{% endif %}</p>
+            <ul class="coleccion-aside__curators">{% for c in col.curators %}<li>{{ c }}</li>{% endfor %}</ul>
+            {% endif %}
+            {% if colDesc %}<div class="coleccion-aside__desc">{{ colDesc | md | safe }}</div>{% endif %}
+          </aside>
+
+        </div>
       </div>
     </section>
   </div>
 </div>
+
+<script>
+  // ponytail: client-side filter scoped to this collection's cards — no Pagefind plumbing needed
+  (function () {
+    var input = document.querySelector('[data-coleccion-search]');
+    if (!input) return;
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.coleccion-card'));
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase();
+      cards.forEach(function (card) {
+        card.hidden = q && card.getAttribute('data-search-text').indexOf(q) === -1;
+      });
+      // hide a category heading when all its cards are filtered out
+      document.querySelectorAll('[data-coleccion-cat]').forEach(function (cat) {
+        cat.hidden = !cat.querySelector('.coleccion-card:not([hidden])');
+      });
+    });
+  })();
+</script>

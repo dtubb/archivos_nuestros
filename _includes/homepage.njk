@@ -24,8 +24,9 @@ layout: vanilla.njk
       <div class="container-xl">
         <h2 class="home-colecciones__heading">{% if page.lang == 'en' %}Collections{% else %}Colecciones{% endif %}</h2>
         <div class="row g-4">
-          {%- for col in colecciones -%}
+          {%- for col in colecciones.colecciones -%}
           {%- set colName = col.name_en if page.lang == 'en' else col.name_es -%}
+          {%- set colDesc = col.description_en if page.lang == 'en' and col.description_en else col.description_es -%}
           {%- set colItems = [] -%}
           {%- for archive in archiveItems -%}
             {%- if archive.data.themes and col.name_es in archive.data.themes -%}{%- set colItems = colItems.concat([archive]) -%}{%- endif -%}
@@ -39,6 +40,7 @@ layout: vanilla.njk
                 {% if colImage %}<div class="section-card__media"><img src="{{ colImage | sitePath }}" alt="{{ colName }}"></div>{% endif %}
                 <p class="section-card__eyebrow">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
                 <h3 class="section-card__title">{{ colName }}</h3>
+                {% if colDesc %}<p class="section-card__summary">{{ colDesc }}</p>{% endif %}
               </div>
             </a>
           </div>

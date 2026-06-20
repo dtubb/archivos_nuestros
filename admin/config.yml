@@ -118,3 +118,23 @@ collections:
             fields:
               - { label: "Nombre", name: "name", widget: "string" }
               - { label: "URL", name: "url", widget: "string", required: false }
+      - name: "colecciones"
+        label: "Colecciones (portada + páginas de colección)"
+        file: "_data/colecciones.yml"
+        fields:
+          - label: "Colecciones"
+            name: "colecciones"
+            widget: "list"
+            fields:
+              - { label: "Slug (URL)", name: "slug", widget: "string" }
+              - { label: "Nombre (español)", name: "name_es", widget: "string" }
+              - { label: "Name (English)", name: "name_en", widget: "string" }
+              - { label: "Imagen de portada", name: "image", widget: "image", required: false }
+              - { label: "Mapa", name: "map", widget: "image", required: false }
+              - label: "Curaduría / Curators"
+                name: "curators"
+                widget: "list"
+                required: false
+                field: { label: "Persona", name: "person", widget: "string" }
+              - { label: "Descripción (español)", name: "description_es", widget: "text", required: false }
+              - { label: "Description (English)", name: "description_en", widget: "text", required: false }
