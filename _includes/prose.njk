@@ -1,0 +1,11 @@
+---
+layout: vanilla.njk
+---
+{# Wrapper so a .md body can be plain markdown (markdown-it won't render markdown inside a raw <div>). #}
+<article class="container-xl py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 prose">
+      {{ content | safe }}
+    </div>
+  </div>
+</article>

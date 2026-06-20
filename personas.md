@@ -1,17 +1,21 @@
 ---
-layout: vanilla.njk
+layout: prose.njk
 title: Personas
 ---
 
-<article class="container-xl py-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-7">
-      <p class="eyebrow">Personas</p>
-      <h1 class="mb-4">Quiénes somos</h1>
-      <ul class="people-list">
-        <li>Daniel Tubb</li>
-        <li>Ann Farnsworth-Alvear</li>
-      </ul>
-    </div>
-  </div>
-</article>
+# Personas
+
+## Convocantes
+
+- Daniel Tubb
+- Ann Farnsworth-Alvear
+
+## Colaboradores
+
+- Javier Ricardo Ardila
+- Martín Giraldo
+- Kelly López Roldán
+- Daniel Llano
+- Evelyne Laurent-Perrault
+- Whodson Silva
+- Yurany Perdomo
