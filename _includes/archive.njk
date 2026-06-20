@@ -133,6 +133,30 @@ compactChrome: true
       <p class="record-lede mb-4">{{ recordDesc }}</p>
       {% endif %}
 
+      {% set catalogueText = record.data['catalogue-en'] if page.lang == 'en' and record.data['catalogue-en'] else record.data['catalogue-es'] %}
+      {% set catalogueOrigin = record.data['catalogue-origin'] %}
+      {% if catalogueText %}
+      <details class="record-details mb-3">
+        <summary class="record-details__summary">
+          Catálogo / Catalogue
+          {% if catalogueOrigin == 'ai' %}<span class="origin-badge">con apoyo de IA / AI-assisted</span>{% endif %}
+        </summary>
+        <div class="record-details__body">{{ catalogueText | md | safe }}</div>
+      </details>
+      {% endif %}
+
+      {% set transcriptionText = record.data['transcription-en'] if page.lang == 'en' and record.data['transcription-en'] else record.data['transcription-es'] %}
+      {% set transcriptionOrigin = record.data['transcription-origin'] %}
+      {% if transcriptionText %}
+      <details class="record-details mb-3">
+        <summary class="record-details__summary">
+          Transcripción / Transcription
+          {% if transcriptionOrigin == 'ai' %}<span class="origin-badge">con apoyo de IA / AI-assisted</span>{% endif %}
+        </summary>
+        <div class="record-details__body">{{ transcriptionText | md | safe }}</div>
+      </details>
+      {% endif %}
+
       {% if content | striptags | trim %}
       <div class="archive-body">
         {{ content | safe }}

@@ -58,6 +58,13 @@ collections:
       - { label: "Brief summary (EN)", name: "summary-en", widget: "string", required: false }
       - { label: "Description (Spanish)", name: "desc-es", widget: "markdown", required: false }
       - { label: "Description (English)", name: "desc-en", widget: "markdown", required: false }
+      - { label: "Origen del texto descriptivo", name: "desc-origin", widget: "select", options: ["human", "ai", "ai-reviewed"], default: "human", required: false }
+      - { label: "Catálogo (español)", name: "catalogue-es", widget: "markdown", required: false }
+      - { label: "Catalogue (English)", name: "catalogue-en", widget: "markdown", required: false }
+      - { label: "Origen del catálogo", name: "catalogue-origin", widget: "select", options: ["human", "ai", "ai-reviewed"], default: "human", required: false }
+      - { label: "Transcripción (español)", name: "transcription-es", widget: "markdown", required: false }
+      - { label: "Transcription (English)", name: "transcription-en", widget: "markdown", required: false }
+      - { label: "Origen de la transcripción", name: "transcription-origin", widget: "select", options: ["human", "ai", "ai-reviewed"], default: "human", required: false }
       - { label: "Published", name: "published", widget: "boolean", default: true }
 
   - name: "exhibit" # Used in routes, e.g., /admin/collections/blog

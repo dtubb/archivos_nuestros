@@ -30,6 +30,9 @@ module.exports = function (eleventyConfig) {
         return encodeURIComponent(String(value));
     });
 
+    const md = require("markdown-it")({ html: false, breaks: true, linkify: false });
+    eleventyConfig.addFilter("md", (value) => value ? md.render(String(value)) : "");
+
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("admin");
 
