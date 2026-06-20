@@ -88,7 +88,7 @@ collections:
     label: "Sitio"
     files:
       - name: "site"
-        label: "Configuración del sitio"
+        label: "Configuración del sitio (pie de página, hero)"
         file: "_data/site.yml"
         fields:
           - label: "Hero"
@@ -98,12 +98,23 @@ collections:
               - { label: "Título", name: "title", widget: "string" }
               - { label: "Subtítulo (español)", name: "subtitle_es", widget: "text" }
               - { label: "Subtítulo (inglés)", name: "subtitle_en", widget: "text" }
-          - label: "Apoyos institucionales"
+          - label: "Convocantes / Conveners"
+            name: "conveners"
+            widget: "list"
+            field: { label: "Persona", name: "person", widget: "string" }
+          - label: "Curadores / Curators"
+            name: "curators"
+            widget: "list"
+            field: { label: "Persona", name: "person", widget: "string" }
+          - label: "Agradecimientos especiales / Special thanks"
+            name: "special_thanks"
+            widget: "list"
+            field: { label: "Persona", name: "person", widget: "string" }
+          - { label: "Intro apoyo (ES)", name: "funders_intro_es", widget: "text" }
+          - { label: "Intro apoyo (EN)", name: "funders_intro_en", widget: "text" }
+          - label: "Apoyo financiero / Financial support"
             name: "funders"
             widget: "list"
-            field: { label: "Institución", name: "funder", widget: "string" }
-          - label: "Instituciones aliadas"
-            name: "partners"
-            widget: "list"
-            field: { label: "Institución", name: "partner", widget: "string" }
-          - { label: "Atribución", name: "attribution", widget: "string" }
+            fields:
+              - { label: "Nombre", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string", required: false }
