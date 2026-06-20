@@ -1,7 +1,7 @@
 hero:
   title: "Archivos con Vida"
-  subtitle_es: "Un repositorio de fuentes primarias y materiales de investigación, organizado para compartir."
-  subtitle_en: "A repository of primary sources and research materials, organized to share."
+  subtitle_es: "Un repositorio de fuentes primarias y materiales de investigación."
+  subtitle_en: "A repository of primary sources and research materials."
 
 # Conveners of the site (Daniel first)
 conveners:
