@@ -36,9 +36,6 @@ eleventyComputed:
         <div class="row g-4 g-lg-5">
 
           <div class="col-lg-8 coleccion-records">
-            <p class="eyebrow mb-2">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
-            <h1 class="mb-3">{{ colName }}</h1>
-
             {%- for cat in categories -%}
             {%- set catItems = [] -%}
             {%- for a in items -%}
@@ -81,18 +78,18 @@ eleventyComputed:
 
           <aside class="col-lg-4 coleccion-aside">
             <p class="coleccion-aside__eyebrow">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
-            <h2 class="coleccion-aside__title">{{ colName }}</h2>
+            <h1 class="coleccion-aside__title">{{ colName }}</h1>
+            {% if colDesc %}<div class="coleccion-aside__desc">{{ colDesc | md | safe }}</div>{% endif %}
+            {% if col.curators and col.curators.length %}
+            <p class="coleccion-aside__label">{% if page.lang == 'en' %}Curated by{% else %}Curaduría{% endif %}</p>
+            <ul class="coleccion-aside__curators">{% for c in col.curators %}<li>{{ c }}</li>{% endfor %}</ul>
+            {% endif %}
             {% if items.length %}
             <input type="search" class="coleccion-search" data-coleccion-search
                    placeholder="{% if page.lang == 'en' %}Search in this collection…{% else %}Buscar en esta colección…{% endif %}"
                    aria-label="{% if page.lang == 'en' %}Search in this collection{% else %}Buscar en esta colección{% endif %}">
             {% endif %}
             {% if col.map %}<img class="coleccion-aside__map" src="{{ col.map | sitePath }}" alt="{% if page.lang == 'en' %}Map{% else %}Mapa{% endif %} — {{ colName }}">{% endif %}
-            {% if col.curators and col.curators.length %}
-            <p class="coleccion-aside__label">{% if page.lang == 'en' %}Curated by{% else %}Curaduría{% endif %}</p>
-            <ul class="coleccion-aside__curators">{% for c in col.curators %}<li>{{ c }}</li>{% endfor %}</ul>
-            {% endif %}
-            {% if colDesc %}<div class="coleccion-aside__desc">{{ colDesc | md | safe }}</div>{% endif %}
           </aside>
 
         </div>

@@ -6,11 +6,12 @@ colecciones:
   - slug: choco
     name_es: Chocó
     name_en: Chocó
-    image: ""
+    image: "/assets/media/choco-cover-bw.jpg"
     map: ""
-    curators: []
-    description_es: ""
-    description_en: ""
+    curators:
+      - Ann Farnsworth-Alvear
+    description_es: "Description goes here"
+    description_en: "Description goes here"
   - slug: mapas
     name_es: Mapas
     name_en: Maps
