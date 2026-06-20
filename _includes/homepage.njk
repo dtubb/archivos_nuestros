@@ -39,7 +39,6 @@ layout: vanilla.njk
                 {% if colImage %}<div class="section-card__media"><img src="{{ colImage | sitePath }}" alt="{{ colName }}"></div>{% endif %}
                 <p class="section-card__eyebrow">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
                 <h3 class="section-card__title">{{ colName }}</h3>
-                <p class="section-card__count">{{ colItems.length }} {% if page.lang == 'en' %}{% if colItems.length == 1 %}source{% else %}sources{% endif %}{% else %}{% if colItems.length == 1 %}fuente{% else %}fuentes{% endif %}{% endif %}</p>
               </div>
             </a>
           </div>

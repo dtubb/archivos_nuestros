@@ -38,7 +38,7 @@ eleventyComputed:
         <div class="row g-4 archive-grid mb-4">
           {%- for a in catItems -%}
           {%- set href = a.data.link if a.data.type == 'link' and a.data.link else (a.url | sitePath) -%}
-          <div class="col-xl-4 col-md-6 d-flex">
+          <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 d-flex">
             <a href="{{ href }}" class="archive-card-link d-flex flex-fill"{% if a.data.type == 'link' %} target="_blank" rel="noreferrer"{% endif %}>
               <article class="doc-frame">
                 <div class="doc-frame__media">

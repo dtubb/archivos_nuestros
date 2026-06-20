@@ -30,16 +30,8 @@ compactChrome: true
 {% set firstPhoto = visiblePhotos | first %}
 {% set sequenceLabel = 'sequence' if page.lang == 'en' else 'secuencia' %}
 {% set citationKey = record.data.citationKey or record.fileSlug %}
-{% if record.data.bibtex %}
-  {% set citationBibtex = record.data.bibtex %}
-{% else %}
-  {% set citationBibtex %}@misc{ {{- citationKey | safe -}},
-  title = { {{- recordTitle | safe -}} },
-  author = { {{- record.data.author | safe -}} }{% if record.data.date %},
-  year = { {{- record.data.date | safe -}} }{% endif %}{% if record.data.link %},
-  url = { {{- record.data.link | safe -}} }{% endif %}
-}{% endset %}
-{% endif %}
+{# Citation data comes only from the record's real bibtex (YAML/sheet) — never fabricated #}
+{% set citationBibtex = record.data.bibtex %}
 
 <div class="visually-hidden" aria-hidden="true">
   {% if record.data.type %}
@@ -236,6 +228,7 @@ compactChrome: true
         {% endif %}
       </dl>
 
+      {% if record.data.bibtex %}
       <div class="record-citation-block">
         <h2>{% if page.lang == 'en' %}Citation{% else %}Cita{% endif %}</h2>
         {% if citationBibtex %}
@@ -265,6 +258,7 @@ compactChrome: true
           >{% if page.lang == 'en' %}Download BibTeX{% else %}Descargar BibTeX{% endif %}</a>
         </details>
       </div>
+      {% endif %}
     </aside>
   </div>
 </article>
