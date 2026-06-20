@@ -23,10 +23,9 @@
           <p class="footer-support-group-label">{% if page.lang == 'en' %}Financial support{% else %}Apoyo financiero{% endif %}</p>
           <p class="footer-support-intro">{% if page.lang == 'en' %}{{ site.funders_intro_en }}{% else %}{{ site.funders_intro_es }}{% endif %}</p>
           <ul class="footer-support-list">
-            {% for funder in site.funders %}<li>{{ funder }}</li>
+            {% for funder in site.funders %}<li><a href="{{ funder.url }}" rel="noreferrer" target="_blank">{{ funder.name }}</a></li>
             {% endfor %}
           </ul>
-          <p class="footer-attribution mt-3">{{ site.attribution }}</p>
         </div>
 
       </div>
