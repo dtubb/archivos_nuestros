@@ -135,7 +135,7 @@ a:hover {
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #e8e2d5;
+  background: #f2f2f2; /* neutral placeholder for cards without a thumbnail (was cream) */
 }
 
 .doc-frame__media img {
