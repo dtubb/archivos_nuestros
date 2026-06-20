@@ -47,7 +47,7 @@ collections:
           - { label: "Role", name: "role", widget: "select", options: ["curator", "creator_author", "rights_holder", "editor", "translator", "transcriber", "contributor"] }
           - { label: "Name", name: "name", widget: "string" }
       - { label: "Type", name: "type", widget: "select", options: ["fotos", "documentos", "mapas", "entrevistas", "audiovisuales", "link", "other"], required: false }
-      - { label: "Date (free text — ranges ok, e.g. 1930–1980)", name: "date", widget: "string", required: false }
+      - { label: "Date (free text — ranges ok, e.g. 1930–1980)", name: "displayDate", widget: "string", required: false }
       - { label: "Access", name: "access", widget: "select", options: ["público", "permiso", "restringido"], required: false }
       - { label: "Contact (for permission)", name: "contact", widget: "string", required: false }
       - { label: "Image", name: "thumbnail", widget: "image", required: false }

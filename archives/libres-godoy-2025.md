@@ -1,7 +1,7 @@
 ---
 title: "¡Libres! (2025)"
 author: "Godoy, Matías"
-date: "2025"
+displayDate: "2025"
 themes:
   - Chocó
 section: project-publications

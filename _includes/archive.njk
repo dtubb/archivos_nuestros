@@ -114,7 +114,7 @@ compactChrome: true
         </div>
         {% endif %}
       </section>
-      {% elif record.data.thumbnail %}
+      {% elif record.data.thumbnail and not record.data.pdf and not record.data.video %}
       <figure class="record-thumb mb-4">
         <a class="glightbox" href="{{ record.data.thumbnail | sitePath }}" data-gallery="record-image">
           <img src="{{ record.data.thumbnail | sitePath }}" alt="{{ recordTitle }}" class="img-fluid">
@@ -127,7 +127,10 @@ compactChrome: true
       {% set pdfSrc = record.data.pdf if '://' in record.data.pdf else (record.data.pdf | sitePath) %}
       <section class="record-pdf mb-4" aria-label="{% if page.lang == 'en' %}Document{% else %}Documento{% endif %}">
         <iframe class="record-pdf__frame" src="{{ pdfSrc }}" title="{{ recordTitle }}" loading="lazy"></iframe>
-        <a class="record-pdf__download" href="{{ pdfSrc }}" target="_blank" rel="noreferrer">{% if page.lang == 'en' %}Open / download PDF{% else %}Abrir / descargar PDF{% endif %}</a>
+        <div class="record-pdf__actions">
+          <button type="button" class="record-pdf__fs" onclick="(this.closest('.record-pdf').querySelector('.record-pdf__frame').requestFullscreen())">{% if page.lang == 'en' %}⛶ Fullscreen{% else %}⛶ Pantalla completa{% endif %}</button>
+          <a class="record-pdf__download" href="{{ pdfSrc }}" target="_blank" rel="noreferrer">{% if page.lang == 'en' %}Open / download PDF{% else %}Abrir / descargar PDF{% endif %}</a>
+        </div>
       </section>
       {% endif %}
 
@@ -225,10 +228,10 @@ compactChrome: true
           </dd>
         </div>
         {% endif %}
-        {% if record.data.date %}
+        {% if record.data.displayDate %}
         <div>
           <dt>{% if page.lang == 'en' %}Date{% else %}Fecha{% endif %}</dt>
-          <dd>{{ record.data.date }}</dd>
+          <dd>{{ record.data.displayDate }}</dd>
         </div>
         {% endif %}
         {% if record.data.themes %}
