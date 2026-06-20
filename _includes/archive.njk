@@ -139,11 +139,10 @@ compactChrome: true
         </video>
       </section>
       {% endif %}
-      {% set transcriptText = record.data['transcript-en'] if page.lang == 'en' and record.data['transcript-en'] else record.data['transcript-es'] %}
-      {% if transcriptText %}
-      <section class="record-transcript mb-4">
-        <h2>{% if page.lang == 'en' %}Transcript{% else %}Transcripción{% endif %}</h2>
-        {{ transcriptText | md | safe }}
+      {% if record.data.audio %}
+      {% set audioSrc = record.data.audio if '://' in record.data.audio else (record.data.audio | sitePath) %}
+      <section class="record-audio mb-4" aria-label="Audio">
+        <audio class="record-audio__player" controls preload="metadata" src="{{ audioSrc }}"></audio>
       </section>
       {% endif %}
       {% if recordDesc %}

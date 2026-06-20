@@ -53,8 +53,7 @@ collections:
       - { label: "Image", name: "thumbnail", widget: "image", required: false }
       - { label: "Link", name: "link", widget: "string", required: false }
       - { label: "Video (MP4 path or URL)", name: "video", widget: "string", required: false }
-      - { label: "Transcripción (español)", name: "transcript-es", widget: "markdown", required: false }
-      - { label: "Transcript (English)", name: "transcript-en", widget: "markdown", required: false }
+      - { label: "Audio (MP3 path or URL)", name: "audio", widget: "string", required: false }
       - { label: "Citation key", name: "citationKey", widget: "string", required: false }
       - { label: "Tipo de cita / Citation type", name: "cite_type", widget: "select", options: ["book", "article", "chapter", "report", "interview", "pamphlet", "map", "photographs", "misc"], required: false }
       - { label: "Autor/a de la cita / Cite author", name: "cite_author", widget: "string", required: false }

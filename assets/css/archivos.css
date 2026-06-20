@@ -1066,3 +1066,5 @@ details[open] > .record-details__summary::before { transform: rotate(90deg); }
 /* Audiovisual embed (#79) */
 .record-video__player { width: 100%; background: #000; border-radius: 4px; }
 .record-transcript { font-size: 0.95rem; line-height: 1.6; }
+
+.record-audio__player { width: 100%; }
