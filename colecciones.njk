@@ -31,12 +31,6 @@ eleventyComputed:
             <p class="eyebrow mb-2">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
             <h1 class="mb-3">{{ colName }}</h1>
 
-            {% if items.length %}
-            <input type="search" class="coleccion-search" data-coleccion-search
-                   placeholder="{% if page.lang == 'en' %}Search in this collection…{% else %}Buscar en esta colección…{% endif %}"
-                   aria-label="{% if page.lang == 'en' %}Search in this collection{% else %}Buscar en esta colección{% endif %}">
-            {% endif %}
-
             {%- for cat in categories -%}
             {%- set catItems = [] -%}
             {%- for a in items -%}
@@ -76,6 +70,11 @@ eleventyComputed:
           </div>
 
           <aside class="col-lg-4 coleccion-aside">
+            {% if items.length %}
+            <input type="search" class="coleccion-search" data-coleccion-search
+                   placeholder="{% if page.lang == 'en' %}Search in this collection…{% else %}Buscar en esta colección…{% endif %}"
+                   aria-label="{% if page.lang == 'en' %}Search in this collection{% else %}Buscar en esta colección{% endif %}">
+            {% endif %}
             {% if col.map %}<img class="coleccion-aside__map" src="{{ col.map | sitePath }}" alt="{% if page.lang == 'en' %}Map{% else %}Mapa{% endif %} — {{ colName }}">{% endif %}
             {% if col.curators and col.curators.length %}
             <p class="coleccion-aside__label">{% if page.lang == 'en' %}Curated by{% else %}Curaduría{% endif %}</p>
