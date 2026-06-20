@@ -33,10 +33,11 @@ compactChrome: true
 {% if record.data.bibtex %}
   {% set citationBibtex = record.data.bibtex %}
 {% else %}
-  {% set citationBibtex %}@misc{ {{- citationKey -}},
-  title = { {{- recordTitle -}} },
-  author = { {{- record.data.author -}} }{% if record.data.link %},
-  url = { {{- record.data.link -}} }{% endif %}
+  {% set citationBibtex %}@misc{ {{- citationKey | safe -}},
+  title = { {{- recordTitle | safe -}} },
+  author = { {{- record.data.author | safe -}} }{% if record.data.date %},
+  year = { {{- record.data.date | safe -}} }{% endif %}{% if record.data.link %},
+  url = { {{- record.data.link | safe -}} }{% endif %}
 }{% endset %}
 {% endif %}
 
