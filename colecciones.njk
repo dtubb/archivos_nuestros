@@ -20,6 +20,14 @@ eleventyComputed:
   { key: 'research-library', es: 'Bibliografía secundaria', en: 'Secondary bibliography' },
   { key: 'project-publications', es: 'Publicaciones nuestras', en: 'Our publications' }
 ] -%}
+{%- set typeLabels = {
+  fotos: { es: 'Fotografías', en: 'Photographs' },
+  documentos: { es: 'Documentos', en: 'Documents' },
+  mapas: { es: 'Mapas', en: 'Maps' },
+  entrevistas: { es: 'Entrevistas', en: 'Interviews' },
+  audiovisuales: { es: 'Audiovisuales', en: 'Audiovisual' },
+  link: { es: 'Enlace externo', en: 'External link' }
+} -%}
 
 <div class="wrapper home">
   <div class="content">
@@ -52,6 +60,8 @@ eleventyComputed:
                       </div>
                       <div class="doc-frame__body">
                         <h3 class="doc-frame__title">{{ cardTitle }}</h3>
+                        {%- set tl = typeLabels[a.data.type] -%}
+                        {% if tl %}<p class="doc-frame__breadcrumb">{{ tl.en if page.lang == 'en' else tl.es }}</p>{% endif %}
                         {% set cardSummary = a.data['summary-en'] if page.lang == 'en' and a.data['summary-en'] else a.data['summary-es'] %}
                         {% if cardSummary %}<p class="doc-frame__summary">{{ cardSummary }}</p>{% endif %}
                       </div>
@@ -70,6 +80,8 @@ eleventyComputed:
           </div>
 
           <aside class="col-lg-4 coleccion-aside">
+            <p class="coleccion-aside__eyebrow">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
+            <h2 class="coleccion-aside__title">{{ colName }}</h2>
             {% if items.length %}
             <input type="search" class="coleccion-search" data-coleccion-search
                    placeholder="{% if page.lang == 'en' %}Search in this collection…{% else %}Buscar en esta colección…{% endif %}"

@@ -1057,3 +1057,6 @@ details[open] > .record-details__summary::before { transform: rotate(90deg); }
   font-family: var(--font-ui);
   font-size: 0.9rem;
 }
+
+/* Collection right-panel label (collection identity always on the right) */
+.coleccion-aside__eyebrow { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ochre); margin: 0 0 0.2rem; font-family: var(--font-ui); }
