@@ -3,8 +3,8 @@ hero:
   subtitle_es: "Un repositorio de fuentes primarias y materiales de investigación, organizado para compartir."
   subtitle_en: "A repository of primary sources and research materials, organized to share."
 
-# Site authors (Daniel first author)
-authors:
+# Conveners of the site (Daniel first)
+conveners:
   - "Daniel Tubb"
   - "Ann Farnsworth-Alvear"
 
@@ -14,10 +14,13 @@ curators:
   - "Martín Giraldo"
   - "Kelly López Roldán"
   - "Daniel Llano"
-  - "Sergio Mosquera (Fundación Muntú Bantú)"
   - "Evelyne Laurent-Perrault"
   - "Whodson Silva"
   - "Yurany Perdomo"
+
+# Special thanks
+special_thanks:
+  - "Sergio Mosquera (Fundación Muntú Bantú)"
   - "Cynthia Heider (Penn Libraries)"
 
 # Financial support
@@ -25,7 +28,7 @@ funders_intro_es: "Agradecemos a las siguientes instituciones e individuos por e
 funders_intro_en: "We are grateful to the following institutions and individuals for financial support of projects that led to the collections showcased here:"
 funders:
   - name: "Fundación Mellon (Just Futures — Dispossessions in the Americas)"
-    url: "https://www.mellon.org"
+    url: "https://dia.upenn.edu"
   - name: "SSHRC Canada"
     url: "https://www.sshrc-crsh.gc.ca"
   - name: "University of Pennsylvania (Penn Libraries)"

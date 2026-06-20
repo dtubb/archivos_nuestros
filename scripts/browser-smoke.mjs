@@ -35,8 +35,6 @@ const visibleCopyGuards = [
   '145 image files',
   'Los originales en alta resolución',
   'Full-resolution originals',
-  'Acknowledgements',
-  'Agradecimientos',
 ];
 
 function runEleventy() {

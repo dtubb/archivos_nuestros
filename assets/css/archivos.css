@@ -1018,3 +1018,12 @@ details[open] > .record-details__summary::before { transform: rotate(90deg); }
   padding: 0.15em 0.45em;
   white-space: nowrap;
 }
+
+/* Collection card image (chosen in Decap) */
+.section-card__media {
+  margin: -1px -1px 0.9rem;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #ede8de;
+}
+.section-card__media img { width: 100%; height: 100%; object-fit: cover; }

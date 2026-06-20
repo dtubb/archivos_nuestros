@@ -3,18 +3,26 @@
     <div class="container">
       <div class="row gy-4">
 
-        <div class="col-lg-3 col-md-6">
-          <p class="footer-support-group-label">{% if page.lang == 'en' %}Site authors{% else %}Autores del sitio{% endif %}</p>
+        <div class="col-lg-2 col-md-6">
+          <p class="footer-support-group-label">{% if page.lang == 'en' %}Conveners{% else %}Convocantes{% endif %}</p>
           <ul class="footer-support-list">
-            {% for author in site.authors %}<li>{{ author }}</li>
+            {% for person in site.conveners %}<li>{{ person }}</li>
             {% endfor %}
           </ul>
         </div>
 
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-3 col-md-6">
           <p class="footer-support-group-label">{% if page.lang == 'en' %}Curators{% else %}Curadores{% endif %}</p>
           <ul class="footer-support-list">
             {% for curator in site.curators %}<li>{{ curator }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <p class="footer-support-group-label">{% if page.lang == 'en' %}Special thanks{% else %}Agradecimientos especiales{% endif %}</p>
+          <ul class="footer-support-list">
+            {% for person in site.special_thanks %}<li>{{ person }}</li>
             {% endfor %}
           </ul>
         </div>

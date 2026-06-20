@@ -25,22 +25,20 @@ layout: vanilla.njk
         <h2 class="home-colecciones__heading">{% if page.lang == 'en' %}Collections{% else %}Colecciones{% endif %}</h2>
         <div class="row g-4">
           {%- for col in colecciones -%}
+          {%- set colName = col.name_en if page.lang == 'en' else col.name_es -%}
           {%- set count = 0 -%}
           {%- for archive in archiveItems -%}
-            {%- if archive.data.themes and col.name in archive.data.themes -%}{%- set count = count + 1 -%}{%- endif -%}
+            {%- if archive.data.themes and col.name_es in archive.data.themes -%}{%- set count = count + 1 -%}{%- endif -%}
           {%- endfor -%}
           <div class="col-lg-4 col-md-6 d-flex">
             <a href="{{ ('/colecciones/' + col.slug + '/') | sitePath }}" class="section-card-link d-flex flex-fill">
               <div class="section-card flex-fill">
+                {% if col.image %}<div class="section-card__media"><img src="{{ col.image | sitePath }}" alt="{{ colName }}"></div>{% endif %}
                 <p class="section-card__eyebrow">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
-                <h3 class="section-card__title">{{ col.name }}</h3>
-                <p class="section-card__count">
-                  {%- if count > 0 -%}
-                  {{ count }} {% if page.lang == 'en' %}{% if count == 1 %}source{% else %}sources{% endif %}{% else %}{% if count == 1 %}fuente{% else %}fuentes{% endif %}{% endif %}
-                  {%- else -%}
-                  {% if page.lang == 'en' %}Coming soon{% else %}Próximamente{% endif %}
-                  {%- endif -%}
-                </p>
+                <h3 class="section-card__title">{{ colName }}</h3>
+                {%- if count > 0 -%}
+                <p class="section-card__count">{{ count }} {% if page.lang == 'en' %}{% if count == 1 %}source{% else %}sources{% endif %}{% else %}{% if count == 1 %}fuente{% else %}fuentes{% endif %}{% endif %}</p>
+                {%- endif -%}
               </div>
             </a>
           </div>

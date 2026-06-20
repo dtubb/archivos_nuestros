@@ -7,11 +7,12 @@ pagination:
   alias: col
 permalink: "/colecciones/{{ col.slug }}/"
 eleventyComputed:
-  title: "Colección {{ col.name }}"
+  title: "Colección {{ col.name_es }}"
 ---
+{%- set colName = col.name_en if page.lang == 'en' else col.name_es -%}
 {%- set items = [] -%}
 {%- for a in collections.archives -%}
-  {%- if a.data.themes and col.name in a.data.themes -%}{%- set items = items.concat([a]) -%}{%- endif -%}
+  {%- if a.data.themes and col.name_es in a.data.themes -%}{%- set items = items.concat([a]) -%}{%- endif -%}
 {%- endfor -%}
 {%- set categories = [
   { key: 'archival-primary', es: 'Fuente primaria', en: 'Primary sources' },
@@ -24,7 +25,7 @@ eleventyComputed:
     <section class="reading-zone section-band">
       <div class="container-xl">
         <p class="eyebrow mb-2">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
-        <h1 class="mb-4">{{ col.name }}</h1>
+        <h1 class="mb-4">{{ colName }}</h1>
 
         {%- for cat in categories -%}
         {%- set catItems = [] -%}

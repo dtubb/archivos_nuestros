@@ -207,8 +207,6 @@ function assertCommon(html, label) {
   assert.ok(!html.includes('145 image files'), `${label}: inventory workflow copy should not be present`);
   assert.ok(!html.includes('Los originales en alta resolución'), `${label}: storage workflow note should not be present`);
   assert.ok(!html.includes('Full-resolution originals'), `${label}: storage workflow note should not be present`);
-  assert.ok(!html.includes('Acknowledgements'), `${label}: old credits block label should not be present`);
-  assert.ok(!html.includes('Agradecimientos'), `${label}: old credits block label should not be present`);
   assert.ok(!html.includes('doc-frame__meta'), `${label}: homepage cards should not render metadata pills`);
   assert.ok(!html.includes('doc-frame__date'), `${label}: homepage cards should not foreground record dates`);
 }
@@ -244,8 +242,6 @@ function assertArchiveBrowsePage(archivesHtml, label) {
   assert.ok(!archivesHtml.includes('1 colección publicada'), `${label}: hero stat text should not be present`);
   assert.ok(!archivesHtml.includes('1 collection published'), `${label}: hero stat text should not be present`);
   assert.ok(!archivesHtml.includes('theme-ribbon'), `${label}: inactive thematic ribbon should not be present`);
-  assert.ok(!archivesHtml.includes('Acknowledgements'), `${label}: credits block should not be on the browse page`);
-  assert.ok(!archivesHtml.includes('Agradecimientos'), `${label}: credits block should not be on the browse page`);
   assert.ok(!archivesHtml.includes('Is this thing on?'), `${label}: placeholder copy should not be present`);
   assert.ok(!archivesHtml.includes('Is anything here????'), `${label}: placeholder copy should not be present`);
   assert.ok(archivesHtml.includes('archive-card-link'), `${label}: browse cards should be present`);
