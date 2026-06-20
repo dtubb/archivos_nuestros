@@ -49,6 +49,19 @@ module.exports = function (eleventyConfig) {
         }
     });
 
+    eleventyConfig.addFilter('citeStyle', function(bibtex, template) {
+        if (!bibtex) return '';
+        try {
+            return new Cite(bibtex).format('bibliography', {
+                format: 'html',
+                template: template || 'chicago-author-date',
+                lang: 'en-US'
+            });
+        } catch (e) {
+            return '';
+        }
+    });
+
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("admin");
 

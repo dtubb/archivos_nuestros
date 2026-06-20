@@ -238,9 +238,19 @@ compactChrome: true
       <div class="record-citation-block">
         <h2>{% if page.lang == 'en' %}Citation{% else %}Cita{% endif %}</h2>
         {% if citationBibtex %}
-        <div class="citation-formatted">
-          <h4>Cita / Citation</h4>
-          {{ citationBibtex | cite | safe }}
+        <div class="citation-styles">
+          <details class="citation-style" open>
+            <summary>Chicago (CMOS 17)</summary>
+            <div class="citation-formatted">{{ citationBibtex | citeStyle('chicago-author-date') | safe }}</div>
+          </details>
+          <details class="citation-style">
+            <summary>APA 7th</summary>
+            <div class="citation-formatted">{{ citationBibtex | citeStyle('apa') | safe }}</div>
+          </details>
+          <details class="citation-style">
+            <summary>Vancouver</summary>
+            <div class="citation-formatted">{{ citationBibtex | citeStyle('vancouver') | safe }}</div>
+          </details>
         </div>
         {% endif %}
         <details>
