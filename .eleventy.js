@@ -1,5 +1,8 @@
 const { EleventyI18nPlugin } = require("@11ty/eleventy");
 const { execSync } = require('child_process')
+require('@citation-js/plugin-bibtex');
+require('@citation-js/plugin-csl');
+const { Cite } = require('@citation-js/core');
 
 module.exports = function (eleventyConfig) {
     const siteBasePath = process.env.SITE_BASE_PATH || "";
@@ -32,6 +35,19 @@ module.exports = function (eleventyConfig) {
 
     const md = require("markdown-it")({ html: false, breaks: true, linkify: false });
     eleventyConfig.addFilter("md", (value) => value ? md.render(String(value)) : "");
+
+    eleventyConfig.addFilter('cite', function(bibtex) {
+        if (!bibtex) return '';
+        try {
+            return new Cite(bibtex).format('bibliography', {
+                format: 'html',
+                template: 'chicago-author-date',
+                lang: 'en-US'
+            });
+        } catch (e) {
+            return '';
+        }
+    });
 
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("admin");

@@ -237,13 +237,22 @@ compactChrome: true
 
       <div class="record-citation-block">
         <h2>{% if page.lang == 'en' %}Citation{% else %}Cita{% endif %}</h2>
-        <p class="record-citation-key">{{ citationKey }}</p>
-        <pre><code>{{ citationBibtex | escape }}</code></pre>
-        <a
-          class="record-citation-download"
-          download="{{ citationKey }}.bib"
-          href="data:text/plain;charset=utf-8,{{ citationBibtex | urlEncode }}"
-        >{% if page.lang == 'en' %}Download BibTeX{% else %}Descargar BibTeX{% endif %}</a>
+        {% if citationBibtex %}
+        <div class="citation-formatted">
+          <h4>Cita / Citation</h4>
+          {{ citationBibtex | cite | safe }}
+        </div>
+        {% endif %}
+        <details>
+          <summary>BibTeX</summary>
+          <p class="record-citation-key">{{ citationKey }}</p>
+          <pre><code>{{ citationBibtex | escape }}</code></pre>
+          <a
+            class="record-citation-download"
+            download="{{ citationKey }}.bib"
+            href="data:text/plain;charset=utf-8,{{ citationBibtex | urlEncode }}"
+          >{% if page.lang == 'en' %}Download BibTeX{% else %}Descargar BibTeX{% endif %}</a>
+        </details>
       </div>
     </aside>
   </div>
