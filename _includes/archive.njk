@@ -227,6 +227,12 @@ compactChrome: true
           <dd>{{ record.data.access }}{% if record.data.contact %} — <a class="record-meta-link" href="mailto:{{ record.data.contact }}">{{ record.data.contact }}</a>{% endif %}</dd>
         </div>
         {% endif %}
+        {% if record.data.shorthand %}
+        <div>
+          <dt>{% if page.lang == 'en' %}Shorthand{% else %}Sigla{% endif %}</dt>
+          <dd>{{ record.data.shorthand }}</dd>
+        </div>
+        {% endif %}
       </dl>
 
       <div class="record-citation-block">

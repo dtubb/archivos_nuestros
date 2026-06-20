@@ -24,6 +24,7 @@ collections:
       - { label: "Title (Spanish)", name: "title", widget: "string"}
       - { label: "Title (English)", name: "titleEng", widget: "string", required: false }
       - { label: "Short title (thin display title)", name: "shortTitle", widget: "string", required: false }
+      - { label: "Sigla / Shorthand", name: "shorthand", widget: "string", required: false }
       - label: "Themes"
         name: "themes"
         widget: "list"
