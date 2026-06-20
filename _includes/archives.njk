@@ -2,7 +2,21 @@
 layout: vanilla.njk
 ---
 
-{% set archiveItems = collections.archives | sort(attribute="data.title") %}
+{# Sort: section (archival-primary/unset=0, research-library=1, publications=2) → order asc → title #}
+{% set s0o = [] %}{% set s0t = [] %}{% set s1o = [] %}{% set s1t = [] %}{% set s2o = [] %}{% set s2t = [] %}
+{% for item in collections.archives %}
+  {% if item.data.section == 'research-library' %}
+    {% if item.data.order %}{% set s1o = s1o.concat([item]) %}{% else %}{% set s1t = s1t.concat([item]) %}{% endif %}
+  {% elif item.data.section == 'publications' %}
+    {% if item.data.order %}{% set s2o = s2o.concat([item]) %}{% else %}{% set s2t = s2t.concat([item]) %}{% endif %}
+  {% else %}
+    {% if item.data.order %}{% set s0o = s0o.concat([item]) %}{% else %}{% set s0t = s0t.concat([item]) %}{% endif %}
+  {% endif %}
+{% endfor %}
+{% set s0 = (s0o | sort(false, false, 'data.order')).concat(s0t | sort(attribute="data.title")) %}
+{% set s1 = (s1o | sort(false, false, 'data.order')).concat(s1t | sort(attribute="data.title")) %}
+{% set s2 = (s2o | sort(false, false, 'data.order')).concat(s2t | sort(attribute="data.title")) %}
+{% set archiveItems = s0.concat(s1).concat(s2) %}
 {% set archiveTypes = [] %}
 {% set archiveThemes = [] %}
 {% for archive in archiveItems %}

@@ -2,7 +2,21 @@
 layout: vanilla.njk
 ---
 
-{% set archiveItems = collections.archives | sort(attribute="data.title") %}
+{# Sort: section (archival-primary/unset=0, research-library=1, publications=2) → order asc → title #}
+{% set s0o = [] %}{% set s0t = [] %}{% set s1o = [] %}{% set s1t = [] %}{% set s2o = [] %}{% set s2t = [] %}
+{% for item in collections.archives %}
+  {% if item.data.section == 'research-library' %}
+    {% if item.data.order %}{% set s1o = s1o.concat([item]) %}{% else %}{% set s1t = s1t.concat([item]) %}{% endif %}
+  {% elif item.data.section == 'publications' %}
+    {% if item.data.order %}{% set s2o = s2o.concat([item]) %}{% else %}{% set s2t = s2t.concat([item]) %}{% endif %}
+  {% else %}
+    {% if item.data.order %}{% set s0o = s0o.concat([item]) %}{% else %}{% set s0t = s0t.concat([item]) %}{% endif %}
+  {% endif %}
+{% endfor %}
+{% set s0 = (s0o | sort(false, false, 'data.order')).concat(s0t | sort(attribute="data.title")) %}
+{% set s1 = (s1o | sort(false, false, 'data.order')).concat(s1t | sort(attribute="data.title")) %}
+{% set s2 = (s2o | sort(false, false, 'data.order')).concat(s2t | sort(attribute="data.title")) %}
+{% set archiveItems = s0.concat(s1).concat(s2) %}
 
 {% set allThemes = [] %}
 {% for archive in archiveItems %}
@@ -28,17 +42,7 @@ layout: vanilla.njk
   {% endif %}
 {% endfor %}
 
-{# Split into explicitly ordered (have data.order) and rest (title-sorted) #}
-{% set featuredOrdered = [] %}
-{% set featuredRest = [] %}
-{% for archive in archiveItems %}
-  {% if archive.data.order %}
-    {% set featuredOrdered = featuredOrdered.concat([archive]) %}
-  {% elif archive.data.thumbnail %}
-    {% set featuredRest = featuredRest.concat([archive]) %}
-  {% endif %}
-{% endfor %}
-{% set featuredOrdered = featuredOrdered | sort(false, false, 'data.order') %}
+{# Featured: first 6 from the globally sorted archiveItems list #}
 
 <section class="home-hero vault-zone">
   <div class="container-xl">
@@ -114,31 +118,7 @@ layout: vanilla.njk
         </div>
         <div class="row g-4 archive-grid">
           {%- set featuredCount = 0 -%}
-          {%- for archive in featuredOrdered -%}
-          {%- if featuredCount < 6 -%}
-          {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
-          <div class="col-xl-4 col-md-6 d-flex">
-            <a href="{{ archive.url | sitePath }}" class="archive-card-link d-flex flex-fill">
-              <article class="doc-frame">
-                <div class="doc-frame__media">
-                  {% if archive.data.thumbnail %}
-                  <img src="{{ archive.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ archiveTitle }}">
-                  {% endif %}
-                </div>
-                <div class="doc-frame__body">
-                  <h3 class="doc-frame__title">{{ archive.data.shortTitle or archiveTitle }}</h3>
-                  {% if archive.data.themes %}
-                  <p class="doc-frame__breadcrumb">{{ archive.data.themes | join(' · ') }}</p>
-                  {% endif %}
-                  {% set cardSummary = archive.data['summary-en'] if page.lang == 'en' and archive.data['summary-en'] else archive.data['summary-es'] %}{% if cardSummary %}<p class="doc-frame__summary">{{ cardSummary }}</p>{% endif %}
-                </div>
-              </article>
-            </a>
-          </div>
-          {%- set featuredCount = featuredCount + 1 -%}
-          {%- endif -%}
-          {%- endfor -%}
-          {%- for archive in featuredRest -%}
+          {%- for archive in archiveItems -%}
           {%- if featuredCount < 6 -%}
           {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
           <div class="col-xl-4 col-md-6 d-flex">
