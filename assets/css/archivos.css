@@ -118,7 +118,7 @@ a:hover {
   flex-direction: column;
   min-height: 100%;
   overflow: hidden;
-  background: #ede8de;
+  background: #ffffff;
   border: 1px solid rgba(154, 118, 52, 0.22);
   box-shadow: 0 1px 4px rgba(1, 31, 91, 0.06);
   border-radius: 0.25rem;
@@ -1043,3 +1043,17 @@ details[open] > .record-details__summary::before { transform: rotate(90deg); }
 .coleccion-aside__curators { list-style: none; padding: 0; margin: 0; }
 .coleccion-aside__curators li { padding: 0.1rem 0; }
 .coleccion-aside__desc { margin-top: 0.8rem; line-height: 1.55; }
+
+/* PDF embed on a record's own page (issue #75) — native browser viewer */
+.record-pdf__frame {
+  width: 100%;
+  aspect-ratio: 8.5 / 11;
+  border: 1px solid var(--ochre-line);
+  background: #f2f2f2;
+}
+.record-pdf__download {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+}

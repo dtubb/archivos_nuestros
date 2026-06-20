@@ -122,6 +122,14 @@ compactChrome: true
       </figure>
       {% endif %}
 
+      {% if record.data.pdf %}
+      {# ponytail: native browser PDF viewer via <iframe>; fallback link in case the host sends X-Frame-Options. #}
+      <section class="record-pdf mb-4" aria-label="{% if page.lang == 'en' %}Document{% else %}Documento{% endif %}">
+        <iframe class="record-pdf__frame" src="{{ record.data.pdf }}" title="{{ recordTitle }}" loading="lazy"></iframe>
+        <a class="record-pdf__download" href="{{ record.data.pdf }}" target="_blank" rel="noreferrer">{% if page.lang == 'en' %}Open / download PDF{% else %}Abrir / descargar PDF{% endif %}</a>
+      </section>
+      {% endif %}
+
       {% if recordDesc %}
       <p class="record-lede mb-4">{{ recordDesc }}</p>
       {% endif %}
