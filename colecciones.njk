@@ -77,7 +77,6 @@ eleventyComputed:
 
           <aside class="col-lg-4 coleccion-aside">
             {% if col.map %}<img class="coleccion-aside__map" src="{{ col.map | sitePath }}" alt="{% if page.lang == 'en' %}Map{% else %}Mapa{% endif %} — {{ colName }}">{% endif %}
-            <h2 class="coleccion-aside__title">{{ colName }}</h2>
             {% if col.curators and col.curators.length %}
             <p class="coleccion-aside__label">{% if page.lang == 'en' %}Curated by{% else %}Curaduría{% endif %}</p>
             <ul class="coleccion-aside__curators">{% for c in col.curators %}<li>{{ c }}</li>{% endfor %}</ul>

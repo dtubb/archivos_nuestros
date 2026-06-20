@@ -10,7 +10,7 @@ title: Personas
 - Daniel Tubb
 - Ann Farnsworth-Alvear
 
-## Colaboradores
+## Curadores
 
 - Javier Ricardo Ardila
 - Martín Giraldo
