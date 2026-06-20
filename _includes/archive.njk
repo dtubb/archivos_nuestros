@@ -30,8 +30,8 @@ compactChrome: true
 {% set firstPhoto = visiblePhotos | first %}
 {% set sequenceLabel = 'sequence' if page.lang == 'en' else 'secuencia' %}
 {% set citationKey = record.data.citationKey or record.fileSlug %}
-{# Citation data comes only from the record's real bibtex (YAML/sheet) — never fabricated #}
-{% set citationBibtex = record.data.bibtex %}
+{# Build BibTeX from cite_* fields; fall back to legacy bibtex field for back-compat #}
+{% set citationBibtex = record.data | buildBibtex(citationKey) or record.data.bibtex %}
 
 <div class="visually-hidden" aria-hidden="true">
   {% if record.data.type %}
@@ -228,7 +228,7 @@ compactChrome: true
         {% endif %}
       </dl>
 
-      {% if record.data.bibtex %}
+      {% if citationBibtex %}
       <div class="record-citation-block">
         <h2>{% if page.lang == 'en' %}Citation{% else %}Cita{% endif %}</h2>
         <div class="citation-formatted">{{ citationBibtex | citeStyle('chicago-author-date') | safe }}</div>

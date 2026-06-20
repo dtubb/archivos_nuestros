@@ -144,7 +144,7 @@ function assertAdminConfigSchema() {
     assert.ok(typeField.includes(`"${value}"`), `admin config: archive type option ${value} should be present`);
   }
 
-  for (const field of ['citationKey', 'bibtex', 'photoGrid']) {
+  for (const field of ['citationKey', 'cite_type', 'photoGrid']) {
     assert.ok(archiveCollection.includes(`name: "${field}"`), `admin config: ${field} field should be present`);
   }
 

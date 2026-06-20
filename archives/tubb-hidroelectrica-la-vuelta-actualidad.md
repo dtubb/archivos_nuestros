@@ -16,12 +16,10 @@ thumbnail: /assets/media/la-vuelta-current/tubb2026lavuelta-current-0001.jpg
 photoGrid: la_vuelta_photos
 link: https://upenn.box.com/v/AndaguedaPresente
 citationKey: tubb2026lavuelta-current
-bibtex: |
-  @misc{tubb2026lavuelta-current,
-    title = {Álbum de fotos: La hidroeléctrica en La Vuelta, fotografías actuales de la  (2024)},
-    author = {Daniel Tubb, con apoyo de la SSHRC de Canadá y de la Universidad de New Brunswick},
-    url = {https://upenn.box.com/v/AndaguedaPresente}
-  }
+cite_type: misc
+cite_title: "Álbum de fotos: La hidroeléctrica en La Vuelta, fotografías actuales de la  (2024)"
+cite_author: Daniel Tubb, con apoyo de la SSHRC de Canadá y de la Universidad de New Brunswick
+cite_url: https://upenn.box.com/v/AndaguedaPresente
 layout: archive.njk
 tags:
   - archives

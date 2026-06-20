@@ -49,6 +49,21 @@ module.exports = function (eleventyConfig) {
         }
     });
 
+    eleventyConfig.addFilter('buildBibtex', function(data, key) {
+        const typeMap = {book:'book', article:'article', chapter:'incollection', report:'techreport'};
+        const entryType = typeMap[data.cite_type] || 'misc';
+        const fields = [];
+        if (data.cite_title) fields.push(`  title = {${data.cite_title}}`);
+        if (data.cite_author) fields.push(`  author = {${data.cite_author}}`);
+        if (data.cite_year) fields.push(`  year = {${data.cite_year}}`);
+        if (data.cite_publisher) fields.push(`  publisher = {${data.cite_publisher}}`);
+        if (data.cite_place) fields.push(`  address = {${data.cite_place}}`);
+        if (data.cite_container) fields.push(`  journal = {${data.cite_container}}`);
+        if (data.cite_url) fields.push(`  url = {${data.cite_url}}`);
+        if (!fields.length) return null;
+        return `@${entryType}{${key},\n${fields.join(',\n')}\n}`;
+    });
+
     eleventyConfig.addFilter('citeStyle', function(bibtex, template) {
         if (!bibtex) return '';
         try {

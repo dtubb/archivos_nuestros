@@ -53,7 +53,14 @@ collections:
       - { label: "Image", name: "thumbnail", widget: "image", required: false }
       - { label: "Link", name: "link", widget: "string", required: false }
       - { label: "Citation key", name: "citationKey", widget: "string", required: false }
-      - { label: "BibTeX", name: "bibtex", widget: "text", required: false }
+      - { label: "Tipo de cita / Citation type", name: "cite_type", widget: "select", options: ["book", "article", "chapter", "report", "interview", "pamphlet", "map", "photographs", "misc"], required: false }
+      - { label: "Autor/a de la cita / Cite author", name: "cite_author", widget: "string", required: false }
+      - { label: "Título de la cita / Cite title", name: "cite_title", widget: "string", required: false }
+      - { label: "Año / Year", name: "cite_year", widget: "string", required: false }
+      - { label: "Editorial / Publisher", name: "cite_publisher", widget: "string", required: false }
+      - { label: "Lugar de publicación / Place", name: "cite_place", widget: "string", required: false }
+      - { label: "Revista o contenedor / Container", name: "cite_container", widget: "string", required: false }
+      - { label: "URL de la cita / Cite URL", name: "cite_url", widget: "string", required: false }
       - { label: "Photo grid data key", name: "photoGrid", widget: "string", required: false }
       - { label: "Resumen breve (ES)", name: "summary-es", widget: "string", required: false }
       - { label: "Brief summary (EN)", name: "summary-en", widget: "string", required: false }

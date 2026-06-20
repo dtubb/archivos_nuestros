@@ -11,11 +11,9 @@ topics:
   - Compañías extranjeras
 thumbnail: /assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0001.jpg
 citationKey: platinum-pamphlet-1920
-bibtex: |
-  @misc{platinum-pamphlet-1920,
-    title = {Platino - Folleto (1920), una publicación de la CMCP},
-    author = {South American Gold and Platinum}
-  }
+cite_type: misc
+cite_title: "Platino - Folleto (1920), una publicación de la CMCP"
+cite_author: South American Gold and Platinum
 photoGrid: platinum_photos
 layout: archive.njk
 tags:
