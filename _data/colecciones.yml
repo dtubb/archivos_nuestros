@@ -1,0 +1,17 @@
+# The landing-page entry points (Ann + Daniel, 2026-06-20).
+# Each "Colección" groups records (which carry this value in their `themes` list).
+# Inside a collection the records are shown by the 3 sections:
+# Fuente primaria (archival-primary) · Bibliografía secundaria (research-library)
+# · Publicaciones nuestras (project-publications).
+- slug: choco
+  name: Chocó
+- slug: mapas
+  name: Mapas
+- slug: pcn
+  name: PCN
+- slug: amazonas
+  name: Amazonas
+- slug: afrodiasporica
+  name: afrodiaspórica
+- slug: cauca
+  name: Cauca

@@ -1,23 +1,37 @@
 hero:
   title: "Archivos con Vida"
-  subtitle_es: "Un repositorio bilingüe de fuentes primarias y materiales de investigación sobre el Pacífico colombiano."
-  subtitle_en: "A bilingual repository of primary sources and research materials on the Colombian Pacific."
+  subtitle_es: "Un repositorio de fuentes primarias y materiales de investigación, organizado para compartir."
+  subtitle_en: "A repository of primary sources and research materials, organized to share."
 
+# Site authors (Daniel first author)
+authors:
+  - "Daniel Tubb"
+  - "Ann Farnsworth-Alvear"
+
+# Curators
+curators:
+  - "Javier Ricardo Ardila"
+  - "Martín Giraldo"
+  - "Kelly López Roldán"
+  - "Daniel Llano"
+  - "Sergio Mosquera (Fundación Muntú Bantú)"
+  - "Evelyne Laurent-Perrault"
+  - "Whodson Silva"
+  - "Yurany Perdomo"
+  - "Cynthia Heider (Penn Libraries)"
+
+# Financial support
+funders_intro_es: "Agradecemos a las siguientes instituciones e individuos por el apoyo financiero de los proyectos que dieron lugar a las colecciones aquí presentadas:"
+funders_intro_en: "We are grateful to the following institutions and individuals for the financial support of the projects that led to the collections showcased here:"
 funders:
   - "Fundación Mellon (Just Futures — Dispossessions in the Americas)"
-  - "SSHRC Canadá"
+  - "SSHRC Canada"
   - "University of Pennsylvania (Penn Libraries)"
-  - "Universidad de New Brunswick"
-  - "Universidad de Michigan"
+  - "University of New Brunswick"
+  - "University of Michigan"
   - "Hobart and William Smith Colleges"
-  - "Wolf Humanities Center (Penn)"
-  - "Universidad de Villanova (LePage Center)"
-  - "British Library (EAP1477)"
-
-partners:
-  - "Universidad Tecnológica del Chocó"
-  - "Archivo General de la Nación"
-  - "Michigan Technological University Archives"
-  - "Library of Congress"
+  - "Wolf Humanities Center (University of Pennsylvania)"
+  - "University of Villanova (LePage Center)"
+  - "British Library (EAP1477 and 1740)"
 
 attribution: "Muntú Bantú / Fundación Social Afrocolombiana — Quibdó, Chocó, Colombia"
