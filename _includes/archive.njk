@@ -131,6 +131,21 @@ compactChrome: true
       </section>
       {% endif %}
 
+      {% if record.data.video %}
+      {% set videoSrc = record.data.video if '://' in record.data.video else (record.data.video | sitePath) %}
+      <section class="record-video mb-4" aria-label="{% if page.lang == 'en' %}Video{% else %}Video{% endif %}">
+        <video class="record-video__player" controls preload="metadata"{% if record.data.thumbnail %} poster="{{ record.data.thumbnail | sitePath }}"{% endif %}>
+          <source src="{{ videoSrc }}" type="video/mp4">
+        </video>
+      </section>
+      {% endif %}
+      {% set transcriptText = record.data['transcript-en'] if page.lang == 'en' and record.data['transcript-en'] else record.data['transcript-es'] %}
+      {% if transcriptText %}
+      <section class="record-transcript mb-4">
+        <h2>{% if page.lang == 'en' %}Transcript{% else %}Transcripción{% endif %}</h2>
+        {{ transcriptText | md | safe }}
+      </section>
+      {% endif %}
       {% if recordDesc %}
       <p class="record-lede mb-4">{{ recordDesc }}</p>
       {% endif %}

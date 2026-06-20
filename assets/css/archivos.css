@@ -1062,3 +1062,7 @@ details[open] > .record-details__summary::before { transform: rotate(90deg); }
 .coleccion-aside__eyebrow { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ochre); margin: 0 0 0.2rem; font-family: var(--font-ui); }
 
 .section-card__curator { margin: 0.4rem 0 0; font-family: var(--font-ui); font-size: 0.78rem; color: var(--sage); }
+
+/* Audiovisual embed (#79) */
+.record-video__player { width: 100%; background: #000; border-radius: 4px; }
+.record-transcript { font-size: 0.95rem; line-height: 1.6; }
