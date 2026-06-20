@@ -47,13 +47,13 @@ eleventyComputed:
               <h2 class="coleccion-category">{% if page.lang == 'en' %}{{ cat.en }}{% else %}{{ cat.es }}{% endif %}</h2>
               <div class="row g-4 archive-grid mb-4">
                 {%- for a in catItems -%}
-                {%- set href = a.data.link if a.data.type == 'link' and a.data.link else (a.url | sitePath) -%}
+                {%- set href = a.url | sitePath -%}
                 {%- set cardTitle = a.data.shortTitle or a.data.title -%}
                 <div class="col-xl-4 col-md-6 d-flex coleccion-card" data-search-text="{{ cardTitle | lower }}">
-                  <a href="{{ href }}" class="archive-card-link d-flex flex-fill"{% if a.data.type == 'link' %} target="_blank" rel="noreferrer"{% endif %}>
+                  <a href="{{ href }}" class="archive-card-link d-flex flex-fill">
                     <article class="doc-frame">
                       <div class="doc-frame__media">
-                        {% if a.data.thumbnail %}<img src="{{ a.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ a.data.title }}">{% endif %}
+                        {% if a.data.thumbnail %}<img src="{{ a.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ a.data.title }}">{% else %}<span class="doc-frame__placeholder"><i class="bi {{ 'bi-link-45deg' if a.data.type == 'link' else 'bi-file-earmark-text' }}"></i></span>{% endif %}
                       </div>
                       <div class="doc-frame__body">
                         <h3 class="doc-frame__title">{{ cardTitle }}</h3>
