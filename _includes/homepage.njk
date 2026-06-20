@@ -41,6 +41,7 @@ layout: vanilla.njk
                 <p class="section-card__eyebrow">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
                 <h3 class="section-card__title">{{ colName }}</h3>
                 {% if colDesc %}<p class="section-card__summary">{{ colDesc }}</p>{% endif %}
+                {% if col.curators and col.curators.length %}<p class="section-card__curator">{% if page.lang == 'en' %}Curated by{% else %}Curaduría{% endif %}: {{ col.curators | join(', ') }}</p>{% endif %}
               </div>
             </a>
           </div>
