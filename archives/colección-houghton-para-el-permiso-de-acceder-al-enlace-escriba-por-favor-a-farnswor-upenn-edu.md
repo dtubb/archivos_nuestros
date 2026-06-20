@@ -11,7 +11,7 @@ topics:
   - Vida cotidiana
   - Compañías extranjeras
 type: fotos
-thumbnail: /assets/media/houghton/houghton-photos-0001.jpg
+thumbnail: /assets/media/houghton/houghton_001.jpg
 link: https://upenn.box.com/s/8qkvpjyejqz4cdez7ivkyfmo74dlue5e
 citationKey: houghton-photos
 cite_type: misc

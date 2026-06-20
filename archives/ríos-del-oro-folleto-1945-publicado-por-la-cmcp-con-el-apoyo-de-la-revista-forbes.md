@@ -11,7 +11,7 @@ topics:
   - Minería
   - Compañías extranjeras
 type: other
-thumbnail: /assets/media/rivers-gold/rivers-gold-pamphlet-1940s-0001.jpg
+thumbnail: /assets/media/rivers-gold/rivers_001.jpg
 link: https://upenn.box.com/v/RiversofGold
 citationKey: rivers-gold-pamphlet-1940s
 cite_type: misc

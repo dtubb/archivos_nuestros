@@ -7,7 +7,7 @@ section: research-library
 type: documentos
 displayDate: "2012"
 pdf: "/assets/media/biblio/castillo-varela-companias-choco-pacifico-2012.pdf"
-thumbnail: "/assets/media/biblio/castillo-varela-companias-choco-pacifico-2012-p001.jpg"
+thumbnail: "/assets/media/biblio/castillo-varela-companias-choco-pacifico-2012-p004.jpg"
 layout: archive.njk
 tags:
   - archives

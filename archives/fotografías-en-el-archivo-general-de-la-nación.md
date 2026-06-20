@@ -9,7 +9,7 @@ topics:
   - Vida Cotidiana
   - Compañías Extranjeras
 type: fotos
-thumbnail: /assets/media/archivo-general-nacion/archivo-general-nacion-photos-0001.jpg
+thumbnail: /assets/media/archivo-general-nacion/agn_001.jpg
 link: https://upenn.box.com/s/kafp5sfpz66kts02a7mprjau3i98a248
 citationKey: archivo-general-nacion-photos
 cite_type: misc

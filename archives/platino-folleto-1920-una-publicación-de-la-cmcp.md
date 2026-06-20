@@ -9,7 +9,7 @@ topics:
   - Istmina
   - Minería
   - Compañías extranjeras
-thumbnail: /assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0001.jpg
+thumbnail: /assets/media/platinum-pamphlet-1920/platinum_001.jpg
 citationKey: platinum-pamphlet-1920
 cite_type: misc
 cite_title: "Platino - Folleto (1920), una publicación de la CMCP"

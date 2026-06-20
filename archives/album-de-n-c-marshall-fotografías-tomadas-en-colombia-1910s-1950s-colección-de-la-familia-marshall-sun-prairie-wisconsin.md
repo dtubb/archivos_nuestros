@@ -12,7 +12,7 @@ topics:
   - Minería
   - Compañías extranjeras
 type: fotos
-thumbnail: /assets/media/marshall-colombia/marshall-colombia-photos-0001.jpg
+thumbnail: /assets/media/marshall-colombia/marshall_001.jpg
 link: https://upenn.box.com/v/ColeccionMarshall
 citationKey: marshall-colombia-photos
 cite_type: misc

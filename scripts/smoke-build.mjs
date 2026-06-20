@@ -336,12 +336,12 @@ function assertCollectionPhotoData(path, expectedCount, keyPrefix, mediaPrefix, 
 }
 
 function assertPhotoData() {
-  assertCollectionPhotoData(photoDataPath, 145, 'tubb2026lavuelta-current-', '/assets/media/la-vuelta-current/', 'la vuelta photo data');
-  assertCollectionPhotoData(marshallPhotoDataPath, 21, 'marshall-colombia-photos-', '/assets/media/marshall-colombia/', 'marshall photo data');
-  assertCollectionPhotoData(agnPhotoDataPath, 70, 'archivo-general-nacion-photos-', '/assets/media/archivo-general-nacion/', 'agn photo data');
-  assertCollectionPhotoData(houghtonPhotoDataPath, 278, 'houghton-photos-', '/assets/media/houghton/', 'houghton photo data');
-  assertCollectionPhotoData(platinumPhotoDataPath, 11, 'platinum-pamphlet-1920-', '/assets/media/platinum-pamphlet-1920/', 'platinum photo data');
-  assertCollectionPhotoData(riversGoldPhotoDataPath, 10, 'rivers-gold-pamphlet-1940s-', '/assets/media/rivers-gold/', 'rivers gold photo data');
+  assertCollectionPhotoData(photoDataPath, 145, 'lavuelta_', '/assets/media/la-vuelta-current/', 'la vuelta photo data');
+  assertCollectionPhotoData(marshallPhotoDataPath, 21, 'marshall_', '/assets/media/marshall-colombia/', 'marshall photo data');
+  assertCollectionPhotoData(agnPhotoDataPath, 70, 'agn_', '/assets/media/archivo-general-nacion/', 'agn photo data');
+  assertCollectionPhotoData(houghtonPhotoDataPath, 278, 'houghton_', '/assets/media/houghton/', 'houghton photo data');
+  assertCollectionPhotoData(platinumPhotoDataPath, 11, 'platinum_', '/assets/media/platinum-pamphlet-1920/', 'platinum photo data');
+  assertCollectionPhotoData(riversGoldPhotoDataPath, 10, 'rivers_', '/assets/media/rivers-gold/', 'rivers gold photo data');
 }
 
 function assertAdditionalPhotoArchive(archiveHtml, label, options) {

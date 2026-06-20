@@ -1,68 +1,68 @@
 [
-  {
-    "key": "platinum-pamphlet-1920-0001",
-    "sequence": 1,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0001.jpg",
-    "source_status": "thumbnail_generated"
-  },
-  {
-    "key": "platinum-pamphlet-1920-0002",
-    "sequence": 2,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0002.jpg",
-    "source_status": "thumbnail_generated"
-  },
-  {
-    "key": "platinum-pamphlet-1920-0003",
-    "sequence": 3,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0003.jpg",
-    "source_status": "thumbnail_generated"
-  },
-  {
-    "key": "platinum-pamphlet-1920-0005",
-    "sequence": 4,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0005.jpg",
-    "source_status": "thumbnail_generated"
-  },
-  {
-    "key": "platinum-pamphlet-1920-0006",
-    "sequence": 5,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0006.jpg",
-    "source_status": "thumbnail_generated"
-  },
-  {
-    "key": "platinum-pamphlet-1920-0009",
-    "sequence": 6,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0009.jpg",
-    "source_status": "thumbnail_generated"
-  },
-  {
-    "key": "platinum-pamphlet-1920-0010",
-    "sequence": 7,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0010.jpg",
-    "source_status": "thumbnail_generated"
-  },
-  {
-    "key": "platinum-pamphlet-1920-0012",
-    "sequence": 8,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0012.jpg",
-    "source_status": "thumbnail_generated"
-  },
-  {
-    "key": "platinum-pamphlet-1920-0013",
-    "sequence": 9,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0013.jpg",
-    "source_status": "thumbnail_generated"
-  },
-  {
-    "key": "platinum-pamphlet-1920-0014",
-    "sequence": 10,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0014.jpg",
-    "source_status": "thumbnail_generated"
-  },
-  {
-    "key": "platinum-pamphlet-1920-0016",
-    "sequence": 11,
-    "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum-pamphlet-1920-0016.jpg",
-    "source_status": "thumbnail_generated"
-  }
+ {
+  "key": "platinum_001",
+  "sequence": 1,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_001.jpg",
+  "source_status": "thumbnail_generated"
+ },
+ {
+  "key": "platinum_002",
+  "sequence": 2,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_002.jpg",
+  "source_status": "thumbnail_generated"
+ },
+ {
+  "key": "platinum_003",
+  "sequence": 3,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_003.jpg",
+  "source_status": "thumbnail_generated"
+ },
+ {
+  "key": "platinum_004",
+  "sequence": 4,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_004.jpg",
+  "source_status": "thumbnail_generated"
+ },
+ {
+  "key": "platinum_005",
+  "sequence": 5,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_005.jpg",
+  "source_status": "thumbnail_generated"
+ },
+ {
+  "key": "platinum_006",
+  "sequence": 6,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_006.jpg",
+  "source_status": "thumbnail_generated"
+ },
+ {
+  "key": "platinum_007",
+  "sequence": 7,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_007.jpg",
+  "source_status": "thumbnail_generated"
+ },
+ {
+  "key": "platinum_008",
+  "sequence": 8,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_008.jpg",
+  "source_status": "thumbnail_generated"
+ },
+ {
+  "key": "platinum_009",
+  "sequence": 9,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_009.jpg",
+  "source_status": "thumbnail_generated"
+ },
+ {
+  "key": "platinum_010",
+  "sequence": 10,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_010.jpg",
+  "source_status": "thumbnail_generated"
+ },
+ {
+  "key": "platinum_011",
+  "sequence": 11,
+  "thumbnail": "/assets/media/platinum-pamphlet-1920/platinum_011.jpg",
+  "source_status": "thumbnail_generated"
+ }
 ]
