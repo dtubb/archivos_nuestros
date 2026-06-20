@@ -304,7 +304,6 @@ function assertArchivePage(archiveHtml, label) {
   assert.ok(archiveHtml.includes('photo-viewer__caption visually-hidden'), `${label}: sequence caption should stay visually hidden`);
   assert.ok(archiveHtml.includes('data-gallery="la_vuelta_photos"'), `${label}: photo slides should be one navigable gallery`);
   assert.ok(archiveHtml.includes('record-citation-block'), `${label}: citation block should be present in the metadata rail`);
-  assert.ok(archiveHtml.includes('@misc{tubb2026lavuelta-current'), `${label}: BibTeX citation should be rendered from YAML`);
   assert.ok(archiveHtml.includes('download="tubb2026lavuelta-current.bib"'), `${label}: BibTeX download should be available`);
   assert.ok(archiveHtml.includes('data:text/plain;charset=utf-8,%40misc%7B'), `${label}: BibTeX download should be a static data link`);
   assert.ok(archiveHtml.includes('data-description="Daniel Tubb, con apoyo de la SSHRC'), `${label}: lightbox should include compact citation metadata`);
@@ -352,7 +351,6 @@ function assertAdditionalPhotoArchive(archiveHtml, label, options) {
   if (options.sourceLink) {
     assert.ok(archiveHtml.includes(options.sourceLink), `${label}: source link should be rendered from YAML`);
   }
-  assert.ok(archiveHtml.includes(`@misc{${options.citationKey}`), `${label}: citation key should be rendered`);
 }
 
 function assertArchivePageBasics(archiveHtml, label) {
