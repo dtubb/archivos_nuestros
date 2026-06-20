@@ -2,47 +2,7 @@
 layout: vanilla.njk
 ---
 
-{# Sort: section (archival-primary/unset=0, research-library=1, publications=2) → order asc → title #}
-{% set s0o = [] %}{% set s0t = [] %}{% set s1o = [] %}{% set s1t = [] %}{% set s2o = [] %}{% set s2t = [] %}
-{% for item in collections.archives %}
-  {% if item.data.section == 'research-library' %}
-    {% if item.data.order %}{% set s1o = s1o.concat([item]) %}{% else %}{% set s1t = s1t.concat([item]) %}{% endif %}
-  {% elif item.data.section == 'publications' %}
-    {% if item.data.order %}{% set s2o = s2o.concat([item]) %}{% else %}{% set s2t = s2t.concat([item]) %}{% endif %}
-  {% else %}
-    {% if item.data.order %}{% set s0o = s0o.concat([item]) %}{% else %}{% set s0t = s0t.concat([item]) %}{% endif %}
-  {% endif %}
-{% endfor %}
-{% set s0 = (s0o | sort(false, false, 'data.order')).concat(s0t | sort(attribute="data.title")) %}
-{% set s1 = (s1o | sort(false, false, 'data.order')).concat(s1t | sort(attribute="data.title")) %}
-{% set s2 = (s2o | sort(false, false, 'data.order')).concat(s2t | sort(attribute="data.title")) %}
-{% set archiveItems = s0.concat(s1).concat(s2) %}
-
-{% set allThemes = [] %}
-{% for archive in archiveItems %}
-  {% if archive.data.themes %}
-    {% for theme in archive.data.themes %}
-      {% if theme and theme not in allThemes %}
-        {% set allThemes = allThemes.concat([theme]) %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-{% endfor %}
-
-{% set countArchival = 0 %}
-{% set countBiblio = 0 %}
-{% set countPubs = 0 %}
-{% for archive in archiveItems %}
-  {% if archive.data.section == 'bibliography' %}
-    {% set countBiblio = countBiblio + 1 %}
-  {% elif archive.data.section == 'publications' %}
-    {% set countPubs = countPubs + 1 %}
-  {% else %}
-    {% set countArchival = countArchival + 1 %}
-  {% endif %}
-{% endfor %}
-
-{# Featured: first 6 from the globally sorted archiveItems list #}
+{% set archiveItems = collections.archives %}
 
 <section class="home-hero vault-zone">
   <div class="container-xl">
@@ -60,87 +20,30 @@ layout: vanilla.njk
       </div>
     </section>
 
-    <section class="home-sections section-band">
+    <section class="home-colecciones section-band">
       <div class="container-xl">
+        <h2 class="home-colecciones__heading">{% if page.lang == 'en' %}Collections{% else %}Colecciones{% endif %}</h2>
         <div class="row g-4">
-
-          <div class="col-lg-4 col-md-6 d-flex">
-            <a href="{{ '/archives/' | sitePath }}" class="section-card-link d-flex flex-fill">
-              <div class="section-card flex-fill">
-                <p class="section-card__eyebrow">{% if page.lang == 'en' %}Section{% else %}Sección{% endif %}</p>
-                <h2 class="section-card__title">{% if page.lang == 'en' %}Archival &amp; Primary Materials{% else %}Materiales archivísticos y primarios{% endif %}</h2>
-                <p class="section-card__count">{{ countArchival }} {% if page.lang == 'en' %}{% if countArchival == 1 %}collection{% else %}collections{% endif %}{% else %}{% if countArchival == 1 %}colección{% else %}colecciones{% endif %}{% endif %}</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex">
-            <a href="{{ '/archives/' | sitePath }}" class="section-card-link d-flex flex-fill">
-              <div class="section-card flex-fill">
-                <p class="section-card__eyebrow">{% if page.lang == 'en' %}Section{% else %}Sección{% endif %}</p>
-                <h2 class="section-card__title">{% if page.lang == 'en' %}Research Library / Bibliography{% else %}Biblioteca de investigación{% endif %}</h2>
-                <p class="section-card__count">{{ countBiblio }} {% if page.lang == 'en' %}{% if countBiblio == 1 %}collection{% else %}collections{% endif %}{% else %}{% if countBiblio == 1 %}colección{% else %}colecciones{% endif %}{% endif %}</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex">
-            <a href="{{ '/archives/' | sitePath }}" class="section-card-link d-flex flex-fill">
-              <div class="section-card flex-fill">
-                <p class="section-card__eyebrow">{% if page.lang == 'en' %}Section{% else %}Sección{% endif %}</p>
-                <h2 class="section-card__title">{% if page.lang == 'en' %}Project Publications{% else %}Publicaciones del proyecto{% endif %}</h2>
-                <p class="section-card__count">{{ countPubs }} {% if page.lang == 'en' %}{% if countPubs == 1 %}collection{% else %}collections{% endif %}{% else %}{% if countPubs == 1 %}colección{% else %}colecciones{% endif %}{% endif %}</p>
-              </div>
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    {% if allThemes.length > 0 %}
-    <section class="home-themes section-band">
-      <div class="container-xl">
-        <div class="home-themes__row">
-          <span class="home-themes__label">{% if page.lang == 'en' %}Themes{% else %}Temas{% endif %}</span>
-          {% for theme in allThemes %}
-          <a href="{{ '/archives/' | sitePath }}" class="ui-chip home-theme-chip">{{ theme }}</a>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
-
-    <section class="home-featured section-band">
-      <div class="container-xl">
-        <div class="section-title">
-          <h2>{% if page.lang == 'en' %}Primary Sources{% else %}Fuentes primarias{% endif %}</h2>
-        </div>
-        <div class="row g-4 archive-grid">
-          {%- set featuredCount = 0 -%}
+          {%- for col in colecciones -%}
+          {%- set count = 0 -%}
           {%- for archive in archiveItems -%}
-          {%- if featuredCount < 6 -%}
-          {% set archiveTitle = archive.data.titleEng if page.lang == 'en' and archive.data.titleEng else archive.data.title %}
-          <div class="col-xl-4 col-md-6 d-flex">
-            <a href="{{ archive.url | sitePath }}" class="archive-card-link d-flex flex-fill">
-              <article class="doc-frame">
-                <div class="doc-frame__media">
-                  {% if archive.data.thumbnail %}
-                  <img src="{{ archive.data.thumbnail | sitePath }}" class="img-fluid" alt="{{ archiveTitle }}">
-                  {% endif %}
-                </div>
-                <div class="doc-frame__body">
-                  <h3 class="doc-frame__title">{{ archive.data.shortTitle or archiveTitle }}</h3>
-                  {% if archive.data.themes %}
-                  <p class="doc-frame__breadcrumb">{{ archive.data.themes | join(' · ') }}</p>
-                  {% endif %}
-                  {% set cardSummary = archive.data['summary-en'] if page.lang == 'en' and archive.data['summary-en'] else archive.data['summary-es'] %}{% if cardSummary %}<p class="doc-frame__summary">{{ cardSummary }}</p>{% endif %}
-                </div>
-              </article>
+            {%- if archive.data.themes and col.name in archive.data.themes -%}{%- set count = count + 1 -%}{%- endif -%}
+          {%- endfor -%}
+          <div class="col-lg-4 col-md-6 d-flex">
+            <a href="{{ ('/colecciones/' + col.slug + '/') | sitePath }}" class="section-card-link d-flex flex-fill">
+              <div class="section-card flex-fill">
+                <p class="section-card__eyebrow">{% if page.lang == 'en' %}Collection{% else %}Colección{% endif %}</p>
+                <h3 class="section-card__title">{{ col.name }}</h3>
+                <p class="section-card__count">
+                  {%- if count > 0 -%}
+                  {{ count }} {% if page.lang == 'en' %}{% if count == 1 %}source{% else %}sources{% endif %}{% else %}{% if count == 1 %}fuente{% else %}fuentes{% endif %}{% endif %}
+                  {%- else -%}
+                  {% if page.lang == 'en' %}Coming soon{% else %}Próximamente{% endif %}
+                  {%- endif -%}
+                </p>
+              </div>
             </a>
           </div>
-          {%- set featuredCount = featuredCount + 1 -%}
-          {%- endif -%}
           {%- endfor -%}
         </div>
       </div>

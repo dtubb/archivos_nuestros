@@ -222,16 +222,16 @@ function assertLocalBuild(indexHtml, enIndexHtml) {
   assert.ok(enIndexHtml.includes('href="/assets'), 'local / en/index: expected bare /assets links');
   assert.ok(!indexHtml.includes('/archivos_nuestros/'), 'local / index: should not include /archivos_nuestros prefix');
   assert.ok(!enIndexHtml.includes('/archivos_nuestros/'), 'local / en/index: should not include /archivos_nuestros prefix');
-  assert.ok(indexHtml.includes('Fuentes primarias'), 'local / index: Spanish homepage heading should be present');
-  assert.ok(enIndexHtml.includes('Primary Sources'), 'local / en/index: English homepage heading should be present');
+  assert.ok(indexHtml.includes('Colecciones'), 'local / index: Spanish homepage heading should be present');
+  assert.ok(enIndexHtml.includes('Collections'), 'local / en/index: English homepage heading should be present');
   assert.ok(indexHtml.includes('href="/personas/'), 'local / index: expected Spanish people link');
   assert.ok(indexHtml.includes('href="/buscar/'), 'local / index: expected Spanish search link');
   assert.ok(indexHtml.includes('href="/archives/'), 'local / index: expected Spanish archives link');
   assert.ok(enIndexHtml.includes('href="/en/personas/'), 'local / en/index: expected English people link');
   assert.ok(enIndexHtml.includes('href="/en/archives/'), 'local / en/index: expected English archives link');
   assert.ok(enIndexHtml.includes('href="/en/search/'), 'local / en/index: expected English search link');
-  assert.ok(indexHtml.includes('home-featured') && /href="\/archives\/[^"]+\//.test(indexHtml), 'local / index: expected featured collection link');
-  assert.ok(enIndexHtml.includes('home-featured') && /href="\/archives\/[^"]+\//.test(enIndexHtml), 'local / en/index: expected featured collection link');
+  assert.ok(indexHtml.includes('home-colecciones') && /href="\/colecciones\/[^"]+\//.test(indexHtml), 'local / index: expected collection link');
+  assert.ok(enIndexHtml.includes('home-colecciones') && /href="\/colecciones\/[^"]+\//.test(enIndexHtml), 'local / en/index: expected collection link');
   assert.ok(!indexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'local / index: source link belongs on record page');
   assert.ok(!enIndexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'local / en/index: source link belongs on record page');
 }
@@ -431,18 +431,18 @@ function assertPrefixedBuild(indexHtml, enIndexHtml) {
   assert.ok(indexHtml.includes('href="/archivos_nuestros/personas'), 'prefixed / index: expected prefixed personas links');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/buscar'), 'prefixed / index: expected prefixed search link');
   assert.ok(indexHtml.includes('href="/archivos_nuestros/en'), 'prefixed / index: expected prefixed en links');
-  assert.ok(indexHtml.includes('home-featured') && /href="\/archivos_nuestros\/archives\/[^"]+\//.test(indexHtml), 'prefixed / index: expected featured collection link');
+  assert.ok(indexHtml.includes('home-colecciones') && /href="\/archivos_nuestros\/colecciones\/[^"]+\//.test(indexHtml), 'prefixed / index: expected featured collection link');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/assets'), 'prefixed / en/index: expected prefixed assets links');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en/personas/'), 'prefixed / en/index: expected prefixed English people link');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en/search/'), 'prefixed / en/index: expected prefixed English search link');
   assert.ok(enIndexHtml.includes('href="/archivos_nuestros/en'), 'prefixed / en/index: expected prefixed en links');
-  assert.ok(enIndexHtml.includes('home-featured') && /href="\/archivos_nuestros\/archives\/[^"]+\//.test(enIndexHtml), 'prefixed / en/index: expected featured collection link');
+  assert.ok(enIndexHtml.includes('home-colecciones') && /href="\/archivos_nuestros\/colecciones\/[^"]+\//.test(enIndexHtml), 'prefixed / en/index: expected featured collection link');
   assert.ok(!/href="\/(assets|personas|buscar|en|archives|search)/.test(indexHtml), 'prefixed / index: no bare internal hrefs');
   assert.ok(!/src="\/(assets|personas|buscar|en|archives|search)/.test(indexHtml), 'prefixed / index: no bare internal srcs');
   assert.ok(!/href="\/(assets|personas|buscar|en|archives|search)/.test(enIndexHtml), 'prefixed / en/index: no bare internal hrefs');
   assert.ok(!/src="\/(assets|personas|buscar|en|archives|search)/.test(enIndexHtml), 'prefixed / en/index: no bare internal srcs');
-  assert.ok(indexHtml.includes('Fuentes primarias'), 'prefixed / index: Spanish homepage heading should be present');
-  assert.ok(enIndexHtml.includes('Primary Sources'), 'prefixed / en/index: English homepage heading should be present');
+  assert.ok(indexHtml.includes('Colecciones'), 'prefixed / index: Spanish homepage heading should be present');
+  assert.ok(enIndexHtml.includes('Collections'), 'prefixed / en/index: English homepage heading should be present');
   assert.ok(!indexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'prefixed / index: source link belongs on record page');
   assert.ok(!enIndexHtml.includes('https://upenn.box.com/v/AndaguedaPresente'), 'prefixed / en/index: source link belongs on record page');
 }

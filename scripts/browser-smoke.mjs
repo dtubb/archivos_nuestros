@@ -27,8 +27,6 @@ const visibleCopyGuards = [
   'Secciones públicas actuales',
   '1 colección publicada',
   '1 collection published',
-  'coming soon',
-  'próximamente',
   'theme-ribbon',
   'Primer prototipo',
   'First prototype',
