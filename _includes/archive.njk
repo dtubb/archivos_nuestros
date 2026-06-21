@@ -152,9 +152,14 @@ compactChrome: true
       {% elif record.data.thumbnail and not record.data.pdf and not record.data.video %}
       {% set fullImg = record.data.image or record.data.thumbnail %}
       <figure class="record-thumb mb-4">
-        <a class="glightbox" href="{{ fullImg | sitePath }}" data-gallery="record-image">
+        <a class="glightbox" href="{{ fullImg | sitePath }}" data-gallery="map-siblings" data-title="{{ displayTitle }}">
           <img src="{{ record.data.thumbnail | sitePath }}" alt="{{ recordTitle }}" class="img-fluid">
         </a>
+        {# hidden lightbox links for siblings so fullscreen ←/→ pages through the whole collection (images load on demand) #}
+        {%- set colF = record.data.themes[0] if record.data.themes else null -%}
+        {%- if colF -%}{%- for a in collections.archives -%}{%- if a.data.themes and colF in a.data.themes and a.url != page.url and (a.data.image or a.data.thumbnail) -%}
+        <a class="glightbox d-none" href="{{ (a.data.image or a.data.thumbnail) | sitePath }}" data-gallery="map-siblings" data-title="{{ a.data.shortTitle or a.data.title }}" aria-hidden="true"></a>
+        {%- endif -%}{%- endfor -%}{%- endif -%}
         {% if srcMeta.original_url %}<a class="record-thumb__download" href="{{ srcMeta.original_url }}" target="_blank" rel="noreferrer">{% if page.lang == 'en' %}Download original ↗{% else %}Descargar original ↗{% endif %}</a>{% endif %}
       </figure>
       {% endif %}
