@@ -1108,3 +1108,16 @@ details[open] > .record-details__summary::before { transform: rotate(90deg); }
 .record-filmstrip__item.is-current { border-color: var(--ochre); opacity: 1; }
 .record-filmstrip__item:hover { opacity: 1; }
 .record-filmstrip__ph { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: #f2f2f2; color: var(--ochre); }
+
+/* Filmstrip bar at top (arrows + windowed thumbnails) */
+.record-filmstrip-bar { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--ochre-dim); }
+.record-filmstrip-bar .record-filmstrip { margin: 0; padding: 0; border: 0; flex: 1 1 auto; justify-content: center; }
+.record-filmstrip__arrow { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid var(--ochre-line); color: var(--indigo); text-decoration: none; font-size: 1.4rem; line-height: 1; }
+.record-filmstrip__arrow:hover { background: var(--ochre-dim); color: var(--ochre); }
+.record-filmstrip__arrow.is-disabled { opacity: 0.3; pointer-events: none; }
+.record-filmstrip__item { width: 60px; height: 60px; }
+
+/* Full-width source metadata at bottom (always open) */
+.record-source-full { margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--ochre-line); }
+.record-source-full .record-source__meta { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.5rem 2rem; }
+.record-source-full .record-source__meta dt { margin-top: 0.4rem; }
