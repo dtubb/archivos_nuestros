@@ -152,6 +152,29 @@ compactChrome: true
       <p class="record-lede mb-4">{{ recordDesc }}</p>
       {% endif %}
 
+      {# Source-archive metadata (imported from the map's JSON sidecar) #}
+      {% set srcMeta = source_meta[record.fileSlug] %}
+      {% if srcMeta %}
+      <section class="record-source mb-4">
+        <h2>{% if page.lang == 'en' %}Source archive{% else %}Archivo fuente{% endif %}</h2>
+        <dl class="record-source__meta">
+          {% if srcMeta.source_archive %}<dt>{% if page.lang == 'en' %}Archive{% else %}Archivo{% endif %}</dt><dd>{{ srcMeta.source_archive }}</dd>{% endif %}
+          {% if srcMeta.holding_repository or srcMeta.repository %}<dt>{% if page.lang == 'en' %}Repository{% else %}Repositorio{% endif %}</dt><dd>{{ srcMeta.holding_repository or srcMeta.repository }}</dd>{% endif %}
+          {% if srcMeta.identifier %}<dt>{% if page.lang == 'en' %}Identifier{% else %}Signatura{% endif %}</dt><dd>{{ srcMeta.identifier }}</dd>{% endif %}
+          {% if srcMeta.year or srcMeta.original_date %}<dt>{% if page.lang == 'en' %}Date{% else %}Fecha{% endif %}</dt><dd>{{ srcMeta.year or srcMeta.original_date }}</dd>{% endif %}
+          {% if srcMeta.physical_description %}<dt>{% if page.lang == 'en' %}Physical{% else %}Descripción física{% endif %}</dt><dd>{{ srcMeta.physical_description }}</dd>{% endif %}
+          {% if srcMeta.subject %}<dt>{% if page.lang == 'en' %}Subject{% else %}Materia{% endif %}</dt><dd>{{ srcMeta.subject }}</dd>{% endif %}
+        </dl>
+        {% if srcMeta.record_url %}<a class="record-source__link" href="{{ srcMeta.record_url }}" target="_blank" rel="noreferrer">{% if page.lang == 'en' %}View in source archive ↗{% else %}Ver en el archivo fuente ↗{% endif %}</a>{% endif %}
+        {% if srcMeta.raw_ficha %}
+        <details class="record-details mt-3">
+          <summary class="record-details__summary">{% if page.lang == 'en' %}Full source record{% else %}Ficha completa del archivo{% endif %}</summary>
+          <dl class="record-source__meta record-details__body">{% for row in srcMeta.raw_ficha %}{% if row.value %}<dt>{{ row.label }}</dt><dd>{{ row.value }}</dd>{% endif %}{% endfor %}</dl>
+        </details>
+        {% endif %}
+      </section>
+      {% endif %}
+
       {% set catalogueText = record.data['catalogue-en'] if page.lang == 'en' and record.data['catalogue-en'] else record.data['catalogue-es'] %}
       {% set catalogueOrigin = record.data['catalogue-origin'] %}
       {% if catalogueText %}

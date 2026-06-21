@@ -18,9 +18,18 @@ colecciones:
     image: ""
     map: ""
     curators:
-      - Daniel Tubb
+      - Ann Farnsworth-Alvear
     description_es: "Description goes here"
     description_en: "Description goes here"
+  - slug: canal
+    name_es: Rutas del Canal
+    name_en: Canal Routes
+    image: "/assets/media/canal/canal-atrato-san-juan-darien-1781.jpg"
+    map: ""
+    curators:
+      - Daniel Tubb
+    description_es: "Mapas históricos de las rutas interoceánicas por el Chocó (San Juan–Atrato–Darién), enlazados a sus archivos fuente."
+    description_en: "Historical maps of the interoceanic routes through the Chocó (San Juan–Atrato–Darién), linked to their source archives."
   - slug: pcn
     name_es: PCN
     name_en: PCN
