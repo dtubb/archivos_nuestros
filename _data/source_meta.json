@@ -1,64 +1,150 @@
 {
  "canal-pacifico-quibdo-san-juan": {
-  "status": "downloaded",
-  "record_type": "map",
-  "source_archive": "Banco de la Republica / Banrepcultural",
-  "repository": "Banco de la Republica Cultural - Colombia",
-  "identifier": "p17054coll13:224",
+  "source_archive": "Banco de la República / Banrepcultural",
   "record_url": "https://babel.banrepcultural.org/digital/collection/p17054coll13/id/224/",
-  "iiif_manifest": "https://babel.banrepcultural.org/iiif/2/p17054coll13:224/manifest.json",
-  "discovered_date": "2026-06-03T07:47:32Z",
-  "original_date": "n/a - verify from Banrep record",
-  "title": "[Región del Pacífico entre Quibdó y la desembocadura del río San Juan]",
-  "notes": [
-   "Found via Codex round 6 Banrep ID-range sweep + Claude takeover after Codex backend disconnect"
-  ]
+  "fields": [
+   {
+    "label": "Tema",
+    "value": "Mapas provinciales, departamentales o regionales de Colombia; Cartas hidrográficas; Mapas ilustrados"
+   },
+   {
+    "label": "Cobertura geográfica",
+    "value": "Pacífico (Región, Colombia); Chocó (Colombia); Costa Pacífica (Colombia); San Juan (Río, Colombia)"
+   },
+   {
+    "label": "Autor",
+    "value": "Anónimo"
+   },
+   {
+    "label": "Fecha",
+    "value": "1920"
+   },
+   {
+    "label": "Descripción",
+    "value": "Mapa manuscrito de la región del Chocó (Segunda parte)"
+   },
+   {
+    "label": "Dimensiones",
+    "value": "48 x 67 cm"
+   },
+   {
+    "label": "Formato",
+    "value": "JPG"
+   },
+   {
+    "label": "Idioma",
+    "value": "SPA - Español"
+   },
+   {
+    "label": "Número topográfico",
+    "value": "H453"
+   },
+   {
+    "label": "Palabras clave",
+    "value": "Mapas antiguos; Manuscritos; Planos; Relieves; Hidrografía; Ríos; Navegación; Transporte; Comunicaciones; Canalización"
+   },
+   {
+    "label": "Derechos de autor",
+    "value": "Dominio público"
+   },
+   {
+    "label": "Materias",
+    "value": "Geografía e Historia; Geografía e Historia / Historia general de América del Sur"
+   },
+   {
+    "label": "Título",
+    "value": "[Región del Pacífico entre Quibdó y la desembocadura del río San Juan]"
+   },
+   {
+    "label": "Tipo de documento",
+    "value": "Mapa"
+   },
+   {
+    "label": "Repository",
+    "value": "Colecciones digitales - Biblioteca Virtual Banco de la República "
+   },
+   {
+    "label": "Source",
+    "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/224\">[Región del Pacífico entre Quibdó y la desembocadura del río San Juan]</a></span>"
+   }
+  ],
+  "_date": "1920"
  },
  "canal-intendencia-choco": {
-  "status": "downloaded",
-  "record_type": "map",
-  "source_archive": "Banco de la Republica / Banrepcultural",
-  "repository": "Banco de la Republica Cultural - Colombia",
-  "identifier": "p17054coll13:242",
+  "source_archive": "Banco de la República / Banrepcultural",
   "record_url": "https://babel.banrepcultural.org/digital/collection/p17054coll13/id/242/",
-  "iiif_manifest": "https://babel.banrepcultural.org/iiif/2/p17054coll13:242/manifest.json",
-  "discovered_date": "2026-06-03T07:47:32Z",
-  "original_date": "n/a - verify from Banrep record",
-  "title": "Mapa del territorio de la intendencia del Chocó, en donde se encuentran yacimientos de platino y de oro",
-  "notes": [
-   "Found via Codex round 6 Banrep ID-range sweep + Claude takeover after Codex backend disconnect"
-  ]
+  "fields": [
+   {
+    "label": "Tema",
+    "value": "Mapas provinciales, departamentales o regionales de Colombia; Económicos; Geológicos"
+   },
+   {
+    "label": "Cobertura geográfica",
+    "value": "Chocó (Colombia)"
+   },
+   {
+    "label": "Autor",
+    "value": "Anónimo"
+   },
+   {
+    "label": "Fecha",
+    "value": "1907"
+   },
+   {
+    "label": "Descripción",
+    "value": "Mapa de la intendencia del Chocó, antigua entidad territorial colombiana creada en 1906 tras la separación de la provincia del Chocó del departamento de Cauca. Durante este periodo la región experimentó un renacer económico gracias a su ubicación geográfica y desarrollo minero, especialmente de platino, base fundamental de la actividad económica del sector. Este mapa indica zonas y ríos donde se encuentra platino y oro. Contiene nota manuscrita en el vuelto del folio: “Mapa de la Intendencia del Chocó en Colombia 1907”. Escala expresada en miriámetros. Impreso por Litografía Nacional."
+   },
+   {
+    "label": "Dimensiones",
+    "value": "52 x 26 cm"
+   },
+   {
+    "label": "Formato",
+    "value": "JPG"
+   },
+   {
+    "label": "Idioma",
+    "value": "SPA - Español"
+   },
+   {
+    "label": "Número topográfico",
+    "value": "C10062"
+   },
+   {
+    "label": "Palabras clave",
+    "value": "Mapas regionales; Yacimientos minerales; Minas de oro; Minas de platino; Estructura de suelos; Minería; Intendencia de Chocó"
+   },
+   {
+    "label": "Derechos de autor",
+    "value": "Dominio público"
+   },
+   {
+    "label": "Materias",
+    "value": "Geografía e Historia; Geografía e Historia / Historia general de América del Sur"
+   },
+   {
+    "label": "Título",
+    "value": "Mapa del territorio de la intendencia del Chocó, en donde se encuentran yacimientos de platino y de oro"
+   },
+   {
+    "label": "Tipo de documento",
+    "value": "Mapa"
+   },
+   {
+    "label": "Repository",
+    "value": "Colecciones digitales - Biblioteca Virtual Banco de la República "
+   },
+   {
+    "label": "Source",
+    "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/242\">Mapa del territorio de la intendencia del Chocó, en donde se encuentran yacimientos de platino y de oro</a></span>"
+   }
+  ],
+  "_date": "1907"
  },
  "canal-atrato-san-juan-darien-1781": {
-  "status": "candidate",
-  "record_type": "map",
   "source_archive": "BVMDefensa",
-  "repository": "Biblioteca Virtual del Ministerio de Defensa (España)",
-  "holding_repository": "Archivo General Militar de Madrid",
-  "identifier": "COL-14/3",
   "record_url": "https://bibliotecavirtual.defensa.gob.es/BVMDefensa/es/consulta/registro.do?id=113262",
-  "image_group_url": "https://bibliotecavirtual.defensa.gob.es/BVMDefensa/es/catalogo_imagenes/grupo.do?path=211741",
-  "discovered_date": "2026-05-11T10:08:21Z",
-  "discovered_via": "search hit (#43 BVMDefensa pass 2)",
-  "title": "Plano particular de un trecho del Rio del Choco llamado de San Juan o del Trato que desagua en el Golfo del Darien en que se comprehende el de la Loma de las Pulgas y sus perfiles [sic] : Para la inteligencia de la colocacion del Fuerte Provisional que se ha de egecutar en ella de orden del Excelentissimo Señor Virrey Dn. Manuel Antonio de Florez [sic] / Levantado por el Capitan e Yngeniero ordinario Dn. Juan Ximenez Donoso ; Antonio de Arebalo [sic]",
-  "title_uniforme": "ATRATO (Colombia) (Río). Fortificaciones. 1:4478 (1781)",
-  "publication": "C[art]agena de Yndias 1o. de julio de 1781 [sic]",
-  "original_date": "C[art]agena de Yndias 1o. de julio de 1781 [sic]",
-  "year": "1781",
-  "physical_description": "1 plano : ms., col., papel verjurado con marca de aguas:\"?\" con escudo, montado sobre tela ; 41 x 56 cm",
-  "subject": "Fortificaciones ‌ Proyectos ‌ Planta arquitectónica ‌ Perfiles ‌ Topónimos antiguos ‌ Ríos ‌ Montañas ‌ 1781 ‌ Atrato (Río) ‌ Chocó",
-  "other_authors": "Arévalo, Antonio de, 1715-1800 ‌ Jiménez Donoso, Juan",
-  "cdu": "861:282.28 Atrato",
-  "notes_field": "Presenta el plano de la planta y 3 perfiles del citado fuerte, así como un plano de situación del mismo Manuscrito firmado y rubricado por el autor Escala [ca. 1:4478] para el plano de situación, e indeterminada para el resto. Orientado con lis en rosa de cho vientos Relieve de perfil, representado por sombreado y puntos acotados, indicando las distancias en pies desde sus ángulos al centro del mismo, en el plano de situación Manuscrito a plumilla en tinta negra y coloreado a la acuarela en verde, rosa, gris y amarillo Relación de las estancias y dependencias del fuerte, indicadas mediante clave Nota explicativa sobre la altura que alcanza el nivel del río y de la montaña sobre la que se asienta el fuerte Sello del depósito general topográfico de ingenieros",
-  "image_ids": [
-   "2162134"
-  ],
-  "image_download_urls": [
-   "https://bibliotecavirtual.defensa.gob.es/BVMDefensa/es/catalogo_imagenes/imagen_id.do?idImagen=2162134&formato=jpg&registrardownload=0"
-  ],
-  "bvmdefensa_path_id": "211741",
-  "bvmdefensa_record_id": "113262",
-  "raw_ficha": [
+  "fields": [
    {
     "label": "Título uniforme",
     "value": "ATRATO (Colombia) (Río). Fortificaciones. 1:4478 (1781)"
@@ -116,17 +202,10 @@
     "value": "La copia digital se distribuye bajo licencia CC BY 4.0 que permite compartir y adaptar el material siempre que se mencione la procedencia \"Fuente: Archivo General Militar de Madrid / Biblioteca Virtual de Defensa\""
    },
    {
-    "label": "_",
-    "value": "Archivo General Militar de Madrid Signatura: COL-14/3 — Código de barras: 2119494"
-   },
-   {
-    "label": "_",
-    "value": "‌ Objetos digitales"
-   },
-   {
     "label": "Holding repository",
     "value": "Archivo General Militar de Madrid"
    }
-  ]
+  ],
+  "_date": "C[art]agena de Yndias 1o. de julio de 1781 [sic]"
  }
 }

@@ -21,9 +21,9 @@ colecciones:
       - Ann Farnsworth-Alvear
     description_es: "Description goes here"
     description_en: "Description goes here"
-  - slug: canal
-    name_es: Rutas del Canal
-    name_en: Canal Routes
+  - slug: mapas-historicos-choco
+    name_es: "Mapas históricos del Chocó (San Juan–Atrato–Darién)"
+    name_en: "Historical Maps of the Chocó (San Juan–Atrato–Darién)"
     image: "/assets/media/canal/canal-atrato-san-juan-darien-1781.jpg"
     map: ""
     curators:

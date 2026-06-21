@@ -1090,3 +1090,21 @@ details[open] > .record-details__summary::before { transform: rotate(90deg); }
 .record-source__meta dt { font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sage); }
 .record-source__meta dd { margin: 0; color: var(--indigo); }
 .record-source__link { display: inline-block; margin-top: 0.75rem; font-family: var(--font-ui); font-size: 0.9rem; }
+
+/* Source metadata in right rail (always shown) */
+.record-source { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--ochre-dim); }
+.record-source__title { font-size: 1rem; margin: 0 0 0.4rem; }
+.record-source__archive { font-family: var(--font-ui); font-size: 0.8rem; color: var(--ochre); margin: 0 0 0.6rem; }
+.record-source__meta { margin: 0; font-size: 0.82rem; }
+.record-source__meta dt { font-family: var(--font-ui); font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--sage); margin-top: 0.5rem; }
+.record-source__meta dd { margin: 0.1rem 0 0; color: var(--indigo); line-height: 1.45; }
+.record-source__link { display: inline-block; margin-top: 0.8rem; font-family: var(--font-ui); font-size: 0.85rem; }
+.record-thumb__download { display: inline-block; margin-top: 0.5rem; font-family: var(--font-ui); font-size: 0.85rem; }
+
+/* Sub-collection filmstrip (small thumbnails) */
+.record-filmstrip { display: flex; gap: 0.4rem; overflow-x: auto; margin-top: 1.5rem; padding: 0.75rem 0 0.5rem; border-top: 1px solid var(--ochre-dim); }
+.record-filmstrip__item { flex: 0 0 auto; width: 54px; height: 54px; border-radius: 3px; overflow: hidden; border: 2px solid transparent; opacity: 0.7; }
+.record-filmstrip__item img { width: 100%; height: 100%; object-fit: cover; }
+.record-filmstrip__item.is-current { border-color: var(--ochre); opacity: 1; }
+.record-filmstrip__item:hover { opacity: 1; }
+.record-filmstrip__ph { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: #f2f2f2; color: var(--ochre); }

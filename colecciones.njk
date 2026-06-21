@@ -49,7 +49,11 @@ eleventyComputed:
                 {%- for a in catItems -%}
                 {%- set href = a.url | sitePath -%}
                 {%- set cardTitle = a.data.shortTitle or a.data.title -%}
-                <div class="col-xl-4 col-md-6 d-flex coleccion-card" data-search-text="{{ cardTitle | lower }}">
+                {%- set searchText = cardTitle ~ ' ' ~ a.data.title -%}
+                {%- if a.data.topics -%}{%- set searchText = searchText ~ ' ' ~ (a.data.topics | join(' ')) -%}{%- endif -%}
+                {%- set sm = source_meta[a.fileSlug] -%}
+                {%- if sm and sm.fields -%}{%- for f in sm.fields -%}{%- set searchText = searchText ~ ' ' ~ f.value -%}{%- endfor -%}{%- endif -%}
+                <div class="col-xl-4 col-md-6 d-flex coleccion-card" data-search-text="{{ searchText | lower }}">
                   <a href="{{ href }}" class="archive-card-link d-flex flex-fill">
                     <article class="doc-frame">
                       <div class="doc-frame__media">
