@@ -4,6 +4,18 @@ themes:
   - "Mapas históricos del Chocó (San Juan–Atrato–Darién)"
 section: archival-primary
 type: mapas
+cite_type: map
+cite_author: "Peralta y Alfaro, Manuel María de, 1847-1930"
+cite_title: "Mapa de Costa Rica, istmo de Panamá, Veragua y costa de Mosquitos para servir a la historia de la demarcación territorial de las repúblicas de Costa Rica y Colombia / construido bajo la dirección del Sr. D. Manuel M. de Peralta, enviado extraordinario y ministro plenipotenciario de la república de Costa Rica en España, etc., etc."
+cite_year: "1890"
+cite_publisher: ""
+topics:
+  - Mapas históricos
+  - Atlas
+  - Divisiones adiministrativas y políticas
+  - Límites
+  - Relieves
+  - Veragua real
 displayDate: "1890"
 source: "Banco de la República / Banrepcultural"
 link: "https://babel.banrepcultural.org/digital/collection/p17054coll13/id/723/"

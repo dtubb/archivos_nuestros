@@ -1119,5 +1119,7 @@ details[open] > .record-details__summary::before { transform: rotate(90deg); }
 
 /* Full-width source metadata at bottom (always open) */
 .record-source-full { margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--ochre-line); }
-.record-source-full .record-source__meta { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.5rem 2rem; }
-.record-source-full .record-source__meta dt { margin-top: 0.4rem; }
+.record-source-full .record-source__meta { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem 2rem; align-items: start; }
+.record-source__pair { break-inside: avoid; }
+.record-source__pair dt { margin: 0; }
+.record-source__pair dd { margin: 0.15rem 0 0; }

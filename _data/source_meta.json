@@ -68,7 +68,8 @@
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/224\">[Región del Pacífico entre Quibdó y la desembocadura del río San Juan]</a></span>"
    }
   ],
-  "_date": "1920"
+  "_date": "1920",
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/224/full/full/0/default.jpg"
  },
  "canal-intendencia-choco": {
   "source_archive": "Banco de la República / Banrepcultural",
@@ -139,7 +140,8 @@
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/242\">Mapa del territorio de la intendencia del Chocó, en donde se encuentran yacimientos de platino y de oro</a></span>"
    }
   ],
-  "_date": "1907"
+  "_date": "1907",
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/242/full/full/0/default.jpg"
  },
  "canal-atrato-san-juan-darien-1781": {
   "source_archive": "BVMDefensa",
@@ -206,7 +208,8 @@
     "value": "Archivo General Militar de Madrid"
    }
   ],
-  "_date": "C[art]agena de Yndias 1o. de julio de 1781 [sic]"
+  "_date": "C[art]agena de Yndias 1o. de julio de 1781 [sic]",
+  "original_url": "https://bibliotecavirtual.defensa.gob.es/BVMDefensa/es/consulta/registro.do?id=113262"
  },
  "banrep-istmo-de-panam-costa-del-dari-n-y-regi-n-del-pac": {
   "source_archive": "Banco de la Republica / Banrepcultural",
@@ -276,7 +279,8 @@
     "label": "Source",
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/225\">[Istmo de Panamá, costa del Darién y región del Pacífico hasta el río Dagua]</a></span>"
    }
-  ]
+  ],
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/225/full/full/0/default.jpg"
  },
  "banrep-plan-que-manifiesta-las-costas-de-la-mar-del-nor": {
   "source_archive": "Banrepcultural",
@@ -350,7 +354,8 @@
     "label": "Source",
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/258\">Plan que manifiesta las costas de la mar del Norte y Sur, y terreno que intermedia entre los rios Sinu, y Atrato con sus caños, quebradas, rios que desaguan en ellos, y el camino que de orden del Exmo. Sr. D. Manuel Antonio de Flores, comendador de Lopera en el orden de Calatraba, theniente general de la Real Armada, virrey, governador y capitan Gral. De este nuevo Reino de Granada, ha descubierto por tierra desde esta plaza, y por el rio Sinu el capitan de ynfanteria D. Anttonio dela Torre, agregado en calidad de ayudante al batallón de milicias de ella…</a></span>"
    }
-  ]
+  ],
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/258/full/full/0/default.jpg"
  },
  "banrep-l-nea-cable-bolombolo-atrato": {
   "source_archive": "Banco de la Republica / Banrepcultural",
@@ -432,7 +437,8 @@
     "label": "Source",
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/432\">[Línea cable Bolombolo-Atrato]</a></span>"
    }
-  ]
+  ],
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/432/full/full/0/default.jpg"
  },
  "banrep-croquis-de-la-regi-n-entre-los-r-os-atrato-murin": {
   "source_archive": "Banrepcultural",
@@ -506,7 +512,8 @@
     "label": "Source",
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/581\">[Croquis de la región entre los ríos Atrato, Murindó, Murri, río Sucio y río Verde en la provincia de Antioquia]</a></span>"
    }
-  ]
+  ],
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/581/full/full/0/default.jpg"
  },
  "banrep-san-juan-river-in-choco-district-colombia-s-a": {
   "source_archive": "Banco de la Republica / Banrepcultural",
@@ -584,7 +591,8 @@
     "label": "Source",
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/665\">San Juan river in Choco district. Colombia S.A.</a></span>"
    }
-  ]
+  ],
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/665/full/full/0/default.jpg"
  },
  "banrep-costa-rica-veragua-dari-n-y-bah-a-de-panam": {
   "source_archive": "Banco de la Republica / Banrepcultural",
@@ -662,7 +670,8 @@
     "label": "Source",
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/720\">[Costa Rica, Veragua, Darién y bahía de Panamá]</a></span>"
    }
-  ]
+  ],
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/720/full/full/0/default.jpg"
  },
  "banrep-mapa-de-costa-rica-istmo-de-panam-veragua-y-cost": {
   "source_archive": "Banco de la Republica / Banrepcultural",
@@ -732,7 +741,8 @@
     "label": "Source",
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/723\">Mapa de Costa Rica, istmo de Panamá, Veragua y costa de Mosquitos para servir a la historia de la demarcación territorial de las repúblicas de Costa Rica y Colombia / construido bajo la dirección del Sr. D. Manuel M. de Peralta, enviado extraordinario y ministro plenipotenciario de la república de Costa Rica en España, etc., etc.</a></span>"
    }
-  ]
+  ],
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/723/full/full/0/default.jpg"
  },
  "banrep-mar-caribe-costa-de-tierra-firme-istmo-de-panam-": {
   "source_archive": "Banco de la Republica / Banrepcultural",
@@ -810,7 +820,8 @@
     "label": "Source",
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/733\">[Mar Caribe, costa de Tierra Firme, istmo de Panamá y Antillas]</a></span>"
    }
-  ]
+  ],
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/733/full/full/0/default.jpg"
  },
  "banrep-der-alto-choc-kolumbien": {
   "source_archive": "Banrepcultural",
@@ -896,7 +907,8 @@
     "label": "Source",
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/161\">Der Alto Chocó (Kolumbien)</a></span>"
    }
-  ]
+  ],
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/161/full/full/0/default.jpg"
  },
  "banrep-a-chart-of-the-coasts-of-peru-quito-popayan-and-": {
   "source_archive": "Banrepcultural",
@@ -974,6 +986,7 @@
     "label": "Source",
     "value": "<span>From: <a href=\"https://babel.banrepcultural.org/digital/collection/p17054coll13/id/644\">A chart of the coasts of Peru, Quito, Popayan and the isthmus of Darien</a></span>"
    }
-  ]
+  ],
+  "original_url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/644/full/full/0/default.jpg"
  }
 }

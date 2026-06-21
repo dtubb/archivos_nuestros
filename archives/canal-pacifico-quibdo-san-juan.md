@@ -1,10 +1,22 @@
 ---
-title: "[Región del Pacífico entre Quibdó y la desembocadura del río San Juan]"
+title: "Región del Pacífico entre Quibdó y la desembocadura del río San Juan"
 shortTitle: "Región del Pacífico, Quibdó al río San Juan"
 themes:
   - "Mapas históricos del Chocó (San Juan–Atrato–Darién)"
 section: archival-primary
 type: mapas
+cite_type: map
+cite_author: "Anónimo"
+cite_title: "Región del Pacífico entre Quibdó y la desembocadura del río San Juan"
+cite_year: "1920"
+cite_publisher: ""
+topics:
+  - Mapas antiguos
+  - Manuscritos
+  - Planos
+  - Relieves
+  - Hidrografía
+  - Ríos
 displayDate: "1920"
 source: "Banco de la República / Banrepcultural"
 link: "https://babel.banrepcultural.org/digital/collection/p17054coll13/id/224/"

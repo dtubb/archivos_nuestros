@@ -4,6 +4,18 @@ themes:
   - "Mapas históricos del Chocó (San Juan–Atrato–Darién)"
 section: archival-primary
 type: mapas
+cite_type: map
+cite_author: "Kunst, Joh"
+cite_title: "Der Alto Chocó (Kolumbien)"
+cite_year: "1912"
+cite_publisher: "Friederichsen, L. 1841-1915"
+topics:
+  - Hidrografía
+  - Ríos
+  - Relieves
+  - Mapas regionales
+  - Intendencia del Chocó
+  - Geografía e Historia
 displayDate: "1912"
 source: "Banco de la República / Banrepcultural"
 link: "https://babel.banrepcultural.org/digital/collection/p17054coll13/id/161/"

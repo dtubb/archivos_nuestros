@@ -5,6 +5,11 @@ themes:
   - "Mapas históricos del Chocó (San Juan–Atrato–Darién)"
 section: archival-primary
 type: mapas
+cite_type: map
+cite_author: "Anónimo"
+cite_title: "Plano particular de un trecho del Rio del Choco llamado de San Juan o del Trato que desagua en el Golfo del Darien en que se comprehende el de la Loma de las Pulgas y sus perfiles sic : Para la inteligencia de la colocacion del Fuerte Provisional que se ha de egecutar en ella de orden del Excelentissimo Señor Virrey Dn. Manuel Antonio de Florez sic / Levantado por el Capitan e Yngeniero ordinario Dn. Juan Ximenez Donoso ; Antonio de Arebalo sic"
+cite_year: ""
+cite_publisher: "C[art]agena de Yndias 1o. de julio de 1781 [sic]"
 displayDate: "1781"
 source: "BVMDefensa / Archivo General Militar de Madrid"
 link: "https://bibliotecavirtual.defensa.gob.es/BVMDefensa/es/consulta/registro.do?id=113262"
