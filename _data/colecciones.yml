@@ -17,9 +17,10 @@ colecciones:
     name_en: Maps
     image: ""
     map: ""
-    curators: []
-    description_es: ""
-    description_en: ""
+    curators:
+      - Daniel Tubb
+    description_es: "Description goes here"
+    description_en: "Description goes here"
   - slug: pcn
     name_es: PCN
     name_en: PCN
