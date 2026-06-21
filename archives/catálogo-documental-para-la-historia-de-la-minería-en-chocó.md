@@ -1,4 +1,5 @@
 ---
+shortTitle: "Catálogo documental — Minería en Chocó"
 title: Catálogo Documental para la Historia de la Minería en Chocó
 themes:
   - Chocó

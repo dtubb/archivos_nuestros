@@ -1,4 +1,5 @@
 ---
+shortTitle: "Colección Houghton"
 title: Álbum de fotos - Colección Houghton - para el permiso de acceder al enlace escriba
   por favor a farnswor@upenn.edu
 author: N.C. Marshall, Michigan Technological University Archives.

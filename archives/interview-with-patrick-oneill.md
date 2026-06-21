@@ -1,4 +1,5 @@
 ---
+shortTitle: "Entrevista con Patrick O'Neill (2007)"
 title: Entrevista con Patrick O'Neill (New Canaan, CT--2007)
 themes:
   - Chocó

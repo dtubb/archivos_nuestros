@@ -1,4 +1,5 @@
 ---
+shortTitle: "Mapas del Chocó"
 title: Selección de mapas del Chocó, autores diferentes
 titleEng: Fondo Chocó - Map - 1970s
 author: Gobierno de Colombia. DANE

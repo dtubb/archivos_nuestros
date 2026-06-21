@@ -1,4 +1,5 @@
 ---
+shortTitle: "Juzgado de Istmina — Minería (1930–1980)"
 title: Archivo Histórico del Juzgado del Circuito de Istmina. Casos digitalizados. Fondo Minería
   1930-1980.
 titleEng: Archivo Histórico del Juzgado del Circuito de Istmina. Casos digitalizados. Fondo

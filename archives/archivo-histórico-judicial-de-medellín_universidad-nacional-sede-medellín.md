@@ -1,4 +1,5 @@
 ---
+shortTitle: "Archivo Judicial de Medellín (UNAL)"
 title: Archivo Histórico Judicial de Medellín_Universidad Nacional, Sede Medellín
 author: Prefecto de la Provincia de San Juan, Tribunal Superior de Cali, Digitalización por
   Kelly López Roldán

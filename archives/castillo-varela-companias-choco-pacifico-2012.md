@@ -1,4 +1,5 @@
 ---
+shortTitle: "Retratos en blanco y negro (2012)"
 title: "Las compañías Chocó Pacífico y Tropical Oil a comienzos del siglo XX: Retratos en blanco y negro"
 author: "Castillo, Ángela; Varela, Daniel"
 themes:

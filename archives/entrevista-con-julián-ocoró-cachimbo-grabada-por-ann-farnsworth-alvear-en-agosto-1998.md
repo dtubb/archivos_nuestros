@@ -1,4 +1,5 @@
 ---
+shortTitle: "Entrevista con Julián Ocoró Cachimbo"
 title: Entrevista con Julián Ocoró Cachimbo, grabada por Ann Farnsworth-Alvear en Agosto 1998
 themes:
   - Chocó

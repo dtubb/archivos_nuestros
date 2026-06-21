@@ -1,4 +1,5 @@
 ---
+shortTitle: "La hidroeléctrica en La Vuelta (2024)"
 title: "Álbum de fotos: La hidroeléctrica en La Vuelta, fotografías actuales de la  (2024)"
 titleEng: "Photo album: The hydroelectric site at La Vuelta, current photographs (2024)"
 author: Daniel Tubb, con apoyo de la SSHRC de Canadá y de la Universidad de New Brunswick

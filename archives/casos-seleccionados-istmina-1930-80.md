@@ -1,4 +1,5 @@
 ---
+shortTitle: "Casos judiciales de Istmina (1930–80)"
 title: Archivo Histórico Judicial de Istmina 1930-80, Casos procesados en formato Word. Fondo
   Minería 1930-1980.
 themes:

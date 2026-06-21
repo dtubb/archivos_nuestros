@@ -1,4 +1,5 @@
 ---
+shortTitle: "Los saberes del monte (2013)"
 title: "Los saberes del monte: Desindustrialización, crisis y reinvención campesina en Andagoya, Chocó (1974-1991)"
 author: "Varela, Daniel"
 themes:

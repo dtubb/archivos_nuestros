@@ -1,4 +1,5 @@
 ---
+shortTitle: "Archivo General de la Nación"
 title: Álbum de fotografías - Archivo General de la Nación
 author: Archivo General de la Nación. Fotógrafos varios
 topics:

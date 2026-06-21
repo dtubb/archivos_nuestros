@@ -1,4 +1,5 @@
 ---
+shortTitle: "Cartilla de historia del medio San Juan"
 title: "Cartilla de historia: La industrialización y desindustrialización del medio San Juan en el siglo XX (en proceso)"
 themes:
   - Chocó

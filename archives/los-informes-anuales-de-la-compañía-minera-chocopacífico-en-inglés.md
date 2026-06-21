@@ -1,4 +1,5 @@
 ---
+shortTitle: "Informes anuales de la Chocó Pacífico"
 title: Los informes anuales de la Compañía Minera Chocopacífico (en inglés)
 themes:
   - Chocó

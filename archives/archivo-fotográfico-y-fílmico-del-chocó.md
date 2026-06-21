@@ -1,4 +1,5 @@
 ---
+shortTitle: "Archivo Fotográfico y Fílmico del Chocó"
 title: Archivo Fotográfico y Fílmico del Chocó - Videoteca
 themes:
   - Chocó

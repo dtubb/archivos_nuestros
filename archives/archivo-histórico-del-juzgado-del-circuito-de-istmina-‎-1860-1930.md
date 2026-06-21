@@ -1,4 +1,5 @@
 ---
+shortTitle: "Juzgado de Istmina (1860–1930)"
 title: Archivo Histórico del Juzgado del Circuito de Istmina (1860-1930), Casos digitalizados
   por EAP1477
 themes:
