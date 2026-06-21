@@ -263,6 +263,36 @@ compactChrome: true
         >{% if page.lang == 'en' %}Download BibTeX{% else %}Descargar BibTeX{% endif %}</a>
       </div>
       {% endif %}
+
+      {# Sub-collection nav: prev/next within the same collection (first theme) #}
+      {%- set col = record.data.themes[0] if record.data.themes else null -%}
+      {%- if col -%}
+        {%- set sibs = [] -%}
+        {%- for a in collections.archives -%}
+          {%- if a.data.themes and col in a.data.themes -%}{%- set sibs = sibs.concat([a]) -%}{%- endif -%}
+        {%- endfor -%}
+        {%- set prevRec = null -%}{%- set nextRec = null -%}{%- set foundCur = false -%}
+        {%- for a in sibs -%}
+          {%- if foundCur and not nextRec -%}{%- set nextRec = a -%}{%- endif -%}
+          {%- if a.url == page.url -%}{%- set foundCur = true -%}
+          {%- elif not foundCur -%}{%- set prevRec = a -%}{%- endif -%}
+        {%- endfor -%}
+        {% if prevRec or nextRec %}
+        <nav class="record-subnav" aria-label="{{ col }}">
+          {% if prevRec %}<a class="record-subnav__link record-subnav__prev" href="{{ prevRec.url | sitePath }}" data-subnav-prev>← {{ prevRec.data.shortTitle or prevRec.data.title }}</a>{% endif %}
+          {% if nextRec %}<a class="record-subnav__link record-subnav__next" href="{{ nextRec.url | sitePath }}" data-subnav-next>{{ nextRec.data.shortTitle or nextRec.data.title }} →</a>{% endif %}
+        </nav>
+        <script>
+          (function () {
+            document.addEventListener('keydown', function (e) {
+              if (e.target.matches('input,textarea')) return;
+              if (e.key === 'ArrowLeft') { var p = document.querySelector('[data-subnav-prev]'); if (p) p.click(); }
+              if (e.key === 'ArrowRight') { var n = document.querySelector('[data-subnav-next]'); if (n) n.click(); }
+            });
+          })();
+        </script>
+        {% endif %}
+      {%- endif -%}
     </aside>
   </div>
 </article>
