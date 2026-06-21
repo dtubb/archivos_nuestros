@@ -13,3 +13,6 @@ node_modules
 
 # Local-only large media (host on Reclaim later); keep out of git
 assets/media/av
+
+# Reclaim SFTP staging — large originals, never committed
+reclaim-upload/
