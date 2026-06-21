@@ -1074,3 +1074,6 @@ details[open] > .record-details__summary::before { transform: rotate(90deg); }
 .record-pdf__fs:hover { background: var(--ochre-dim); }
 
 .doc-frame__placeholder { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--ochre); font-size: 2.5rem; opacity: 0.5; }
+
+.doc-frame__keywords { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.4rem 0 0; }
+.doc-frame__keywords span { font-family: var(--font-ui); font-size: 0.68rem; letter-spacing: 0.04em; color: var(--sage); background: var(--ochre-dim); border-radius: 999px; padding: 0.12rem 0.5rem; }

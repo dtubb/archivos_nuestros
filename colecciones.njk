@@ -59,6 +59,7 @@ eleventyComputed:
                         <h3 class="doc-frame__title">{{ cardTitle }}</h3>
                         {%- set tl = typeLabels[a.data.type] -%}
                         {% if tl %}<p class="doc-frame__breadcrumb">{{ tl.en if page.lang == 'en' else tl.es }}</p>{% endif %}
+                        {% if a.data.topics %}<p class="doc-frame__keywords">{% for t in a.data.topics.slice(0, 3) %}<span>{{ t }}</span>{% endfor %}</p>{% endif %}
                         {% set cardSummary = a.data['summary-en'] if page.lang == 'en' and a.data['summary-en'] else a.data['summary-es'] %}
                         {% if cardSummary %}<p class="doc-frame__summary">{{ cardSummary }}</p>{% endif %}
                       </div>
