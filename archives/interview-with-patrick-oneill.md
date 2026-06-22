@@ -17,6 +17,7 @@ topics:
   - Compañías Extranjeras
 type: entrevistas
 thumbnail: /assets/media/screenshot-2024-10-11-at-7.57.05 pm.png
+video: "/assets/media/av/oneill-2007.mp4"
 link: https://upenn.box.com/v/entrevistapon
 layout: archive.njk
 tags:
